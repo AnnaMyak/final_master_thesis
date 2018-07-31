@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace SharpnessControlWebApp.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class EntityManagementController : Controller
     {
         // GET: EntityManagement
