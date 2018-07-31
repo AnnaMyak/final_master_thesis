@@ -6,12 +6,10 @@
 }
 
 
-<h2>Schärfe-Kriterien</h2>
-
 <p>
-    @Html.ActionLink("Ein neues Schärfekriterium hinzufügen", "CreateNewReglament")
-</p>
-<table class="table">
+    @Html.ActionLink("Ein neues Schärfekriterium hinzufügen + ", "CreateNewReglament", null, new { @class = "btn btn-success" }) | @Html.ActionLink("Zurück zu den Entitäten", "Index", null, new { @class = "btn btn-warning", @style = "color:white" })
+
+</p><table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Titel)
@@ -64,9 +62,9 @@
             </td>
             
             <td>
-                @Html.ActionLink("Edit", "EditReglament", new { ReglamentId = item.ReglamentId }) |
+                @Html.ActionLink("Ändern", "EditReglament", new { ReglamentId = item.ReglamentId }, new { @class= "btn btn-warning" }) |
                 
-                @Html.ActionLink("Delete", "DeleteReglament", new { ReglamentId = item.ReglamentId })
+                @Html.ActionLink("Löschen", "DeleteReglament", new { ReglamentId = item.ReglamentId },new { @class= "btn btn-danger" })
             </td>
         </tr>
     }

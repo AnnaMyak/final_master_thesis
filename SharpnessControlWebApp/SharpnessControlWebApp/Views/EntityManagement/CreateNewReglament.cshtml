@@ -10,7 +10,7 @@
 @using (Html.BeginForm())
 {
     <div class="form-horizontal">
-        <input type="submit" value="Ein neues Schärfe-Kriterium anlegen" class="btn btn-primary" /> | @Html.ActionLink("Zurück zu den Kriterien", "ReglamentsManagement", null, new { @class = "btn btn-warning", @style = "color:white" }) | @Html.ActionLink("Zurück zu den Entitäten", "Index", null, new { @class = "btn btn-danger" })
+         @Html.ActionLink("Zurück zu den Kriterien", "ReglamentsManagement", null, new { @class = "btn btn-warning", @style = "color:white" }) | @Html.ActionLink("Zurück zu den Entitäten", "Index", null, new { @class = "btn btn-danger" })
     </div>
     <br />
     @Html.AntiForgeryToken()
@@ -86,7 +86,7 @@
                 </div>
             </div>
         </div>
-
+        <input type="submit" value="Ein neues Schärfe-Kriterium anlegen" class="btn btn-primary" />
     </div>
 }
 

@@ -6,84 +6,37 @@
 }
 
 
+@Html.ActionLink("zurück zu den Schärfe-Kriterien", "ReglamentsManagement", null, new { @class = "btn btn-success" }) | @Html.ActionLink("Zurück zu den Entitäten", "Index", null, new { @class = "btn btn-warning",@style="color:white" })
+<br />
+<br />
+<h5>Das Kriterium wirklich löschen?</h5>
+<br />
 
-<h3>Are you sure you want to delete this?</h3>
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+        <h5 class="card-title"><strong>Schärfe-Kriterium</strong></h5>
+        <p class="card-text"><strong>@Html.DisplayNameFor(model => model.Titel):</strong> @Html.DisplayFor(model => model.Titel)</p>
+        <p class="card-text"><strong>@Html.DisplayNameFor(model => model.SharpnessThresholdValue):</strong> @Html.DisplayFor(model => model.SharpnessThresholdValue)</p>
+        <p class="card-text"><strong>@Html.DisplayNameFor(model => model.Scaling):</strong> @Html.DisplayFor(model => model.Scaling)</p>
+        <p class="card-text"><strong>@Html.DisplayNameFor(model => model.Edges):</strong> @Html.DisplayFor(model => model.Edges)</p>
+        <p class="card-text"><strong>@Html.DisplayNameFor(model => model.TileSize):</strong> @Html.DisplayFor(model => model.TileSize)</p>
+        <p class="card-text"><strong>@Html.DisplayNameFor(model => model.AcceptanceValue):</strong> @Html.DisplayFor(model => model.AcceptanceValue)</p>
+        <p class="card-text"><strong>Active:</strong> @Html.DisplayFor(model => model.Status)  
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Löschen" class="btn btn-danger" />
+            </div>
+        }
+        </p>
+
+    </div>
+    
+</div>
+
+<br />
 <div>
-    <h4>Reglament</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Titel)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Titel)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.SharpnessThresholdValue)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SharpnessThresholdValue)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Scaling)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Scaling)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Edges)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Edges)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TileSize)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TileSize)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.AcceptanceValue)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.AcceptanceValue)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Status)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Creation)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Creation)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("zurück zu den Schärfe-Kriterien", "ReglamentsManagement")
-        </div>
-    }
+    
 </div>
