@@ -34,9 +34,7 @@
         <th>
             @Html.DisplayNameFor(model => model.Status)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Creation)
-        </th>
+        
         <th></th>
     </tr>
 
@@ -64,13 +62,11 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Status)
             </td>
+            
             <td>
-                @Html.DisplayFor(modelItem => item.Creation)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ReglamentId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ReglamentId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ReglamentId })
+                @Html.ActionLink("Edit", "EditReglament", new { ReglamentId = item.ReglamentId }) |
+                
+                @Html.ActionLink("Delete", "DeleteReglament", new { ReglamentId = item.ReglamentId })
             </td>
         </tr>
     }

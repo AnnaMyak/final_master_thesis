@@ -4,6 +4,7 @@ using Sharpness.WebApp.Models.Sharpness_Persistence.Sharpness_Repositories.Imple
 using Sharpness.WebApp.Models.Sharpness_Persistence.Sharpness_Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -299,5 +300,65 @@ namespace SharpnessControlWebApp.Controllers
             }
             return View(reglament);
         }
+
+
+        public ActionResult EditReglament(Guid ReglamentId)
+        {
+            return View(repoReglament.GetReglamentById(ReglamentId));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditReglament(Reglament reglament)
+        {
+                if (ModelState.IsValid)
+                {
+                    repoReglament.Update(reglament);
+                    return RedirectToAction("ReglamentsManagement");
+                }
+
+
+                return View(reglament);
+            }
+
+        [HttpGet]
+        public ActionResult DeleteReglament(Guid ReglamentId)
+        {
+            if ( ReglamentId== null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var reglament  = repoReglament.GetReglamentById(ReglamentId);
+            if (reglament == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(repoReglament.GetReglamentById(ReglamentId));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteReglament(Guid ReglamentId, FormCollection collection)
+        {
+            ViewBag.Error = "";
+            var _context = new ApplicationDbContext();
+            try
+            {
+
+
+                _context.Reglaments.Remove(_context.Reglaments.Find(ReglamentId));
+                _context.SaveChanges();
+                return RedirectToAction("ReglamentsManagement");
+
+            }
+            catch
+            {
+                ViewBag.Error = "Das Kriterium ist schon gelöscht worden oder existiert nicht!";
+
+            }
+            return View(_context.Reglaments.Find(ReglamentId));
+        }
+
     }
 }

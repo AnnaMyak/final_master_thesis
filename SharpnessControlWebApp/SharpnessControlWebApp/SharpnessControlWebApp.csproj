@@ -442,6 +442,8 @@
     <Content Include="Views\EntityManagement\Index.cshtml" />
     <Content Include="Views\EntityManagement\CreateNewStain.cshtml" />
     <Content Include="Views\EntityManagement\StainsManagement.cshtml" />
+    <Content Include="Views\EntityManagement\EditReglament.cshtml" />
+    <Content Include="Views\EntityManagement\DeleteReglament.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
