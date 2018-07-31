@@ -1,41 +1,121 @@
 ﻿@model IdentitySample.Models.RegisterViewModel
 @{
     ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_LayoutSetUpApp.cshtml";
 }
-
-<h2>@ViewBag.Title.</h2>
 
 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>
-    <hr />
-    @Html.ValidationSummary("", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
-        </div>
-    </div>
-}
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+
+
+
+    <div class="form-group">
+        <div class="form-row align-items-center">
+            <div class="col-sm-5">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-transgender-alt" style="font-size:24px"></i></span>
+                    </div>
+                    @Html.DropDownListFor(m => m.Salutation, new SelectList(new List<string> { "Frau", "Herr", "Andere" }), new { @class = "form-control account-select", @style = "background-color: #4E7A8C;color:white" })
+                </div>
+            </div>
+
+            <div class="col-sm-2"></div>
+
+            <div class="col-sm-5">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-university" style="font-size:24px"></i></span>
+                    </div>
+                    @Html.DropDownListFor(m => m.AcademicTitle, new SelectList(new List<string> { "", "Dipl. med.", "Dipl. oec.troph.", "Dr.", "Dr. med.", "Prof.", "Prof. Dr.", "Prof. Dr. med." }), new { @class = "form-control account-select", @style = "background-color: #4E7A8C;color:white" })
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <br />
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"><i class="fa fa-user-circle-o" style="font-size:24px"></i></span>
+            </div>
+            @Html.TextBoxFor(m => m.Firstname, new { @class = "form-control", @style = "background:#4E7A8C; color:white;", @placeholder = "Vorname" })
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"><i class="fa fa-user-circle-o" style="font-size:24px"></i></span>
+            </div>
+            @Html.TextBoxFor(m => m.Lastname, new { @class = "form-control", @style = "background:#4E7A8C; color:white;", @placeholder = "Nachname" })
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"><i class="fa fa-envelope-o" style="font-size:24px"></i></span>
+            </div>
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @style = "background:#4E7A8C;color:white;", @placeholder = "Email" })
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"><i class="fa fa-envelope-o" style="font-size:24px"></i></span>
+            </div>
+            @Html.TextBoxFor(m => m.ConfirmEmail, new { @class = "form-control", @style = "background:#4E7A8C;color:white;", @placeholder = "Email bestätigen" })
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"><i class="fa fa-lock" style="font-size:24px"></i></span>
+            </div>
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control", @style = "background:#4E7A8C;color:white;", @placeholder = "Passwort" })
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"><i class="fa fa-lock" style="font-size:24px"></i></span>
+            </div>
+            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", @style = "background:#4E7A8C;color:white;", @placeholder = "Passwort bestätigen" })
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"><i class="fa fa-home" style="font-size:24px"></i></span>
+            </div>
+            @Html.TextBoxFor(m => m.Organisation, new { @class = "form-control", @style = "background:#4E7A8C;color:white;", @placeholder = "Gesundheitseinrichtung" })
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"><i class="fa fa-road" style="font-size:24px"></i></span>
+            </div>
+            @Html.TextBoxFor(m => m.Address, new { @class = "form-control", @style = "background:#4E7A8C;color:white;", @placeholder = "Straße und Hausnummer" })
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"><i class="fa fa-envelope" style="font-size:24px"></i></span>
+            </div>
+            @Html.TextBoxFor(m => m.ZipCode, new { @class = "form-control", @style = "background:#4E7A8C;color:white;", @placeholder = "Postleitzahl" })
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"><i class="fa fa-location-arrow" style="font-size:24px"></i></span>
+            </div>
+            @Html.TextBoxFor(m => m.Location, new { @class = "form-control", @style = "background:#4E7A8C;color:white;", @placeholder = "Ort" })
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"><i class="fa fa-globe" style="font-size:24px"></i></span>
+            </div>
+            @Html.TextBoxFor(m => m.Country, new { @class = "form-control", @style = "background:#4E7A8C;color:white;", @placeholder = "Land" })
+        </div>
+
+        <input type="submit" class="btn btn-primary btn-block" style="background:#98CA32" value="Registrieren" />
+            <div class="text-center">
+                @Html.ActionLink("Anmelden", "Login", null, new { @class = "d-block small mt-3", @style = "color:#98CA32" })
+
+                @Html.ActionLink("Passwort vergessen?", "ForgotPassword", null, new { @class = "d-block small mt-3", @style = "color:#98CA32" })
+            </div>
 }

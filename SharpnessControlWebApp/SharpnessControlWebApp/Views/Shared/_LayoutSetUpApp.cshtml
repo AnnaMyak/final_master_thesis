@@ -13,43 +13,62 @@
     <link href="~/Assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
     <link href="~/Assets/css/navbar.css" rel="stylesheet" />
     <link href="~/Assets/css/sb-admin.min.css" rel="stylesheet" />
-    
+
 
 
 </head>
 <body>
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-light" id="mainNav" style="background:white">
-        <a class="navbar-brand" href="@Url.Action("Index", "Home")"> 
+        <a class="navbar-brand" href="@Url.Action("Index", "Home")">
 
             <img src="~/Assets/img/logo.png" />
-        
-        <strong> USDP Unterstützende Systeme Digitale Pathologie</strong></a>
+
+            <strong> USDP Unterstützende Systeme Digitale Pathologie</strong>
+        </a>
         <div class="collapse navbar-collapse" style="" id="navbarResponsive">
-            
+
             @Html.Partial("_LoginPartial")
-            
+
         </div>
     </nav>
 
-    <div>
-        <div class="content-wrapper">
-            <div class="container-fluid">
-
-
-                <div class="row">
-                    <div class="col-12">
-
-                        @RenderBody()
-                    </div>
-                    </div>
+    <div class="container">
+        <div class="card card-register mx-auto mt-5" style="background:#4E7A8C">
+            <div class="card-header" style="background: #98CA32"><h4 style="color:white" class="text-center">Registeieren ein neues Konto</h4></div>
+            <div class="card-body">
+                <div class="container">
+                    @RenderBody()
                 </div>
             </div>
         </div>
+    </div>
+    <style>
+        .form-control::-webkit-input-placeholder {
+            color: white;
+        }
+        /* WebKit, Blink, Edge */
+        .form-control:-moz-placeholder {
+            color: white;
+        }
+        /* Mozilla Firefox 4 to 18 */
+        .form-control::-moz-placeholder {
+            color: white;
+        }
+        /* Mozilla Firefox 19+ */
+        .form-control:-ms-input-placeholder {
+            color: white;
+        }
+        /* Internet Explorer 10-11 */
+        .form-control::-ms-input-placeholder {
+            color: white;
+        }
+        /* Microsoft Edge */
+    </style>
     <script src="~/Assets/vendor/jquery/jquery.min.js"></script>
     <script src="~/Assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="~/Assets/vendor/jquery-easing/jquery.easing.min.js"></script>
     <script src="~/Assets/js/sb-admin.min.js"></script>
     <script src="~/Assets/js/navbar.js"></script>
-</body>
+    </body>
 </html>

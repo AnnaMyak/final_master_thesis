@@ -77,6 +77,5 @@ C:\Users\AnnaToshiba2\Documents\GitHub\final_master_thesis\SharpnessControlWebAp
 C:\Users\AnnaToshiba2\Documents\GitHub\final_master_thesis\SharpnessControlWebApp\SharpnessControlWebApp\bin\System.Web.WebPages.Razor.xml
 C:\Users\AnnaToshiba2\Documents\GitHub\final_master_thesis\SharpnessControlWebApp\SharpnessControlWebApp\bin\Antlr3.Runtime.pdb
 C:\Users\AnnaToshiba2\Documents\GitHub\final_master_thesis\SharpnessControlWebApp\SharpnessControlWebApp\bin\Newtonsoft.Json.xml
-C:\Users\AnnaToshiba2\Documents\GitHub\final_master_thesis\SharpnessControlWebApp\SharpnessControlWebApp\obj\Debug\SharpnessControlWebApp.csprojResolveAssemblyReference.cache
 C:\Users\AnnaToshiba2\Documents\GitHub\final_master_thesis\SharpnessControlWebApp\SharpnessControlWebApp\obj\Debug\SharpnessControlWebApp.dll
 C:\Users\AnnaToshiba2\Documents\GitHub\final_master_thesis\SharpnessControlWebApp\SharpnessControlWebApp\obj\Debug\SharpnessControlWebApp.pdb

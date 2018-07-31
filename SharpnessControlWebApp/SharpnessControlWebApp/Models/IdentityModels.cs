@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -16,6 +17,22 @@ namespace IdentitySample.Models
             // Add custom user claims here
             return userIdentity;
         }
+
+        public ApplicationUser()
+        {
+            RegisterDate = DateTime.Now;
+        }
+
+        public string Salutation { get; set; }
+        public string AcademicTitle { get; set; }
+        public string Firstname { get; set; }
+        public string Lastname { get; set; }
+        public string Organisation { get; set; }
+        public string Address { get; set; }
+        public string ZipCode { get; set; }
+        public string Location { get; set; }
+        public string Country { get; set; }
+        public DateTime RegisterDate { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>

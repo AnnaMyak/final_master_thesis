@@ -1,32 +1,37 @@
 ﻿@model IdentitySample.Models.LoginViewModel
 
 @{
-    ViewBag.Title = "Log in";
+    ViewBag.Title = "Anmelden";
+    Layout = "~/Views/Shared/_LayoutSetUpApp.cshtml";
 }
 
-<h2>@ViewBag.Title.</h2>
-<div class="row">
-    <div class="col-md-8">
-        <section id="loginForm">
-            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" })) {
-                @Html.AntiForgeryToken()
-                <h4>Use a local account to log in.</h4>
-                <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+@using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"><i class="fa fa-user-circle-o" style="font-size:24px"></i></span>
+            </div>
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @style = "background:#4E7A8C;color:white;", @placeholder = "Email" })
+            @Html.ValidationMessageFor(m => m.Email, "", new { @style = "color: white; font-weight: bold; margin: 5px 5px 0px 5px;" })
+
+        </div>
+    </div>
+
                 <div class="form-group">
-                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-lock" style="font-size:24px"></i></span>
+                        </div>
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", @style = "background:#4E7A8C;color:white;", @placeholder = "Passwort" })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @style = "color: white; font-weight: bold; margin: 5px 5px 0px 5px" })
                     </div>
                 </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                    </div>
-                </div>
+
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
                         <div class="checkbox">
@@ -35,26 +40,17 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Log in" class="btn btn-default" />
+
+                    <div class="form-group">
+
+                        <input type="submit" value="Anmelden" class="btn btn-primary btn-block" style="background:#98CA32" />
+
                     </div>
-                </div>
-                <p>
-                    @Html.ActionLink("Register a new user?", "Register")
-                </p>
-                <p>
-                    @Html.ActionLink("Forget your password?", "ForgotPassword")
-                </p>
-            }
-        </section>
-    </div>
-    <div class="col-md-4">
-        <section id="socialLoginForm">
-            @Html.Partial("_ExternalLoginsListPartial", new IdentitySample.Models.ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-        </section>
-    </div>
-</div>
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+                    <div class="text-center">
+                        @Html.ActionLink("Ein neues Konto registrieren?", "Register", null, new { @class = "d-block small mt-3", @style = "color:#98CA32" })
+
+                        @Html.ActionLink("Passwort vergessen?", "ForgotPassword", null, new { @class = "d-block small mt-3", @style = "color:#98CA32" })
+                    </div>
+
+
 }

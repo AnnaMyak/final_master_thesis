@@ -86,10 +86,36 @@ namespace IdentitySample.Models
     {
         public Task SendAsync(IdentityMessage message)
         {
-            // Plug in your email service here to send an email.
-            return Task.FromResult(0);
+
+            System.Net.Mail.SmtpClient client =
+                new System.Net.Mail.SmtpClient("smtp.gmail.com");
+
+            client.Port = 587;
+            client.EnableSsl = true;
+            client.DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network;
+
+            client.UseDefaultCredentials = true;
+            // Create the credentials:
+            System.Net.NetworkCredential credentials =
+                new System.Net.NetworkCredential("scp.ma2018@gmail.com", "SharpnessControl");
+
+            client.Credentials = credentials;
+
+            // Create the message:
+            var mail =
+                new System.Net.Mail.MailMessage("scp.ma2018@gmail.com", message.Destination);
+
+            mail.Subject = message.Subject;
+            mail.Body = message.Body;
+
+            // Send:
+            return client.SendMailAsync(mail);
+
+
         }
     }
+
+
 
     public class SmsService : IIdentityMessageService
     {
