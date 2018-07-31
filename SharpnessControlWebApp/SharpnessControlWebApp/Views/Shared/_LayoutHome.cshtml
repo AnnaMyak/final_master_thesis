@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>@ViewBag.Title</title>
+    <!-- Bootstrap core CSS-->
+    <link href="~/Assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Assets/css/navbar.css" rel="stylesheet" />
+    <link href="~/Assets/css/sb-admin.min.css" rel="stylesheet" />
+    
+
+
+</head>
+<body>
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-light" id="mainNav" style="background:white">
+        <a class="navbar-brand" href="@Url.Action("Index", "Home")"> 
+
+            <img src="~/Assets/img/logo.png" />
+        
+        <strong> USDP Unterstützende Systeme Digitale Pathologie</strong></a>
+        <div class="collapse navbar-collapse" style="" id="navbarResponsive">
+            
+            @Html.Partial("_LoginPartial")
+            
+        </div>
+    </nav>
+    <div>
+        <div class="content-wrapper">
+            <div class="container-fluid">
+
+
+                <div class="row">
+                    <div class="col-12">
+
+                        @RenderBody()
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+</html>
