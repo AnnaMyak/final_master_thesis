@@ -431,9 +431,6 @@
     <Content Include="Views\AdminDashboard\Index.cshtml" />
     <Content Include="Views\ControlPanel\Index.cshtml" />
     <Content Include="Views\UserManagement\Index.cshtml" />
-    <Content Include="Views\EntityManagement\StainsManagement.cshtml" />
-    <Content Include="Views\EntityManagement\CreateNewStain.cshtml" />
-    <Content Include="Views\EntityManagement\DeleteStain.cshtml" />
     <Content Include="Views\EntityManagement\OrgansManagement.cshtml" />
     <Content Include="Views\EntityManagement\CreateNewOrgan.cshtml" />
     <Content Include="Views\EntityManagement\DeleteOrgan.cshtml" />
@@ -443,6 +440,8 @@
     <Content Include="Views\EntityManagement\ReglamentsManagement.cshtml" />
     <Content Include="Views\EntityManagement\CreateNewReglament.cshtml" />
     <Content Include="Views\EntityManagement\Index.cshtml" />
+    <Content Include="Views\EntityManagement\CreateNewStain.cshtml" />
+    <Content Include="Views\EntityManagement\StainsManagement.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -50,7 +50,7 @@ namespace SharpnessControlWebApp.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    repoOrgan.Insert(stain.Name);
+                    repoStain.Insert(stain.Name);
                     return RedirectToAction("StainsManagement");
                 }
             }
