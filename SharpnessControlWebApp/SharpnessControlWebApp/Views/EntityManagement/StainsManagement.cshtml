@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Sharpness.WebApp.Models.Sharpness_Persistence.Sharpness_Entities.Stain>
+
+@{
+    ViewBag.Title = "Färbungen";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<p>
+    @Html.ActionLink("Eine neue Färbung hinzufügen + ", "CreateNewStain", null, new { @class = "btn btn-success" }) | @Html.ActionLink("Zurück zu den Entitäten", "Index", null, new { @class = "btn btn-warning", @style = "color:white" })
+
+</p>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-5">
+            <table class="table">
+
+                @foreach (var item in Model)
+            {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td style="width:20%">
+                            @Html.ActionLink("Löschen", "DeleteStain", new { Name = item.Name }, new { @class = "btn btn-danger" })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+
+    </div>
+</div>
+

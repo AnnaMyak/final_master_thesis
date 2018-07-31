@@ -1,0 +1,38 @@
+﻿@model Sharpness.WebApp.Models.Sharpness_Persistence.Sharpness_Entities.Organ
+
+@{
+    ViewBag.Title = "Ein Organ hinzufügen";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h4>Ein neues Organ hinzufügen</h4>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ActionLink("Zurück zu den Organen", "OrgansManagement", null, new { @class = "btn btn-warning", @style = "color:white" }) | @Html.ActionLink("Zurück zu den Entitäten", "Index", null, new { @class = "btn btn-danger" })
+        <br />
+
+        <h4 style="color:red">@ViewBag.Error</h4>
+        <hr />
+
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Organ" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="hinzufügen" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

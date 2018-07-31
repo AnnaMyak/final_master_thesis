@@ -1,0 +1,94 @@
+﻿@model Sharpness.WebApp.Models.Sharpness_Persistence.Sharpness_Entities.Reglament
+
+@{
+    ViewBag.Title = "Ein neues Kriterim hinzufügen";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@using (Html.BeginForm())
+{
+    <div class="form-horizontal">
+        <input type="submit" value="Ein neues Schärfe-Kriterium anlegen" class="btn btn-primary" /> | @Html.ActionLink("Zurück zu den Kriterien", "ReglamentsManagement", null, new { @class = "btn btn-warning", @style = "color:white" }) | @Html.ActionLink("Zurück zu den Entitäten", "Index", null, new { @class = "btn btn-danger" })
+    </div>
+    <br />
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+        <div class="form-group">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Titel</span>
+                </div>
+                @Html.TextBoxFor(m => m.Titel, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Titel, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Schwellenwert</span>
+                </div>
+                @Html.TextBoxFor(m => m.SharpnessThresholdValue, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.SharpnessThresholdValue, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Scaling</span>
+                </div>
+                @Html.TextBoxFor(m => m.Scaling, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Scaling, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Kantenanzahl</span>
+                </div>
+                @Html.TextBoxFor(m => m.Edges, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Edges, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Kachelgröße</span>
+                </div>
+                @Html.TextBoxFor(m => m.TileSize, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.TileSize, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Akzeptanzwert</span>
+                </div>
+                @Html.TextBoxFor(m => m.AcceptanceValue, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.AcceptanceValue, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <div class="checkbox">
+                    Aktiv @Html.EditorFor(model => model.Status)
+                </div>
+            </div>
+        </div>
+
+    </div>
+}
+
+
+
