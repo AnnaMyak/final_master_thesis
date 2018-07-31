@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Sharpness.WebApp.Models.Sharpness_Persistence.Sharpness_Entities;
 using System;
 using System.Data.Entity;
 using System.Security.Claims;
@@ -42,12 +43,21 @@ namespace IdentitySample.Models
         {
         }
 
+        public virtual DbSet<Organ> Organs { get; set; }
+        public virtual DbSet<Reglament> Reglaments { get; set; }
+        public virtual DbSet<Report> Reports { get; set; }
+        public virtual DbSet<Stain> Stains { get; set; }
+        public virtual DbSet<Tissue> Tissues { get; set; }
+
+        public virtual DbSet<WSI> WSIs { get; set; }
         static ApplicationDbContext()
         {
             // Set the database intializer which is run once during application start
             // This seeds the database with admin user credentials and admin role
             Database.SetInitializer<ApplicationDbContext>(new ApplicationDbInitializer());
         }
+
+
 
         public static ApplicationDbContext Create()
         {

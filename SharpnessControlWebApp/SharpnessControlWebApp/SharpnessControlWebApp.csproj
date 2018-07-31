@@ -222,6 +222,24 @@
     <Compile Include="Models\AdminViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Sharpness_Persistence\Sharpness_Entities\Organ.cs" />
+    <Compile Include="Models\Sharpness_Persistence\Sharpness_Entities\Reglament.cs" />
+    <Compile Include="Models\Sharpness_Persistence\Sharpness_Entities\Report.cs" />
+    <Compile Include="Models\Sharpness_Persistence\Sharpness_Entities\Stain.cs" />
+    <Compile Include="Models\Sharpness_Persistence\Sharpness_Entities\Tissue.cs" />
+    <Compile Include="Models\Sharpness_Persistence\Sharpness_Entities\WSI.cs" />
+    <Compile Include="Models\Sharpness_Persistence\Sharpness_Repositories\Implementation\OrganRepo.cs" />
+    <Compile Include="Models\Sharpness_Persistence\Sharpness_Repositories\Implementation\ReglamentRepo.cs" />
+    <Compile Include="Models\Sharpness_Persistence\Sharpness_Repositories\Implementation\ReportRepo.cs" />
+    <Compile Include="Models\Sharpness_Persistence\Sharpness_Repositories\Implementation\StainRepo.cs" />
+    <Compile Include="Models\Sharpness_Persistence\Sharpness_Repositories\Implementation\TissueRepo.cs" />
+    <Compile Include="Models\Sharpness_Persistence\Sharpness_Repositories\Implementation\WSIRepo.cs" />
+    <Compile Include="Models\Sharpness_Persistence\Sharpness_Repositories\Interfaces\IOrganRepo.cs" />
+    <Compile Include="Models\Sharpness_Persistence\Sharpness_Repositories\Interfaces\IReglamentRepo.cs" />
+    <Compile Include="Models\Sharpness_Persistence\Sharpness_Repositories\Interfaces\IReportRepo.cs" />
+    <Compile Include="Models\Sharpness_Persistence\Sharpness_Repositories\Interfaces\IStainRepo.cs" />
+    <Compile Include="Models\Sharpness_Persistence\Sharpness_Repositories\Interfaces\ITissueRepo.cs" />
+    <Compile Include="Models\Sharpness_Persistence\Sharpness_Repositories\Interfaces\IWSIRepo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

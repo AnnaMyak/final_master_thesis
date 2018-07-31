@@ -79,3 +79,4 @@ C:\Users\AnnaToshiba2\Documents\GitHub\final_master_thesis\SharpnessControlWebAp
 C:\Users\AnnaToshiba2\Documents\GitHub\final_master_thesis\SharpnessControlWebApp\SharpnessControlWebApp\bin\Newtonsoft.Json.xml
 C:\Users\AnnaToshiba2\Documents\GitHub\final_master_thesis\SharpnessControlWebApp\SharpnessControlWebApp\obj\Debug\SharpnessControlWebApp.dll
 C:\Users\AnnaToshiba2\Documents\GitHub\final_master_thesis\SharpnessControlWebApp\SharpnessControlWebApp\obj\Debug\SharpnessControlWebApp.pdb
+C:\Users\AnnaToshiba2\Documents\GitHub\final_master_thesis\SharpnessControlWebApp\SharpnessControlWebApp\obj\Debug\SharpnessControlWebApp.csprojResolveAssemblyReference.cache

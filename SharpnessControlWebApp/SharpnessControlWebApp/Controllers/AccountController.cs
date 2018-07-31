@@ -121,7 +121,7 @@ namespace IdentitySample.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(model.ReturnUrl);
+                    return RedirectToLocal("Dashboard");
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.Failure:
