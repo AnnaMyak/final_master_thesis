@@ -1,37 +1,85 @@
 ﻿@model IdentitySample.Models.RegisterViewModel
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Einen neuen Benutzer hinzufügen";
 }
 
-<h2>@ViewBag.Title.</h2>
+<br />
 
+@Html.ActionLink("Zurück zu den Benutzern", "Index", null, new { @class = "btn btn-warning", @style = "color:white" }) | @Html.ActionLink("Zurück zu den Entitäten", "Index", "Management", null, new { @class = "btn btn-danger" })
+<br />
+<br />
 @using (Html.BeginForm("Create", "UsersAdmin", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>
+    <h4>Einen neuen Benutzer hinzufügen </h4>
     <hr />
     @Html.ValidationSummary("", new { @class = "text-error" })
     <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            @Html.TextBoxFor(m => m.Salutation, new { @class = "form-control", @placeholder = "Anrede" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.AcademicTitle, new { @class = "form-control", @placeholder = "Akademischer Grad" })
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+            @Html.TextBoxFor(m => m.Firstname, new { @class = "form-control", @placeholder = "Vorname" })
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+            @Html.TextBoxFor(m => m.Lastname, new { @class = "form-control", @placeholder = "Nachname" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Organisation, new { @class = "form-control", @placeholder = "Gesundheitseinrichtung" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Location, new { @class = "form-control", @placeholder = "Ort" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.ZipCode, new { @class = "form-control", @placeholder = "Postleitzahl" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Address, new { @class = "form-control", @placeholder = "Adresse" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Location, new { @class = "form-control", @placeholder = "Ort" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Country, new { @class = "form-control",@placeholder="Land"})
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder="Passwort" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control",@placeholder="Passwort bestätigen" })
         </div>
     </div>
     <div class="form-group">
         <label class="col-md-2 control-label">
-            Select User Role
+            Role vergeben 
         </label>
         <div class="col-md-10">
             @foreach (var item in (SelectList)ViewBag.RoleId)
@@ -43,7 +91,7 @@
     </div>
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Create" />
+            <input type="submit" class="btn btn-primary" value="Den Benutzer erzeugen" />
         </div>
     </div>
 }

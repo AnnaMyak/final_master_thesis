@@ -4,10 +4,13 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h4>Benutzer</h4>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    
+    @Html.ActionLink("Einen neuen Benutzer hinzufügen + ", "Create", null, new { @class = "btn btn-success" }) | @Html.ActionLink("Zurück zu den Entitäten", "Index","Management", null, new { @class = "btn btn-warning", @style = "color:white" })
+
+
 </p>
 <table class="table">
     <tr>
@@ -26,9 +29,9 @@
                 @Html.DisplayFor(modelItem => item.UserName)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                @Html.ActionLink("Role vergeben / Email ändern", "Edit", new { id = item.Id }, new { @class= "btn btn-warning",@style="color:white" }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-primary" }) |
+                @Html.ActionLink("Löschen", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
             </td>
         </tr>
     }

@@ -18,22 +18,23 @@
 
 </head>
 <body>
+    <div>
     <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg navbar-light" id="mainNav" style="background:white">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav" style="background:white;">
         <a class="navbar-brand" href="@Url.Action("Index", "Home")">
 
             <img src="~/Assets/img/logo.png" />
 
             <strong> USDP Unterstützende Systeme Digitale Pathologie</strong>
         </a>
-        <div class="collapse navbar-collapse" style="" id="navbarResponsive">
+        <div class="collapse navbar-collapse"  id="navbarResponsive">
 
             @Html.Partial("_LoginPartial")
 
         </div>
     </nav>
 
-
+    </div>
 
     <div id="responsive-admin-menu">
 
@@ -58,19 +59,15 @@
             </a>
             <!-- Sub Menu -->
             <div id="media-sub" style="display: none;">
-                <a href="@Url.Action("Index","UserManagement")" title="User Management">
-                    <i class="fa fa-users"></i><span>
-                     User Management
-                    </span>
-                </a>
+                
                 <a href="@Url.Action("Index","AdminDashboard")" title="Statistiken">
                     <i class="fa fa-line-chart"></i><span>
                         Statistiken
                     </span>
                 </a>
-                <a href="@Url.Action("Index","EntityManagement")" title="Entity Management">
+                <a href="@Url.Action("Index","Management")" title="Management">
                     <i class="fa fa-cubes"></i><span>
-                        Statistiken
+                        Entity Management
                     </span>
                 </a>
             </div>
@@ -85,7 +82,7 @@
 
 
             <div class="row">
-                <div class="col-12">
+                <div class="col-12" style="margin-top:40px">
                     @RenderBody()
                 </div>
             </div>

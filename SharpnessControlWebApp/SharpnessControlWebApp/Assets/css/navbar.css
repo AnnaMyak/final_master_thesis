@@ -14,13 +14,15 @@
 #responsive-admin-menu {
 	float: left;
 	width: 240px;
+    height: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+	overflow-x: hidden;
+    margin-top:60px;
+    padding-top: 20px;
 	background-color: #4E7A8C;
-	height: 100%;
-	position: relative;
-	overflow: hidden;
-	left: 0px;
-	min-height: 500px;
-
 }
 
 #content-wrapper {

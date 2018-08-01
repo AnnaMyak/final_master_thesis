@@ -3,43 +3,38 @@
 @{
     ViewBag.Title = "Details";
 }
-
-<h2>Details.</h2>
-
-<div>
-    <h4>User</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.UserName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.UserName)
-        </dd>
-    </dl>
+<div class="form-horizontal">
+    @Html.ActionLink("Zurück zu den Benutzern", "Index", null, new { @class = "btn btn-warning", @style = "color:white" }) | @Html.ActionLink("Zurück zu den Entitäten", "Index", "Management", null, new { @class = "btn btn-danger" })
 </div>
-<h4>List of roles for this user</h4>
-@if (ViewBag.RoleNames.Count == 0)
-{
-    <hr />
-    <p>No roles found for this user.</p>
-}
+<br />
+<h4>Details</h4>
+<br />
 
-<table class="table">
-
-    @foreach (var item in ViewBag.RoleNames)
-    {
-        <tr>
-            <td>
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+        <h5 class="card-title"><strong>Benutzer</strong></h5>
+        <p class="card-text"> <strong>@Html.DisplayNameFor(model => model.UserName): </strong>@Html.DisplayFor(model => model.UserName)</p>
+        <p><strong>Role:</strong></p>
+        @if (ViewBag.RoleNames.Count == 0)
+        {
+            <hr />
+            <p>No roles found for this user.</p>
+        }
+        @if (ViewBag.RoleNames.Count > 0)
+        {
+            foreach (var item in ViewBag.RoleNames)
+            {
+                <br />
                 @item
-            </td>
-        </tr>
-    }
-</table>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+            }
+        }
+    </div>
+    @Html.ActionLink("Role vergeben / Email ändern", "Edit", new { id = Model.Id }, new { @class = "btn btn-warning", @style = "color:white" })
+</div>
+
+
+
+
 
 
 

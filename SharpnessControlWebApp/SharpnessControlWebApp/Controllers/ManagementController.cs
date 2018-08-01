@@ -13,7 +13,7 @@ using System.Web.Mvc;
 namespace SharpnessControlWebApp.Controllers
 {
     [Authorize(Roles = "Admin")]
-    public class EntityManagementController : Controller
+    public class ManagementController : Controller
     {
         private IStainRepo repoStain = new StainRepo();
         private IOrganRepo repoOrgan = new OrganRepo();

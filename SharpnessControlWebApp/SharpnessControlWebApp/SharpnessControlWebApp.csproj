@@ -214,12 +214,11 @@
     <Compile Include="Controllers\AdminDashboardController.cs" />
     <Compile Include="Controllers\ControlPanelController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
-    <Compile Include="Controllers\EntityManagementController.cs" />
+    <Compile Include="Controllers\ManagementController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RolesAdminController.cs" />
     <Compile Include="Controllers\UserAdminController.cs" />
-    <Compile Include="Controllers\UserManagementController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -430,20 +429,19 @@
     <Content Include="Views\Dashboard\Index.cshtml" />
     <Content Include="Views\AdminDashboard\Index.cshtml" />
     <Content Include="Views\ControlPanel\Index.cshtml" />
-    <Content Include="Views\UserManagement\Index.cshtml" />
-    <Content Include="Views\EntityManagement\OrgansManagement.cshtml" />
-    <Content Include="Views\EntityManagement\CreateNewOrgan.cshtml" />
-    <Content Include="Views\EntityManagement\DeleteOrgan.cshtml" />
-    <Content Include="Views\EntityManagement\TissuesManagement.cshtml" />
-    <Content Include="Views\EntityManagement\CreateNewTissue.cshtml" />
-    <Content Include="Views\EntityManagement\DeleteTissue.cshtml" />
-    <Content Include="Views\EntityManagement\ReglamentsManagement.cshtml" />
-    <Content Include="Views\EntityManagement\CreateNewReglament.cshtml" />
-    <Content Include="Views\EntityManagement\Index.cshtml" />
-    <Content Include="Views\EntityManagement\CreateNewStain.cshtml" />
-    <Content Include="Views\EntityManagement\StainsManagement.cshtml" />
-    <Content Include="Views\EntityManagement\EditReglament.cshtml" />
-    <Content Include="Views\EntityManagement\DeleteReglament.cshtml" />
+    <Content Include="Views\Management\OrgansManagement.cshtml" />
+    <Content Include="Views\Management\CreateNewOrgan.cshtml" />
+    <Content Include="Views\Management\DeleteOrgan.cshtml" />
+    <Content Include="Views\Management\TissuesManagement.cshtml" />
+    <Content Include="Views\Management\CreateNewTissue.cshtml" />
+    <Content Include="Views\Management\DeleteTissue.cshtml" />
+    <Content Include="Views\Management\ReglamentsManagement.cshtml" />
+    <Content Include="Views\Management\CreateNewReglament.cshtml" />
+    <Content Include="Views\Management\Index.cshtml" />
+    <Content Include="Views\Management\CreateNewStain.cshtml" />
+    <Content Include="Views\Management\StainsManagement.cshtml" />
+    <Content Include="Views\Management\EditReglament.cshtml" />
+    <Content Include="Views\Management\DeleteReglament.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
