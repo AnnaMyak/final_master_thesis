@@ -10,7 +10,7 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        @Html.ActionLink("Zurück zu den Gewebearten", "TissuesManagement", null, new { @class = "btn btn-warning", @style = "color:white" }) | @Html.ActionLink("Zurück zu den Entitäten", "Index", null, new { @class = "btn btn-danger" })
+        @Html.ActionLink("Zurück zu den Gewebearten", "TissuesManagement", null, new { @class = "btn btn-warning", @style = "color:white" }) | @Html.ActionLink("Zurück zu den Entitäten", "Index", null, new { @class = "btn btn-danger", @style = "background-color:#884dff" })
         <br />
 
         <h4 style="color:red">@ViewBag.Error</h4>
