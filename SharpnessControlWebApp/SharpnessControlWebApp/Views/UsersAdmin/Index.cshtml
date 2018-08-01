@@ -1,18 +1,15 @@
 ﻿@model IEnumerable<IdentitySample.Models.ApplicationUser>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Benutzer";
 }
 
 <h4>Benutzer</h4>
 
 <p>
-    
     @Html.ActionLink("Einen neuen Benutzer hinzufügen + ", "Create", null, new { @class = "btn btn-success" }) | @Html.ActionLink("Zurück zu den Entitäten", "Index", "Management", null, new { @class = "btn btn-danger", @style = "background-color:#884dff" })
-
-
 </p>
-<table class="table">
+<table class="table table-bordered">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.UserName)
@@ -21,7 +18,7 @@
 
         </th>
     </tr>
-    <tbody class="table-striped">
+   
         @foreach (var item in Model)
         {
 
@@ -36,6 +33,6 @@
                 </td>
             </tr>
         }
-        </tbody>
+        
 
 </table>

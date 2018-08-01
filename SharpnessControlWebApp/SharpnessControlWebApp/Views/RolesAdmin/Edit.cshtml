@@ -1,41 +1,40 @@
 ﻿@model IdentitySample.Models.RoleViewModel
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Die Role ändern";
 }
 
-<h2>Edit.</h2>
+
 
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>Roles.</h4>
-        <hr />
+        @Html.ActionLink("Zurück zu den Benutzer-Roles", "Index", null, new { @class = "btn btn-warning", @style = "color:white" }) | @Html.ActionLink("Zurück zu den Entitäten", "Index", "Management", null, new { @class = "btn btn-danger", @style = "background-color:#884dff" })
+    </div>
+    <br />
+    <h4>Die Role ändern</h4>
+    <br />
         @Html.ValidationSummary(true)
         @Html.HiddenFor(model => model.Id)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                @Html.TextBoxFor(model => model.Name, new { @class = "form-control",@placeholder="Role" })
                 @Html.ValidationMessageFor(model => model.Name)
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Ändern" class="btn btn-warning" style="color:white" />
             </div>
         </div>
-    </div>
+    
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

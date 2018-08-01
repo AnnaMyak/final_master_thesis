@@ -1,15 +1,16 @@
 ﻿@model IEnumerable<Microsoft.AspNet.Identity.EntityFramework.IdentityRole>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Benutzer-Roles";
 }
 
-<h2>Index</h2>
-
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Eine neue Role einführen + ", "Create", null, new { @class = "btn btn-success" }) | @Html.ActionLink("Zurück zu den Entitäten", "Index", "Management", null, new { @class = "btn btn-danger", @style = "background-color:#884dff" })
 </p>
-<table class="table">
+<br />
+<h4>Benutzer-Roles</h4>
+<br />
+<table class="table table-bordered">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Name)
@@ -26,9 +27,9 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                @Html.ActionLink("Ändern", "Edit", new { id = item.Id }, new {@class="btn btn-warning",@style="color:white" }) |
+                @Html.ActionLink("Benutzer mit der Role", "Details", new { id = item.Id }, new { @class = "btn btn-primary" }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
             </td>
         </tr>
     }

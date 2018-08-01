@@ -1,28 +1,31 @@
 ﻿@model Microsoft.AspNet.Identity.EntityFramework.IdentityRole
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Benutzer mit der Role";
 }
 
-<h2>Details.</h2>
 
 <div>
-    <h4>Roles.</h4>
+    @Html.ActionLink("Zurück zu den Benutzer-Roles", "Index", null, new { @class = "btn btn-warning", @style = "color:white" }) | @Html.ActionLink("Zurück zu den Entitäten", "Index", "Management", null, new { @class = "btn btn-danger", @style = "background-color:#884dff" })
+    <br />
+    <br />
+    <h4>Roles</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
+        <p><strong>
             @Html.DisplayNameFor(model => model.Name)
-        </dt>
+        </strong>
+        </p>
         <dd>
             @Html.DisplayFor(model => model.Name)
         </dd>
     </dl>
 </div>
-<h4>List of users in this role</h4>
+<p><strong>Die Benutzer in der Role</strong></p>
 @if (ViewBag.UserCount == 0)
 {
     <hr />
-    <p>No users found in this role.</p>
+    <p>Keine Benutzer mit der Role</p>
 }
 
 <table class="table">
@@ -37,8 +40,8 @@
     }
 </table>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class="btn btn-warning",@style="color:white"})
+    
 </p>
 
 
