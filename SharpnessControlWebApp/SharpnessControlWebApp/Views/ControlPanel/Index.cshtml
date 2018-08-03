@@ -6,12 +6,12 @@
 
 
 
-<div class="row">
 
-    <div class="col-lg-6">
+
+    <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
-                <strong class="card-title">Settings for a test</strong>
+                <strong class="card-title">Einstellungen</strong>
             </div>
             <div class="card-body">
 
@@ -29,21 +29,21 @@
 
                             <div class="row form-group">
 
-                                <div class="col-12 col-md-9">
-                                    @Html.DropDownListFor(model => model.Stain.Name, (IEnumerable<SelectListItem>)ViewBag.Stains, "Please select a stain", new { @class = "form-control" })
+                                <div class="col-12 col-md-12">
+                                    @Html.DropDownListFor(model => model.Stain.Name, (IEnumerable<SelectListItem>)ViewBag.Stains, "Färbung", new { @class = "form-control" })
                                 </div>
                             </div>
 
                             <div class="row form-group">
-                                <div class="col-12 col-md-9">
-                                    @Html.DropDownListFor(model => model.Organ.Name, (IEnumerable<SelectListItem>)ViewBag.Organs, "Please select an organ", new { @class = "form-control" })
+                                <div class="col-12 col-md-12">
+                                    @Html.DropDownListFor(model => model.Organ.Name, (IEnumerable<SelectListItem>)ViewBag.Organs, "Organ", new { @class = "form-control" })
                                 </div>
                             </div>
 
 
                             <div class="row form-group">
-                                <div class="col-12 col-md-9">
-                                    @Html.DropDownListFor(model => model.Tissue.Name, (IEnumerable<SelectListItem>)ViewBag.Tissues, "Please select a tissue", new { @class = "form-control" })
+                                <div class="col-12 col-md-12">
+                                    @Html.DropDownListFor(model => model.Tissue.Name, (IEnumerable<SelectListItem>)ViewBag.Tissues, "Gewebeart", new { @class = "form-control" })
                                 </div>
                             </div>
 
@@ -54,7 +54,7 @@
                             </div>
                             <div class="form-group">
 
-                                @Html.TextAreaFor(m => m.WSI.Description, new { @class = "form-control", @placeholder = "Description", @type = "text" })
+                                @Html.TextAreaFor(m => m.WSI.Description, new { @class = "form-control", @placeholder = "Beschreibung", @type = "text" })
 
                             </div>
 
@@ -62,12 +62,12 @@
 
 
                             <div class="row form-group">
-                                <div class="col col-md-3"><label for="file-input" class=" form-control-label">WSI input</label></div>
-                                <div class="col-12 col-md-9"><input type="file" name="file" id="file" class="form-control-file"></div>
+                                <div class="col col-md-3"><label for="file-input" class=" form-control-label">WSI laden</label></div>
+                                <div class="col-12 col-md-12"><input type="file" name="file" id="file" class="form-control-file"></div>
                             </div>
 
 
-                            <input type="submit" value="Process" class="btn btn-primary btn-sm">
+                            <input type="submit" value="Schärfe-Test durchführen" class="btn btn-primary btn-sm">
 
 
 
