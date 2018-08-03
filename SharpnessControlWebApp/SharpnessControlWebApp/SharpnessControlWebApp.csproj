@@ -226,6 +226,7 @@
     <Compile Include="Models\AdminViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\SharpnessViewModels.cs" />
     <Compile Include="Models\Sharpness_Persistence\Sharpness_Entities\Organ.cs" />
     <Compile Include="Models\Sharpness_Persistence\Sharpness_Entities\Reglament.cs" />
     <Compile Include="Models\Sharpness_Persistence\Sharpness_Entities\Report.cs" />
@@ -246,6 +247,8 @@
     <Compile Include="Models\Sharpness_Persistence\Sharpness_Repositories\Interfaces\IWSIRepo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Utilities\ISharpnessManager.cs" />
+    <Compile Include="Utilities\SharpnessManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\css\navbar.css" />
@@ -442,6 +445,8 @@
     <Content Include="Views\Management\StainsManagement.cshtml" />
     <Content Include="Views\Management\EditReglament.cshtml" />
     <Content Include="Views\Management\DeleteReglament.cshtml" />
+    <Content Include="Views\ControlPanel\Report.cshtml" />
+    <Content Include="Views\Management\DeleteStain.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

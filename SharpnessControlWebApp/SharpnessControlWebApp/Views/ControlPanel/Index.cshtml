@@ -1,8 +1,79 @@
-﻿
+﻿@model SharpnessControlWebApp.Models.SharpnessViewModels
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Schärfe-Kontrolle. Einstellungen.";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Schärfe-Kontrolle von WSI</h2>
 
+
+<div class="row">
+
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header">
+                <strong class="card-title">Settings for a test</strong>
+            </div>
+            <div class="card-body">
+
+                <div id="pay-invoice">
+                    <div class="card-body">
+                        <div class="card-title">
+
+                        </div>
+                        <hr>
+                        <form action="" method="post" enctype="multipart/form-data">
+
+
+
+
+
+                            <div class="row form-group">
+
+                                <div class="col-12 col-md-9">
+                                    @Html.DropDownListFor(model => model.Stain.Name, (IEnumerable<SelectListItem>)ViewBag.Stains, "Please select a stain", new { @class = "form-control" })
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col-12 col-md-9">
+                                    @Html.DropDownListFor(model => model.Organ.Name, (IEnumerable<SelectListItem>)ViewBag.Organs, "Please select an organ", new { @class = "form-control" })
+                                </div>
+                            </div>
+
+
+                            <div class="row form-group">
+                                <div class="col-12 col-md-9">
+                                    @Html.DropDownListFor(model => model.Tissue.Name, (IEnumerable<SelectListItem>)ViewBag.Tissues, "Please select a tissue", new { @class = "form-control" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+
+                                @Html.TextBoxFor(m => m.WSI.Titel, new { @class = "form-control", @placeholder = "Titel", @type = "text" })
+
+                            </div>
+                            <div class="form-group">
+
+                                @Html.TextAreaFor(m => m.WSI.Description, new { @class = "form-control", @placeholder = "Description", @type = "text" })
+
+                            </div>
+
+
+
+
+                            <div class="row form-group">
+                                <div class="col col-md-3"><label for="file-input" class=" form-control-label">WSI input</label></div>
+                                <div class="col-12 col-md-9"><input type="file" name="file" id="file" class="form-control-file"></div>
+                            </div>
+
+
+                            <input type="submit" value="Process" class="btn btn-primary btn-sm">
+
+
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- .card -->
+    </div><!--/.col-->
