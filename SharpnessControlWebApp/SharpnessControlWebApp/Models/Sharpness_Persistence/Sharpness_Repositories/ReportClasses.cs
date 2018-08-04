@@ -22,4 +22,10 @@ namespace SharpnessControlWebApp.Models.Sharpness_Persistence.Sharpness_Reposito
         public string Tissue { get; set; }
         public int Number { get; set; }
     }
+
+    public class DynamicForAYear
+    {
+        public int Month { get; set; }
+        public int Number { get; set; }
+    }
 }

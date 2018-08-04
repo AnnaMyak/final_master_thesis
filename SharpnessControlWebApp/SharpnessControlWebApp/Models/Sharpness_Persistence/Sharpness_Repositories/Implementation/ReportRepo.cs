@@ -169,6 +169,48 @@ namespace Sharpness.WebApp.Models.Sharpness_Persistence.Sharpness_Repositories.I
             return _context.Reports.Where(r => r.Creation > DateTime.Now.AddYears(-1)).ToList();
         }
 
+        public IEnumerable<DynamicForAYear> GetDynamicForAYear()
+        {
+            var reports = GetAllReportsLastYear();
+            var dynamics = new List<DynamicForAYear>();
+            for (int i = 1; i <= 12; i++) 
+            {
+                var entry = new DynamicForAYear() { Month = i, Number = 0 };
+                foreach (var item in reports)
+                {
+                    if (item.Creation.Month == i)
+                    {
+                        entry.Number++;
+                    }
+                }
+                dynamics.Add(entry);
+            }
+
+            return dynamics;
+        }
+
+        public IEnumerable<DynamicForAYear> GetDynamicForAYearByUser(string UserId)
+        {
+            var reports = GetAllReportsByUserLastYear(UserId);
+            var dynamics = new List<DynamicForAYear>();
+            for (int i = 1; i <= 12; i++)
+            {
+                var entry = new DynamicForAYear() { Month = i, Number = 0 };
+                foreach (var item in reports)
+                {
+                    if (item.Creation.Month == i)
+                    {
+                        entry.Number++;
+                    }
+                }
+                dynamics.Add(entry);
+            }
+
+            return dynamics;
+        }
+
+       
+
         public Report GetReportById(Guid ReportId)
         {
             var _context = new ApplicationDbContext();

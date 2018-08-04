@@ -121,8 +121,11 @@ namespace Sharpness.WebApp.Models.Sharpness_Persistence.Sharpness_Repositories.I
         //By Organs 
         IEnumerable<ReportByTissue> GetReportByTissuesForLastWeek();
         IEnumerable<ReportByTissue> GetReportByTissuesForLastMonth();
-        IEnumerable<ReportByTissue> GetReportByTissuesForLastYear(); 
+        IEnumerable<ReportByTissue> GetReportByTissuesForLastYear();
 
+        //Statistik for a Year by Month
+        IEnumerable<DynamicForAYear> GetDynamicForAYear();
+        IEnumerable<DynamicForAYear> GetDynamicForAYearByUser(string UserId);
 
         //CRUD
 
