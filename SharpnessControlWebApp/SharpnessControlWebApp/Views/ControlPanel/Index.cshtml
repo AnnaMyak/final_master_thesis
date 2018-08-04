@@ -3,6 +3,15 @@
     ViewBag.Title = "Schärfe-Kontrolle. Einstellungen.";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<link href="~/Assets/css/spinner.css" rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+        $(document).ready(function () {
+            $('#btnSubmit').click(function () {
+                $('.spinner').css('display', 'block');
+            });
+        });
+</script>
 
 
 
@@ -67,7 +76,17 @@
                             </div>
 
 
-                            <input type="submit" value="Schärfe-Test durchführen" class="btn btn-primary btn-sm">
+                            <input type="submit" value="Schärfe-Test durchführen" class="btn btn-primary btn-sm" id="btnSubmit">
+
+                            <div class="spinner" style="display:none">
+                                <div class="center-div">
+                                    <div class="inner-div">
+                                        <div class="loader"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+
 
 
 
@@ -77,3 +96,6 @@
             </div>
         </div> <!-- .card -->
     </div><!--/.col-->
+
+
+

@@ -6,6 +6,7 @@ using SharpnessControlWebApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -411,12 +412,39 @@ namespace SharpnessControlWebApp.Controllers
         {
 
             var _context = new ApplicationDbContext();
+            
             try
             {
+                
+
+                try
+                {
+                    var globalPath = _context.WSIs.Find(WSIId).Path.Split('\\');
+                    var directoryPath = "";
+
+                    for (int i = 0; i < globalPath.Count() - 1; i++)
+                    {
+                        directoryPath = directoryPath + globalPath[i];
+                    }
+                    //directoryPath= @"C:\Users\AnnaToshiba2\Desktop\Test";
+                     var dir = new DirectoryInfo(@directoryPath);
+                    dir.Attributes = dir.Attributes & ~FileAttributes.ReadOnly;
+                    dir.Delete(true);
+                    
+                }
+                catch (IOException ex)
+                {
+                    //
+                }
+
+
 
                 _context.Reports.Remove(_context.Reports.Where(r=> r.WSIId==WSIId).First());
                 _context.WSIs.Remove(_context.WSIs.Find(WSIId));
                 _context.SaveChanges();
+
+
+
                 return RedirectToAction("WSIs");
 
             }

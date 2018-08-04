@@ -275,6 +275,7 @@
     <Content Include="Assets\css\navbar.css" />
     <Content Include="Assets\css\sb-admin.css" />
     <Content Include="Assets\css\sb-admin.min.css" />
+    <Content Include="Assets\css\spinner.css" />
     <Content Include="Assets\img\color_target.png" />
     <Content Include="Assets\img\logo.png" />
     <Content Include="Assets\img\Sharpness.gif" />

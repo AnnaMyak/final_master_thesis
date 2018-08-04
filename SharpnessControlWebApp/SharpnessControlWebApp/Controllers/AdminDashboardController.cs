@@ -24,8 +24,6 @@ namespace SharpnessControlWebApp.Controllers
         // GET: AdminDashboard
         public ActionResult Index()
         {
-            //SharpnessViewModels model = new SharpnessViewModels();
-            //model.Reports = _repoReports.GetAllReports();
             
             return View();
         }
