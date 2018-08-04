@@ -3,21 +3,100 @@
     ViewBag.Title = "Dashboard";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/Chart.min.js"></script>
 
-<h1>Total @ViewBag.TotalNumberOfTests</h1>
-<h1>This week @ViewBag.TotalNumberOfTestsThisWeek</h1>
-<h1>This mouth @ViewBag.TotalNumberOfTestsThisMonth</h1>
-<h1>This year @ViewBag.TotalNumberOfTestsThisYear</h1>
-<h1>Negative @ViewBag.TotalNumberNegative</h1>
-<h1>Positive @ViewBag.TotalNumberPositive</h1>
+
+<div class="row">
+
+
+    <div class="col-xl-3 col-sm-6 mb-3">
+        <div class="card text-white bg-danger o-hidden h-100">
+            <div class="card-body">
+                <div class="card-body-icon">
+                    <i class="fa fa-check-square"></i>
+                </div>
+                <div class="mr-5">Meine Schärfe-Teste <strong>Insgesamt</strong> @ViewBag.TotalNumberOfTests</div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-3 col-sm-6 mb-3">
+        <div class="card text-white o-hidden h-100" style="background-color:#ff751a">
+            <div class="card-body">
+                <div class="card-body-icon">
+                    <i class="fa fa-check"></i>
+                </div>
+                <div class="mr-5">Meine Schärfe-Teste <strong>diese Woche</strong> @ViewBag.TotalNumberOfTestsThisWeek</div>
+
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="col-xl-3 col-sm-6 mb-3">
+        <div class="card text-white o-hidden h-100" style="background-color:#ffaa00">
+            <div class="card-body">
+                <div class="card-body-icon">
+                    <i class="fa fa-check-circle"></i>
+                </div>
+                <div class="mr-5">Meine Schärfe-Teste <strong>diesen Monat</strong> @ViewBag.TotalNumberOfTestsThisMonth</div>
+
+            </div>
+           
+        </div>
+    </div>
+
+
+
+    <div class="col-xl-3 col-sm-6 mb-3">
+        <div class="card text-white o-hidden h-100" style="background-color:#ffbb99">
+            <div class="card-body">
+                <div class="card-body-icon">
+                    <i class="fa fa-check-circle-o"></i>
+                </div>
+                <div class="mr-5">Meine Schärfe-Teste <strong>dieses Jahr</strong> @ViewBag.TotalNumberOfTestsThisYear</div>
+            </div>
+          
+        </div>
+    </div>
+
+    <div class="col-xl-6 col-sm-6 mb-6">
+        <div class="card text-dark o-hidden h-100">
+            
+            <div>
+                <canvas id="chart"></canvas>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="col-xl-6 col-sm-6 mb-6">
+        <div class="card text-dark o-hidden h-100">
+
+            <div>
+                <canvas id="chart"></canvas>
+            </div>
+
+
+        </div>
+    </div>
+
+
+</div>
+
+
+
+
+
+
+
+
 
 <script src="~/Assets/vendor/chart.js/Chart.bundle.min.js"></script>
 
-<div>
-    <canvas id="chart"></canvas>
-</div>
+
 
 <script>
 
