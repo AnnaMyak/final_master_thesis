@@ -184,7 +184,7 @@ namespace Sharpness.WebApp.Models.Sharpness_Persistence.Sharpness_Repositories.I
 
             foreach (Stain s  in stains)
             {
-                var item = new ReportByStain {Stain = s.Name, Number=0};
+                var item = new ReportByStain(){Stain = s.Name, Number=0};
                 
                 foreach(Report r in reports)
                 {

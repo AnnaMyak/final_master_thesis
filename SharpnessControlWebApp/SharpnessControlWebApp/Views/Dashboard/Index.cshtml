@@ -65,7 +65,7 @@
         <div class="card text-dark o-hidden h-100">
             
             <div>
-                <canvas id="Commonchart"></canvas>
+                <canvas id="commonChart"></canvas>
             </div>
             <br />
             <br />
@@ -102,7 +102,7 @@
                                     <td>@item.Description</td>
                                     <td>@item.Creation</td>
                                     <td>
-                                        <i class="fa fa-star"></i>  @Html.ActionLink("To Report", "WSIToReport", "Dashboard", new { WSIId = item.WSIId }, null)
+                                        <i class="fa fa-star"></i>  @Html.ActionLink("Zum Bericht", "WSIToReport", "Dashboard", new { WSIId = item.WSIId }, null)
                                     </td>
                                 </tr>
                                 i++;
@@ -116,10 +116,29 @@
         </div>
     </div>
 
-        @foreach (var stainReport in ViewBag.ReportByStainLastMonth)
-        {
-            <p>stainReport.Stain stainReport.Number></p>
-        }
+    
+
+    <div class="col-xl-12 col-sm-6 mb-3">
+        <div class="card text-dark  o-hidden h-100">
+            <div class="card-body">
+                <div style="height:150px">
+                    <canvas id="stainChart"></canvas>
+                </div>
+                <br />
+                <br />
+                <p style="text-align:center">Aktualisiert am @DateTime.Now</p>
+            </div>
+            
+        </div>
+    </div>
+
+
+
+
+ 
+
+
+       
 
 
 
@@ -139,24 +158,26 @@
 
 
 <script>
+    
+        var commonChartData =
+            {
+                labels: ["negative Schärfe-Teste", "positive Schärfe-Teste"],
+                datasets: [{
+                    backgroundColor: [
+                        "#e62e00",
+                        "#00b300",
+                    ],
+                    borderWidth: 2,
+                    data: [@ViewBag.TotalNumberNegative , @ViewBag.TotalNumberPositive]
+                }]
+            };
 
-    var commonChartData =
-        {
-            labels: ["negative Schärfe-Teste", "positive Schärfe-Teste"],
-            datasets: [{
-                label: 'Statistik von positiven und negativen Schärfe-Testen',
-                backgroundColor: [
-                    "#e62e00",
-                    "#00b300",
-                ],
-                borderWidth: 2,
-                data: [@ViewBag.TotalNumberNegative , @ViewBag.TotalNumberPositive]
-            }]
-        };
 
-    window.onload = function () {
-        var ctx1 = document.getElementById("Commonchart").getContext("2d");
-        window.myBar = new Chart(ctx1,
+
+
+
+        var ctx1 = document.getElementById("commonChart").getContext("2d");
+        new Chart(ctx1,
             {
                 type: 'pie',
                 data: commonChartData,
@@ -171,5 +192,47 @@
                         maintainAspectRatio: true
                     }
             });
-    }
+
+
+        //var ctx2 = document.getElementById("stainChart").getContext("2d");
+    // Bar chart
+
+        var stains = @Html.Raw(Json.Encode(ViewBag.Stains));
+        var stainsValues = @Html.Raw(Json.Encode(ViewBag.StainsValues));
+        
+        new Chart(document.getElementById("stainChart"), {
+            type: 'bar',
+            data: {
+                labels: stains,
+                datasets: [
+                  {
+                      label: "Population (millions)",
+                      backgroundColor: ["#3e95cd"],
+                      data: stainsValues
+                  }
+                ]
+            },
+            options: {
+                legend: { display: false },
+                title: {
+                    display: true,
+                    text: 'Predicted world population (millions) in 2050'
+                }
+            }
+        });
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
 </script>

@@ -38,7 +38,18 @@ namespace SharpnessControlWebApp.Controllers
             ViewBag.RecentWSIs = repoWSI.GetRecentWSIByUSerId(User.Identity.GetUserId());
 
             //report by Stain last month
-            ViewBag.ReportByStainLastMonth = repoReport.GetReportByStainsForLastMonth(User.Identity.GetUserId());
+            //ViewBag.ReportByStainLastMonth = repoReport.GetReportByStainsForLastMonth(User.Identity.GetUserId());
+            var reportByStains = repoReport.GetReportByStainsForLastMonth(User.Identity.GetUserId());
+            var stains = new List<string>();
+            var stainsValues = new List<int>();
+            foreach(var item in reportByStains)
+            {
+                stains.Add(item.Stain);
+                stainsValues.Add(item.Number);
+            }
+            ViewBag.Stains = stains;
+            ViewBag.StainsValues = stainsValues;
+            //ViewBag.reportByStains = reportByStains;
 
             return View();
         }
