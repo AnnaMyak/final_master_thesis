@@ -14,17 +14,24 @@ namespace SharpnessControlWebApp.Extras
 
         public void  generateSharpnessTestReport()
         {
-            PdfDocument document = new PdfDocument();
-            document.Info.Title = "Created with PDFsharp";
-            PdfPage page = document.AddPage();
-            XGraphics gfx = XGraphics.FromPdfPage(page);
-            XFont font = new XFont("Verdana", 20, XFontStyle.BoldItalic);
-            gfx.DrawString("Hello, World!", font, XBrushes.Black, new XRect(0, 0, page.Width, page.Height),XStringFormats.Center);
-            const string filename = "HelloWorld.pdf";
-            document.Save(filename);
-            Process.Start(filename);
+            /* PdfDocument document = new PdfDocument();
+             document.Info.Title = "Created with PDFsharp";
+             PdfPage page = document.AddPage();
+             XGraphics gfx = XGraphics.FromPdfPage(page);
+             XFont font = new XFont("Verdana", 20, XFontStyle.BoldItalic);
+             gfx.DrawString("Hello, World!", font, XBrushes.Black, new XRect(0, 0, page.Width, page.Height),XStringFormats.Center);
+             const string filename = "HelloWorld.pdf";
+             
+            FileStreamResult(workStream, "application/pdf")
 
+             document.Save(filename);*/
+            // Process.Start(filename);
         }
-        
+
+
+
+
+
+
     }
 }

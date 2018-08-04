@@ -2,6 +2,7 @@
 using Sharpness.WebApp.Models.Sharpness_Persistence.Sharpness_Entities;
 using Sharpness.WebApp.Models.Sharpness_Persistence.Sharpness_Repositories.Implementation;
 using Sharpness.WebApp.Models.Sharpness_Persistence.Sharpness_Repositories.Interfaces;
+using SharpnessControlWebApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -15,10 +16,13 @@ namespace SharpnessControlWebApp.Controllers
     [Authorize(Roles = "Admin")]
     public class ManagementController : Controller
     {
+        private SharpnessViewModels model = new SharpnessViewModels();
         private IStainRepo repoStain = new StainRepo();
         private IOrganRepo repoOrgan = new OrganRepo();
         private ITissueRepo repoTissue = new TissueRepo();
         private IReglamentRepo repoReglament = new ReglamentRepo();
+        private IReportRepo repoReport = new ReportRepo();
+        private IWSIRepo repoWSI = new WSIRepo();
 
 
         // Overview
@@ -95,7 +99,7 @@ namespace SharpnessControlWebApp.Controllers
             }
             catch
             {
-                ViewBag.Error = "Die Färbung ist schon gelöscht worden oder existiert nicht!";
+                ViewBag.Error = "Die Färbung ist schon gelöscht worden oder ist mit den Schärfe-Testen verbunden!";
 
             }
             return View(_context.Stains.Find(Name));
@@ -173,7 +177,7 @@ namespace SharpnessControlWebApp.Controllers
             }
             catch
             {
-                ViewBag.Error = "Das Organ ist schon gelöscht worden oder existiert nicht!";
+                ViewBag.Error = "Das Organ ist schon gelöscht worden oder ist mit den Schärfe-Testen verbunden!";
 
             }
             return View(_context.Organs.Find(Name));
@@ -250,7 +254,7 @@ namespace SharpnessControlWebApp.Controllers
             }
             catch
             {
-                ViewBag.Error = "Die Gewebeart ist schon gelöscht worden oder existiert nicht!";
+                ViewBag.Error = "Die Gewebeart ist schon gelöscht worden oderist mit den Schärfe-Testen verbunden!";
 
             }
             return View(_context.Tissues.Find(Name));
@@ -358,6 +362,36 @@ namespace SharpnessControlWebApp.Controllers
 
             }
             return View(_context.Reglaments.Find(ReglamentId));
+        }
+        
+        
+        //All tested WSIs ordered to UserName
+        public ActionResult WSIs()
+        {
+            
+            model.WSIs = repoWSI.GetWSIs();
+
+            var _context = new ApplicationDbContext();
+            var users = _context.Users.ToList();
+            model.Users = users;
+            model.Reports = repoReport.GetAllReports();
+
+            foreach (var item in model.WSIs)
+            {
+                item.UserId = _context.Users.Find(item.UserId).UserName;
+            }
+
+
+            return View(model);
+        }
+
+        
+
+        
+        public ActionResult WSIToReport(Guid WSIId)
+        {
+            var report = repoReport.GetReportByWSI(WSIId);
+            return RedirectToAction("Report", "ControlPanel", new { ReportId = report.ReportId });
         }
 
     }

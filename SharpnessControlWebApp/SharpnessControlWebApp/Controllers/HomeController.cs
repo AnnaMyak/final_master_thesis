@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using SharpnessControlWebApp.Extras;
+using System.Web.Mvc;
 
 namespace IdentitySample.Controllers
 {
@@ -7,6 +8,8 @@ namespace IdentitySample.Controllers
         [HttpGet]
         public ActionResult Index()
         {
+            var test = new SharpnessPdfReport();
+            test.generateSharpnessTestReport();
             return View();
         }
 
