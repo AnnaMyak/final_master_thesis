@@ -118,10 +118,10 @@
 
     
 
-    <div class="col-xl-12 col-sm-6 mb-3">
+    <div class="col-xl-6 col-sm-3 mb-3">
         <div class="card text-dark  o-hidden h-100">
             <div class="card-body">
-                <div style="height:150px">
+                <div>
                     <canvas id="stainChart"></canvas>
                 </div>
                 <br />
@@ -194,11 +194,11 @@
             });
 
 
-        //var ctx2 = document.getElementById("stainChart").getContext("2d");
-    // Bar chart
+        // Stain Bar chart
 
         var stains = @Html.Raw(Json.Encode(ViewBag.Stains));
         var stainsValues = @Html.Raw(Json.Encode(ViewBag.StainsValues));
+        var stainsColor = @Html.Raw(Json.Encode(ViewBag.StainsColor));
         
         new Chart(document.getElementById("stainChart"), {
             type: 'bar',
@@ -206,8 +206,7 @@
                 labels: stains,
                 datasets: [
                   {
-                      label: "Population (millions)",
-                      backgroundColor: ["#3e95cd"],
+                      backgroundColor: stainsColor,
                       data: stainsValues
                   }
                 ]
@@ -216,7 +215,7 @@
                 legend: { display: false },
                 title: {
                     display: true,
-                    text: 'Predicted world population (millions) in 2050'
+                    text: 'Statistik nach Färbungen vom letzten Monat'
                 }
             }
         });

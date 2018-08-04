@@ -42,14 +42,17 @@ namespace SharpnessControlWebApp.Controllers
             var reportByStains = repoReport.GetReportByStainsForLastMonth(User.Identity.GetUserId());
             var stains = new List<string>();
             var stainsValues = new List<int>();
-            foreach(var item in reportByStains)
+            var stainsColor = new List<string>();
+
+            foreach (var item in reportByStains)
             {
                 stains.Add(item.Stain);
                 stainsValues.Add(item.Number);
+                stainsColor.Add("#b82e8a");
             }
             ViewBag.Stains = stains;
             ViewBag.StainsValues = stainsValues;
-            //ViewBag.reportByStains = reportByStains;
+            ViewBag.StainsColor = stainsColor;
 
             return View();
         }
