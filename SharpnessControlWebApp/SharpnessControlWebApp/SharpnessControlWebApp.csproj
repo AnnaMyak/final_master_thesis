@@ -266,6 +266,7 @@
     <Compile Include="Models\Sharpness_Persistence\Sharpness_Repositories\Interfaces\IStainRepo.cs" />
     <Compile Include="Models\Sharpness_Persistence\Sharpness_Repositories\Interfaces\ITissueRepo.cs" />
     <Compile Include="Models\Sharpness_Persistence\Sharpness_Repositories\Interfaces\IWSIRepo.cs" />
+    <Compile Include="Models\Sharpness_Persistence\Sharpness_Repositories\ReportClasses.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Utilities\ISharpnessManager.cs" />

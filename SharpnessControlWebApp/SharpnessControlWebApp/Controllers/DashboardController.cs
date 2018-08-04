@@ -35,9 +35,10 @@ namespace SharpnessControlWebApp.Controllers
             ViewBag.TotalNumberNegative = repoReport.GetAllNegativeReportsByUser(User.Identity.GetUserId()).Count();
 
             //recent Tests
-            //model.WSIs = repoWSI.GetAllWSIByUserId(User.Identity.GetUserId());
-            //model.Reports = repoReport.GetAllReportsByUserId(User.Identity.GetUserId());
             ViewBag.RecentWSIs = repoWSI.GetRecentWSIByUSerId(User.Identity.GetUserId());
+
+            //report by Stain last month
+            ViewBag.ReportByStainLastMonth = repoReport.GetReportByStainsForLastMonth(User.Identity.GetUserId());
 
             return View();
         }

@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Data.Entity.Core.Objects;
 using System.Linq;
 using System.Web;
+using SharpnessControlWebApp.Models.Sharpness_Persistence.Sharpness_Repositories;
+using System.Collections;
 
 namespace Sharpness.WebApp.Models.Sharpness_Persistence.Sharpness_Repositories.Implementation
 {
@@ -171,6 +173,39 @@ namespace Sharpness.WebApp.Models.Sharpness_Persistence.Sharpness_Repositories.I
         {
             var _context = new ApplicationDbContext();
             return _context.Reports.Find(ReportId);
+        }
+
+        public IEnumerable<ReportByStain> GetReportByStainsForLastMonth(string UserId)
+        {
+            var stainRepo = new StainRepo();
+            var stains = stainRepo.GetStains();
+            var reports = GetAllReportsByUserLastMonth(UserId);
+            IList<ReportByStain> reportByStains = new List<ReportByStain>();
+
+            foreach (Stain s  in stains)
+            {
+                var item = new ReportByStain {Stain = s.Name, Number=0};
+                
+                foreach(Report r in reports)
+                {
+                    if (r.StainName == s.Name)
+                    {
+                        item.Number++;
+                    }
+                }
+                reportByStains.Add(item);
+            }
+            return reportByStains;
+        }
+
+        public IEnumerable<ReportByStain> GetReportByStainsForLastWeek(string UserId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<ReportByStain> GetReportByStainsForLastYear(string UserId)
+        {
+            throw new NotImplementedException();
         }
 
         public Report GetReportByWSI(Guid WSIId)

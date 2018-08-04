@@ -1,5 +1,6 @@
 ﻿using IdentitySample.Models;
 using Sharpness.WebApp.Models.Sharpness_Persistence.Sharpness_Entities;
+using SharpnessControlWebApp.Models.Sharpness_Persistence.Sharpness_Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,8 @@ namespace SharpnessControlWebApp.Models
         public IEnumerable<Report> Reports { get; set; }
         public IEnumerable<ApplicationUser> Users { get; set; }
         public IEnumerable<WSI> RecentWSIs { get; set; }
+
+        public IEnumerable<ReportByStain> ReportsByStains { get; set; }
 
 
 

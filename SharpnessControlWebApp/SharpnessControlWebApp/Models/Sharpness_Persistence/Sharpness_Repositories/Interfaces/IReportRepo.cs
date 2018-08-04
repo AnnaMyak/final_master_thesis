@@ -1,4 +1,5 @@
 ﻿using Sharpness.WebApp.Models.Sharpness_Persistence.Sharpness_Entities;
+using SharpnessControlWebApp.Models.Sharpness_Persistence.Sharpness_Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -90,6 +91,15 @@ namespace Sharpness.WebApp.Models.Sharpness_Persistence.Sharpness_Repositories.I
         int GetTotalNumberOfNegativeTestsForLastYearByUserId(string UserId);
 
         Report GetReportByWSI(Guid WSIId);
+
+        //Reports by Entities
+        //By Stains and UserId
+        IEnumerable<ReportByStain> GetReportByStainsForLastWeek(string UserId);
+        IEnumerable<ReportByStain> GetReportByStainsForLastMonth(string UserId);
+        IEnumerable<ReportByStain> GetReportByStainsForLastYear(string UserId);
+
+
+
 
         //CRUD
 
