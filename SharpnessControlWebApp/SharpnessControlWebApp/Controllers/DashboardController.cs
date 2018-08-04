@@ -14,13 +14,14 @@ namespace SharpnessControlWebApp.Controllers
     [Authorize]
     public class DashboardController : Controller
     {
-        private IWSIRepo  repoWSIs = new WSIRepo();
+        private IWSIRepo  repoWSI = new WSIRepo();
         private IReportRepo  repoReport = new ReportRepo();
-        
-        private SharpnessViewModels model;
+        private SharpnessViewModels  model = new SharpnessViewModels();
+
         // GET: Dashboard
         public ActionResult Index()
         {
+            
             //Total Tests
             ViewBag.TotalNumberOfTests = repoReport.GetAllReportsByUserId(User.Identity.GetUserId()).Count();
             ViewBag.TotalNumberOfTestsThisWeek = repoReport.GetAllReportsByUserIdLastWeek(User.Identity.GetUserId()).Count();
@@ -32,6 +33,11 @@ namespace SharpnessControlWebApp.Controllers
 
             //negative Tests
             ViewBag.TotalNumberNegative = repoReport.GetAllNegativeReportsByUser(User.Identity.GetUserId()).Count();
+
+            //recent Tests
+            //model.WSIs = repoWSI.GetAllWSIByUserId(User.Identity.GetUserId());
+            //model.Reports = repoReport.GetAllReportsByUserId(User.Identity.GetUserId());
+            ViewBag.RecentWSIs = repoWSI.GetRecentWSIByUSerId(User.Identity.GetUserId());
 
             return View();
         }
@@ -45,7 +51,7 @@ namespace SharpnessControlWebApp.Controllers
         public ActionResult AllMyTests()
         {
             model = new SharpnessViewModels();
-            model.WSIs = repoWSIs.GetAllWSIByUserId(User.Identity.GetUserId());
+            model.WSIs = repoWSI.GetAllWSIByUserId(User.Identity.GetUserId());
             return View(model);
         }
     }

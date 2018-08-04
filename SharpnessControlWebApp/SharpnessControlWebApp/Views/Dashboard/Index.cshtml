@@ -1,4 +1,4 @@
-﻿
+﻿@model SharpnessControlWebApp.Models.SharpnessViewModels
 @{
     ViewBag.Title = "Dashboard";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -65,23 +65,58 @@
         <div class="card text-dark o-hidden h-100">
             
             <div>
-                <canvas id="chart"></canvas>
+                <canvas id="Commonchart"></canvas>
             </div>
-
-
+            <br />
+            <br />
+            <p style="text-align:center">Aktualisiert am @DateTime.Now</p>
         </div>
     </div>
+
+
+
 
     <div class="col-xl-6 col-sm-6 mb-6">
         <div class="card text-dark o-hidden h-100">
-
+            <div class="mr-5"><strong><p style="text-align:center">Meine letzten Schärfe-Teste</p></strong></div>
             <div>
-                <canvas id="chart"></canvas>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Titel</th>
+                            <th scope="col">Beschreibung</th>
+                            <th scope="col">Zeitpunkt</th>
+                            <th scope="col">Bericht</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{ int i = 1;
+                            foreach (var item in ViewBag.RecentWSIs)
+                            {
+                                <tr>
+                                    <th scope="row">@i</th>
+
+                                    <td>@item.Titel</td>
+                                    <td>@item.Description</td>
+                                    <td>@item.Creation</td>
+                                    <td>
+                                        <i class="fa fa-star"></i>  @Html.ActionLink("To Report", "WSIToReport", "Dashboard", new { WSIId = item.WSIId }, null)
+                                    </td>
+                                </tr>
+                                i++;
+                            }
+                        }
+                    </tbody>
+                </table>
             </div>
 
 
         </div>
     </div>
+
+
+
 
 
 </div>
@@ -115,7 +150,7 @@
         };
 
     window.onload = function () {
-        var ctx1 = document.getElementById("chart").getContext("2d");
+        var ctx1 = document.getElementById("Commonchart").getContext("2d");
         window.myBar = new Chart(ctx1,
             {
                 type: 'pie',
