@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
+using Sharpness.WebApp.Models.Sharpness_Persistence.Sharpness_Entities;
 using Sharpness.WebApp.Models.Sharpness_Persistence.Sharpness_Repositories.Implementation;
 using Sharpness.WebApp.Models.Sharpness_Persistence.Sharpness_Repositories.Interfaces;
 using SharpnessControlWebApp.Models;
@@ -13,27 +14,38 @@ namespace SharpnessControlWebApp.Controllers
     [Authorize]
     public class DashboardController : Controller
     {
-        private IWSIRepo _repoWSIs = new WSIRepo();
-        private IReportRepo _repoReports = new ReportRepo();
-        //private IUserRepo _repoUsers = new UserRepo();
+        private IWSIRepo  repoWSIs = new WSIRepo();
+        private IReportRepo  repoReport = new ReportRepo();
+        
         private SharpnessViewModels model;
         // GET: Dashboard
         public ActionResult Index()
         {
+            //Total Tests
+            ViewBag.TotalNumberOfTests = repoReport.GetAllReportsByUserId(User.Identity.GetUserId()).Count();
+            ViewBag.TotalNumberOfTestsThisWeek = repoReport.GetAllReportsByUserIdLastWeek(User.Identity.GetUserId()).Count();
+            ViewBag.TotalNumberOfTestsThisMonth = repoReport.GetAllReportsByUserLastMonth(User.Identity.GetUserId()).Count();
+            ViewBag.TotalNumberOfTestsThisYear = repoReport.GetAllReportsByUserLastYear(User.Identity.GetUserId()).Count();
+
+            //Positive Tests
+            ViewBag.TotalNumberPositive= repoReport.GetAllPositiveReportsByUser(User.Identity.GetUserId()).Count();
+
+            //negative Tests
+            ViewBag.TotalNumberNegative = repoReport.GetAllNegativeReportsByUser(User.Identity.GetUserId()).Count();
+
             return View();
         }
 
-
         public ActionResult WSIToReport(Guid WSIId)
         {
-            var report = _repoReports.GetReportByWSI(WSIId);
+            var report = repoReport.GetReportByWSI(WSIId);
             return RedirectToAction("Report", "ControlPanel", new { ReportId = report.ReportId });
         }
 
         public ActionResult AllMyTests()
         {
             model = new SharpnessViewModels();
-            model.WSIs = _repoWSIs.GetAllWSIByUserId(User.Identity.GetUserId());
+            model.WSIs = repoWSIs.GetAllWSIByUserId(User.Identity.GetUserId());
             return View(model);
         }
     }

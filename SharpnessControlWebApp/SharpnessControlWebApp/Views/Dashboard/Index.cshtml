@@ -1,8 +1,12 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Dashboard";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>User Dashboard</h2>
+<h1>Total @ViewBag.TotalNumberOfTests</h1>
+<h1>This week @ViewBag.TotalNumberOfTestsThisWeek</h1>
+<h1>This mouth @ViewBag.TotalNumberOfTestsThisMonth</h1>
+<h1>This year @ViewBag.TotalNumberOfTestsThisYear</h1>
+<h1>Negative @ViewBag.TotalNumberNegative</h1>
+<h1>Positive @ViewBag.TotalNumberPositive</h1>
 
