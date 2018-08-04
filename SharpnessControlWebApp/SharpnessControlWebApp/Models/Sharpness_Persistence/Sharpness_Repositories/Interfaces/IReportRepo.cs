@@ -98,7 +98,30 @@ namespace Sharpness.WebApp.Models.Sharpness_Persistence.Sharpness_Repositories.I
         IEnumerable<ReportByStain> GetReportByStainsForLastMonth(string UserId);
         IEnumerable<ReportByStain> GetReportByStainsForLastYear(string UserId);
 
+        //By Stains 
+        IEnumerable<ReportByStain> GetReportByStainsForLastWeek();
+        IEnumerable<ReportByStain> GetReportByStainsForLastMonth();
+        IEnumerable<ReportByStain> GetReportByStainsForLastYear();
 
+        //By Organs and UserId
+        IEnumerable<ReportByOrgan> GetReportByOrgansForLastWeek(string UserId);
+        IEnumerable<ReportByOrgan> GetReportByOrgansForLastMonth(string UserId);
+        IEnumerable<ReportByOrgan> GetReportByOrgansForLastYear(string UserId);
+
+        //By Organs 
+        IEnumerable<ReportByOrgan> GetReportByOrgansForLastWeek();
+        IEnumerable<ReportByOrgan> GetReportByOrgansForLastMonth();
+        IEnumerable<ReportByOrgan> GetReportByOrgansForLastYear();
+
+        //By Tissues and UserId
+        IEnumerable<ReportByTissue> GetReportByTissuesForLastWeek(string UserId);
+        IEnumerable<ReportByTissue> GetReportByTissuesForLastMonth(string UserId);
+        IEnumerable<ReportByTissue> GetReportByTissuesForLastYear(string UserId);
+
+        //By Organs 
+        IEnumerable<ReportByTissue> GetReportByTissuesForLastWeek();
+        IEnumerable<ReportByTissue> GetReportByTissuesForLastMonth();
+        IEnumerable<ReportByTissue> GetReportByTissuesForLastYear(); 
 
 
         //CRUD

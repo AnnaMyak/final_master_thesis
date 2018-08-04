@@ -11,7 +11,7 @@ using System.Collections;
 
 namespace Sharpness.WebApp.Models.Sharpness_Persistence.Sharpness_Repositories.Implementation
 {
-    public class ReportRepo :IReportRepo
+    public class ReportRepo : IReportRepo
     {
         public void Delete(Report r)
         {
@@ -175,6 +175,167 @@ namespace Sharpness.WebApp.Models.Sharpness_Persistence.Sharpness_Repositories.I
             return _context.Reports.Find(ReportId);
         }
 
+        public IEnumerable<ReportByOrgan> GetReportByOrgansForLastMonth()
+        {
+            var organRepo = new OrganRepo();
+            var organs = organRepo.GetOrgans();
+            var reports = GetAllReportsLastMonth();
+            IList<ReportByOrgan> reportByOrgans = new List<ReportByOrgan>();
+
+            foreach (Organ o in organs)
+            {
+                var item = new ReportByOrgan() { Organ = o.Name, Number = 0 };
+
+                foreach (Report r in reports)
+                {
+                    if (r.OrganName == o.Name)
+                    {
+                        item.Number++;
+                    }
+                }
+                reportByOrgans.Add(item);
+            }
+            return reportByOrgans;
+        }
+
+        public IEnumerable<ReportByOrgan> GetReportByOrgansForLastMonth(string UserId)
+        {
+            var organRepo = new OrganRepo();
+            var organs = organRepo.GetOrgans();
+            var reports = GetAllReportsByUserLastMonth(UserId);
+            IList<ReportByOrgan> reportByOrgans = new List<ReportByOrgan>();
+
+            foreach (Organ o in organs)
+            {
+                var item = new ReportByOrgan() { Organ = o.Name, Number = 0 };
+
+                foreach (Report r in reports)
+                {
+                    if (r.OrganName == o.Name)
+                    {
+                        item.Number++;
+                    }
+                }
+                reportByOrgans.Add(item);
+            }
+            return reportByOrgans;
+        }
+
+        public IEnumerable<ReportByOrgan> GetReportByOrgansForLastWeek()
+        {
+            var organRepo = new OrganRepo();
+            var organs = organRepo.GetOrgans();
+            var reports = GetAllReportsLastWeek();
+            IList<ReportByOrgan> reportByOrgans = new List<ReportByOrgan>();
+
+            foreach (Organ o in organs)
+            {
+                var item = new ReportByOrgan() { Organ = o.Name, Number = 0 };
+
+                foreach (Report r in reports)
+                {
+                    if (r.OrganName == o.Name)
+                    {
+                        item.Number++;
+                    }
+                }
+                reportByOrgans.Add(item);
+            }
+            return reportByOrgans;
+        }
+
+        public IEnumerable<ReportByOrgan> GetReportByOrgansForLastWeek(string UserId)
+        {
+            var organRepo = new OrganRepo();
+            var organs = organRepo.GetOrgans();
+            var reports = GetAllReportsByUserIdLastWeek(UserId);
+            IList<ReportByOrgan> reportByOrgans = new List<ReportByOrgan>();
+
+            foreach (Organ o in organs)
+            {
+                var item = new ReportByOrgan() { Organ = o.Name, Number = 0 };
+
+                foreach (Report r in reports)
+                {
+                    if (r.OrganName == o.Name)
+                    {
+                        item.Number++;
+                    }
+                }
+                reportByOrgans.Add(item);
+            }
+            return reportByOrgans;
+        }
+
+        public IEnumerable<ReportByOrgan> GetReportByOrgansForLastYear()
+        {
+            var organRepo = new OrganRepo();
+            var organs = organRepo.GetOrgans();
+            var reports = GetAllReportsLastYear();
+            IList<ReportByOrgan> reportByOrgans = new List<ReportByOrgan>();
+
+            foreach (Organ o in organs)
+            {
+                var item = new ReportByOrgan() { Organ = o.Name, Number = 0 };
+
+                foreach (Report r in reports)
+                {
+                    if (r.OrganName == o.Name)
+                    {
+                        item.Number++;
+                    }
+                }
+                reportByOrgans.Add(item);
+            }
+            return reportByOrgans;
+        }
+
+        public IEnumerable<ReportByOrgan> GetReportByOrgansForLastYear(string UserId)
+        {
+            var organRepo = new OrganRepo();
+            var organs = organRepo.GetOrgans();
+            var reports = GetAllReportsByUserLastYear(UserId);
+            IList<ReportByOrgan> reportByOrgans = new List<ReportByOrgan>();
+
+            foreach (Organ o in organs)
+            {
+                var item = new ReportByOrgan() { Organ = o.Name, Number = 0 };
+
+                foreach (Report r in reports)
+                {
+                    if (r.OrganName == o.Name)
+                    {
+                        item.Number++;
+                    }
+                }
+                reportByOrgans.Add(item);
+            }
+            return reportByOrgans;
+        }
+
+        public IEnumerable<ReportByStain> GetReportByStainsForLastMonth()
+        {
+            var stainRepo = new StainRepo();
+            var stains = stainRepo.GetStains();
+            var reports = GetAllReportsLastMonth();
+            IList<ReportByStain> reportByStains = new List<ReportByStain>();
+
+            foreach (Stain s in stains)
+            {
+                var item = new ReportByStain() { Stain = s.Name, Number = 0 };
+
+                foreach (Report r in reports)
+                {
+                    if (r.StainName == s.Name)
+                    {
+                        item.Number++;
+                    }
+                }
+                reportByStains.Add(item);
+            }
+            return reportByStains;
+        }
+
         public IEnumerable<ReportByStain> GetReportByStainsForLastMonth(string UserId)
         {
             var stainRepo = new StainRepo();
@@ -198,14 +359,234 @@ namespace Sharpness.WebApp.Models.Sharpness_Persistence.Sharpness_Repositories.I
             return reportByStains;
         }
 
+        public IEnumerable<ReportByStain> GetReportByStainsForLastWeek()
+        {
+            var stainRepo = new StainRepo();
+            var stains = stainRepo.GetStains();
+            var reports = GetAllReportsLastWeek();
+            IList<ReportByStain> reportByStains = new List<ReportByStain>();
+
+            foreach (Stain s in stains)
+            {
+                var item = new ReportByStain() { Stain = s.Name, Number = 0 };
+
+                foreach (Report r in reports)
+                {
+                    if (r.StainName == s.Name)
+                    {
+                        item.Number++;
+                    }
+                }
+                reportByStains.Add(item);
+            }
+            return reportByStains;
+        }
+
         public IEnumerable<ReportByStain> GetReportByStainsForLastWeek(string UserId)
         {
-            throw new NotImplementedException();
+            var stainRepo = new StainRepo();
+            var stains = stainRepo.GetStains();
+            var reports = GetAllReportsByUserIdLastWeek(UserId);
+            IList<ReportByStain> reportByStains = new List<ReportByStain>();
+
+            foreach (Stain s in stains)
+            {
+                var item = new ReportByStain() { Stain = s.Name, Number = 0 };
+
+                foreach (Report r in reports)
+                {
+                    if (r.StainName == s.Name)
+                    {
+                        item.Number++;
+                    }
+                }
+                reportByStains.Add(item);
+            }
+            return reportByStains;
+        }
+
+        public IEnumerable<ReportByStain> GetReportByStainsForLastYear()
+        {
+            var stainRepo = new StainRepo();
+            var stains = stainRepo.GetStains();
+            var reports = GetAllReportsLastYear();
+            IList<ReportByStain> reportByStains = new List<ReportByStain>();
+
+            foreach (Stain s in stains)
+            {
+                var item = new ReportByStain() { Stain = s.Name, Number = 0 };
+
+                foreach (Report r in reports)
+                {
+                    if (r.StainName == s.Name)
+                    {
+                        item.Number++;
+                    }
+                }
+                reportByStains.Add(item);
+            }
+            return reportByStains;
         }
 
         public IEnumerable<ReportByStain> GetReportByStainsForLastYear(string UserId)
         {
-            throw new NotImplementedException();
+            var stainRepo = new StainRepo();
+            var stains = stainRepo.GetStains();
+            var reports = GetAllReportsByUserLastYear(UserId);
+            IList<ReportByStain> reportByStains = new List<ReportByStain>();
+
+            foreach (Stain s in stains)
+            {
+                var item = new ReportByStain() { Stain = s.Name, Number = 0 };
+
+                foreach (Report r in reports)
+                {
+                    if (r.StainName == s.Name)
+                    {
+                        item.Number++;
+                    }
+                }
+                reportByStains.Add(item);
+            }
+            return reportByStains;
+        }
+
+        public IEnumerable<ReportByTissue> GetReportByTissuesForLastMonth()
+        {
+            var tissueRepo = new TissueRepo();
+            var tissues = tissueRepo.GetTissues();
+            var reports = GetAllReportsLastMonth();
+            IList<ReportByTissue> reportByTissues = new List<ReportByTissue>();
+
+            foreach (Tissue t in tissues)
+            {
+                var item = new ReportByTissue() { Tissue = t.Name, Number = 0 };
+
+                foreach (Report r in reports)
+                {
+                    if (r.TissueName == t.Name)
+                    {
+                        item.Number++;
+                    }
+                }
+                reportByTissues.Add(item);
+            }
+            return reportByTissues;
+        }
+
+        public IEnumerable<ReportByTissue> GetReportByTissuesForLastMonth(string UserId)
+        {
+            var tissueRepo = new TissueRepo();
+            var tissues = tissueRepo.GetTissues();
+            var reports = GetAllReportsByUserLastMonth(UserId);
+            IList<ReportByTissue> reportByTissues = new List<ReportByTissue>();
+
+            foreach (Tissue t in tissues)
+            {
+                var item = new ReportByTissue() { Tissue = t.Name, Number = 0 };
+
+                foreach (Report r in reports)
+                {
+                    if (r.TissueName == t.Name)
+                    {
+                        item.Number++;
+                    }
+                }
+                reportByTissues.Add(item);
+            }
+            return reportByTissues;
+        }
+
+        public IEnumerable<ReportByTissue> GetReportByTissuesForLastWeek()
+        {
+            var tissueRepo = new TissueRepo();
+            var tissues = tissueRepo.GetTissues();
+            var reports = GetAllReportsLastWeek();
+            IList<ReportByTissue> reportByTissues = new List<ReportByTissue>();
+
+            foreach (Tissue t in tissues)
+            {
+                var item = new ReportByTissue() { Tissue = t.Name, Number = 0 };
+
+                foreach (Report r in reports)
+                {
+                    if (r.TissueName == t.Name)
+                    {
+                        item.Number++;
+                    }
+                }
+                reportByTissues.Add(item);
+            }
+            return reportByTissues;
+        }
+
+        public IEnumerable<ReportByTissue> GetReportByTissuesForLastWeek(string UserId)
+        {
+            var tissueRepo = new TissueRepo();
+            var tissues = tissueRepo.GetTissues();
+            var reports = GetAllReportsByUserIdLastWeek(UserId);
+            IList<ReportByTissue> reportByTissues = new List<ReportByTissue>();
+
+            foreach (Tissue t in tissues)
+            {
+                var item = new ReportByTissue() { Tissue = t.Name, Number = 0 };
+
+                foreach (Report r in reports)
+                {
+                    if (r.TissueName == t.Name)
+                    {
+                        item.Number++;
+                    }
+                }
+                reportByTissues.Add(item);
+            }
+            return reportByTissues;
+        }
+
+        public IEnumerable<ReportByTissue> GetReportByTissuesForLastYear()
+        {
+            var tissueRepo = new TissueRepo();
+            var tissues = tissueRepo.GetTissues();
+            var reports = GetAllReportsLastYear();
+            IList<ReportByTissue> reportByTissues = new List<ReportByTissue>();
+
+            foreach (Tissue t in tissues)
+            {
+                var item = new ReportByTissue() { Tissue = t.Name, Number = 0 };
+
+                foreach (Report r in reports)
+                {
+                    if (r.TissueName == t.Name)
+                    {
+                        item.Number++;
+                    }
+                }
+                reportByTissues.Add(item);
+            }
+            return reportByTissues;
+        }
+
+        public IEnumerable<ReportByTissue> GetReportByTissuesForLastYear(string UserId)
+        {
+            var tissueRepo = new TissueRepo();
+            var tissues = tissueRepo.GetTissues();
+            var reports = GetAllReportsByUserLastYear(UserId);
+            IList<ReportByTissue> reportByTissues = new List<ReportByTissue>();
+
+            foreach (Tissue t in tissues)
+            {
+                var item = new ReportByTissue() { Tissue = t.Name, Number = 0 };
+
+                foreach (Report r in reports)
+                {
+                    if (r.TissueName == t.Name)
+                    {
+                        item.Number++;
+                    }
+                }
+                reportByTissues.Add(item);
+            }
+            return reportByTissues;
         }
 
         public Report GetReportByWSI(Guid WSIId)
