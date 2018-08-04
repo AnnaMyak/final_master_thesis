@@ -3,6 +3,9 @@
     ViewBag.Title = "Dashboard";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/Chart.min.js"></script>
+
 <h1>Total @ViewBag.TotalNumberOfTests</h1>
 <h1>This week @ViewBag.TotalNumberOfTestsThisWeek</h1>
 <h1>This mouth @ViewBag.TotalNumberOfTestsThisMonth</h1>
@@ -10,3 +13,45 @@
 <h1>Negative @ViewBag.TotalNumberNegative</h1>
 <h1>Positive @ViewBag.TotalNumberPositive</h1>
 
+<script src="~/Assets/vendor/chart.js/Chart.bundle.min.js"></script>
+
+<div>
+    <canvas id="chart"></canvas>
+</div>
+
+<script>
+
+    var barChartData =
+        {
+            labels: [@Html.Raw(ViewBag.Productname_List)],
+            datasets: [{
+                label: 'ProductWise Sales Count',
+                backgroundColor: [
+                    "#f990a7",
+                    "#aad2ed",
+
+                ],
+                borderWidth: 2,
+                data: [@ViewBag.TotalNumberNegative, @ViewBag.TotalNumberPositive]
+            }]
+        };
+
+    window.onload = function () {
+        var ctx1 = document.getElementById("chart").getContext("2d");
+        window.myBar = new Chart(ctx1,
+            {
+                type: 'pie',
+                data: barChartData,
+                options:
+                    {
+                        title:
+                        {
+                            display: true,
+                            text: "ProductWise Sales Count"
+                        },
+                        responsive: true,
+                        maintainAspectRatio: true
+                    }
+            });
+    }
+</script>
