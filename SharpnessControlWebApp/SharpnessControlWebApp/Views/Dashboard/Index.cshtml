@@ -21,18 +21,17 @@
 
 <script>
 
-    var barChartData =
+    var commonChartData =
         {
-            labels: [@Html.Raw(ViewBag.Productname_List)],
+            labels: ["negative Schärfe-Teste", "positive Schärfe-Teste"],
             datasets: [{
-                label: 'ProductWise Sales Count',
+                label: 'Statistik von positiven und negativen Schärfe-Testen',
                 backgroundColor: [
-                    "#f990a7",
-                    "#aad2ed",
-
+                    "#e62e00",
+                    "#00b300",
                 ],
                 borderWidth: 2,
-                data: [@ViewBag.TotalNumberNegative, @ViewBag.TotalNumberPositive]
+                data: [@ViewBag.TotalNumberNegative , @ViewBag.TotalNumberPositive]
             }]
         };
 
@@ -41,13 +40,13 @@
         window.myBar = new Chart(ctx1,
             {
                 type: 'pie',
-                data: barChartData,
+                data: commonChartData,
                 options:
                     {
                         title:
                         {
                             display: true,
-                            text: "ProductWise Sales Count"
+                            text: "Statistik von positiven und negativen Schärfe-Testen"
                         },
                         responsive: true,
                         maintainAspectRatio: true
