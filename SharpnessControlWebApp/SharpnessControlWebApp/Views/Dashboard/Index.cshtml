@@ -132,8 +132,34 @@
         </div>
     </div>
 
+    <div class="col-xl-6 col-sm-3 mb-3">
+        <div class="card text-dark  o-hidden h-100">
+            <div class="card-body">
+                <div>
+                    <canvas id="organChart"></canvas>
+                </div>
+                <br />
+                <br />
+                <p style="text-align:center">Aktualisiert am @DateTime.Now</p>
+            </div>
+
+        </div>
+    </div>
 
 
+    <div class="col-xl-6 col-sm-3 mb-3">
+        <div class="card text-dark  o-hidden h-100">
+            <div class="card-body">
+                <div>
+                    <canvas id="tissueChart"></canvas>
+                </div>
+                <br />
+                <br />
+                <p style="text-align:center">Aktualisiert am @DateTime.Now</p>
+            </div>
+
+        </div>
+    </div>
 
  
 
@@ -194,7 +220,7 @@
             });
 
 
-        // Stain Bar chart
+        // Stains Bar chart
 
         var stains = @Html.Raw(Json.Encode(ViewBag.Stains));
         var stainsValues = @Html.Raw(Json.Encode(ViewBag.StainsValues));
@@ -220,8 +246,58 @@
             }
         });
 
+        // Organs Bar chart
 
-    
+        var organs = @Html.Raw(Json.Encode(ViewBag.Organs));
+        var organsValues = @Html.Raw(Json.Encode(ViewBag.OrgansValues));
+        var organsColor = @Html.Raw(Json.Encode(ViewBag.OrgansColor));
+        
+        new Chart(document.getElementById("organChart"), {
+            type: 'bar',
+            data: {
+                labels: organs,
+                datasets: [
+                  {
+                      backgroundColor: organsColor,
+                      data: organsValues
+                  }
+                ]
+            },
+            options: {
+                legend: { display: false },
+                title: {
+                    display: true,
+                    text: 'Statistik nach Organen vom letzten Monat'
+                }
+            }
+        });
+
+
+        // Tissues Bar chart
+
+        var tissues = @Html.Raw(Json.Encode(ViewBag.Tissues));
+        var tissuesValues = @Html.Raw(Json.Encode(ViewBag.TissuesValues));
+        var tissuesColor = @Html.Raw(Json.Encode(ViewBag.TissuesColor));
+        
+        new Chart(document.getElementById("tissueChart"), {
+            type: 'bar',
+            data: {
+                labels: tissues,
+                datasets: [
+                  {
+                      backgroundColor: tissuesColor,
+                      data: tissuesValues
+                  }
+                ]
+            },
+            options: {
+                legend: { display: false },
+                title: {
+                    display: true,
+                    text: 'Statistik nach Gewebearten vom letzten Monat'
+                }
+            }
+        });
 
 
 
