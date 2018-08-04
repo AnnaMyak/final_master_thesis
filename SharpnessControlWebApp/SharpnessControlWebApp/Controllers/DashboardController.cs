@@ -116,7 +116,7 @@ namespace SharpnessControlWebApp.Controllers
 
         public ActionResult AllMyTests()
         {
-            model = new SharpnessViewModels();
+            
             model.WSIs = repoWSI.GetAllWSIByUserId(User.Identity.GetUserId());
             return View(model);
         }
