@@ -281,6 +281,7 @@
     <Content Include="Assets\img\logo.png" />
     <Content Include="Assets\img\Sharpness.gif" />
     <Content Include="Assets\img\text.png" />
+    <Content Include="Assets\js\dashboard.js" />
     <Content Include="Assets\js\navbar.js" />
     <Content Include="Assets\js\sb-admin-charts.js" />
     <Content Include="Assets\js\sb-admin-charts.min.js" />
