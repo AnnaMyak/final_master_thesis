@@ -380,8 +380,6 @@ namespace SharpnessControlWebApp.Controllers
             {
                 item.UserId = _context.Users.Find(item.UserId).UserName;
             }
-
-
             return View(model);
         }
 
@@ -394,5 +392,40 @@ namespace SharpnessControlWebApp.Controllers
             return RedirectToAction("Report", "ControlPanel", new { ReportId = report.ReportId });
         }
 
+        public ActionResult DeleteWSIAndReport(Guid WSIId)
+        {
+            if (WSIId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var wsi = repoWSI.GetById(WSIId);
+            if (wsi == null)
+            {
+                return HttpNotFound();
+            }
+            return View(wsi);
+        }
+
+        [HttpPost]
+        public ActionResult DeleteWSIAndReport(Guid WSIId, FormCollection collection)
+        {
+
+            var _context = new ApplicationDbContext();
+            try
+            {
+
+                _context.Reports.Remove(_context.Reports.Where(r=> r.WSIId==WSIId).First());
+                _context.WSIs.Remove(_context.WSIs.Find(WSIId));
+                _context.SaveChanges();
+                return RedirectToAction("WSIs");
+
+            }
+            catch
+            {
+                
+            }
+
+            return View(_context.WSIs.Find(WSIId));
+        }
     }
 }

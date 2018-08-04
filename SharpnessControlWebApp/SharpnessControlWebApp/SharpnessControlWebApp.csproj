@@ -469,6 +469,7 @@
     <Content Include="Views\ControlPanel\Report.cshtml" />
     <Content Include="Views\Management\DeleteStain.cshtml" />
     <Content Include="Views\Management\WSIs.cshtml" />
+    <Content Include="Views\Management\DeleteWSIAndReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

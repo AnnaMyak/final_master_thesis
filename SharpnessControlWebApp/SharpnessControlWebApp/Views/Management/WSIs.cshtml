@@ -13,13 +13,13 @@
             <table id="bootstrap-data-table" class="table table-striped table-bordered">
                 <thead>
                     <tr>
-                        <th>User</th>
+                        <th>Benutzer</th>
                         <th>Titel</th>
-                        <th>Description</th>
-                        <th>Path</th>
-                        <th>Creation</th>
-                        <th>Report</th>
-                        <th>Delete</th>
+                        <th>Beshreibung</th>
+                        <th>Pfad</th>
+                        <th>Zeitpunkz</th>
+                        <th>Bericht</th>
+                        <th>Löschen</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -28,16 +28,15 @@
 
                         <tr>
 
-
                             <td>@item.UserId</td>
                             <td>@item.Titel</td>
                             <td>@item.Description</td>
                             <td>@item.Path</td>
                             <td>@item.Creation</td>
                             <td>
-                                <i class="fa fa-star"></i>  @Html.ActionLink("To Report", "WSIToReport", "Dashboard", new { WSIId = item.WSIId }, null)
+                                <i class="fa fa-star"></i>  @Html.ActionLink("zum Bericht", "WSIToReport", "Dashboard", new { WSIId = item.WSIId }, null)
                             </td>
-                            <td><button type="button" class="btn btn-outline-danger btn-sm">Delete</button></td>
+                            <td>@Html.ActionLink("Löschen", "DeleteWSIAndReport", "Management", new { WSIId = item.WSIId }, new { @class="btn btn-danger"})</td>
 
 
                         </tr>
