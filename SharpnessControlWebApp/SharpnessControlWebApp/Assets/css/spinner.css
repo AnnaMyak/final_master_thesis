@@ -2,7 +2,7 @@
         .center-div {
             width: 200px;
             height: 200px;
-            position: absolute;
+            position: center;
             left: 50%;
             top: 50%;
             margin-left: -150px;
@@ -10,14 +10,14 @@
         }
 
         .spinner {
-            position: fixed;
+            position: center;
             z-index: 999;
             height: 100%;
             width: 100%;
             top: 0;
             left: 0;
             background-color: Black;
-            filter: alpha(opacity=60);
+            filter: alpha(opacity=80);
             opacity: 0.6;
             -moz-opacity: 0.8;
         }
