@@ -154,19 +154,19 @@ namespace Sharpness.WebApp.Models.Sharpness_Persistence.Sharpness_Repositories.I
         public IEnumerable<Report> GetAllReportsLastMonth()
         {
             var _context = new ApplicationDbContext();
-            return _context.Reports.Where(r => r.Creation > DateTime.Now.AddMonths(-1)).ToList();
+            return _context.Reports.Where(r => r.Creation > EntityFunctions.AddMonths(DateTime.Now, -1)).ToList();
         }
 
         public IEnumerable<Report> GetAllReportsLastWeek()
         {
             var _context = new ApplicationDbContext();
-            return _context.Reports.Where(r => r.Creation > DateTime.Now.AddDays(-7)).ToList();
+            return _context.Reports.Where(r => r.Creation > EntityFunctions.AddDays(DateTime.Now, -7)).ToList();
         }
 
         public IEnumerable<Report> GetAllReportsLastYear()
         {
             var _context = new ApplicationDbContext();
-            return _context.Reports.Where(r => r.Creation > DateTime.Now.AddYears(-1)).ToList();
+            return _context.Reports.Where(r => r.Creation > EntityFunctions.AddYears(DateTime.Now, -1)).ToList();
         }
 
         public IEnumerable<DynamicForAYear> GetDynamicForAYear()

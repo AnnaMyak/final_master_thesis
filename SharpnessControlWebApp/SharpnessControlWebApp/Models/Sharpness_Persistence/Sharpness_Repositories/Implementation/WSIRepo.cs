@@ -76,6 +76,41 @@ namespace Sharpness.WebApp.Models.Sharpness_Persistence.Sharpness_Repositories.I
 
         }
 
+        public IEnumerable<WSI> GetRecentWSIs()
+        {
+            var _context = new ApplicationDbContext();
+            var wsis = _context.WSIs.OrderByDescending(w => w.Creation).ToList();
+            var num = wsis.Count;
+
+            if (wsis.Count == 1)
+            {
+                var results = new List<WSI>();
+
+                results.Add(wsis.ElementAt(0));
+                return results;
+            }
+            if (wsis.Count == 2)
+            {
+                var results = new List<WSI>();
+
+                results.Add(wsis.ElementAt(0));
+                results.Add(wsis.ElementAt(1));
+
+                return results;
+            }
+            if (wsis.Count >= 3)
+            {
+                var results = new List<WSI>();
+
+                results.Add(wsis.ElementAt(0));
+                results.Add(wsis.ElementAt(1));
+                results.Add(wsis.ElementAt(2));
+                return results;
+            }
+            else
+                return new List<WSI>();
+        }
+
         public int GetTotalNumberOfWSIs()
         {
             var _context = new ApplicationDbContext();

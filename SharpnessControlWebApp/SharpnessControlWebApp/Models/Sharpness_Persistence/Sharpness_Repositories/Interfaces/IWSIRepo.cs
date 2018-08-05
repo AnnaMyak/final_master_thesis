@@ -14,6 +14,7 @@ namespace Sharpness.WebApp.Models.Sharpness_Persistence.Sharpness_Repositories.I
         WSI GetByTitel(string Titel);
         IEnumerable<WSI> GetAllWSIByUserId(string UserId);
         IEnumerable<WSI> GetRecentWSIByUSerId(string UserId);
+        IEnumerable<WSI> GetRecentWSIs();
         void Insert(WSI w);
         void Delete(WSI w);
         void Update(WSI w);

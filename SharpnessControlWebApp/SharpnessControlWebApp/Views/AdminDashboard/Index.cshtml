@@ -1,8 +1,357 @@
-﻿
+﻿@model SharpnessControlWebApp.Models.SharpnessViewModels
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Admin-Statistiken";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Admin Dashboard</h2>
 
+<script src="~/Scripts/Chart.min.js"></script>
+
+
+<div class="row">
+
+
+    <div class="col-xl-3 col-sm-6 mb-3">
+        <div class="card text-white bg-danger o-hidden h-100">
+            <div class="card-body">
+                <div class="card-body-icon">
+                    <i class="fa fa-check-square"></i>
+                </div>
+                <div class="mr-5">Meine Schärfe-Teste <strong>Insgesamt</strong> @ViewBag.TotalNumberOfTests</div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-3 col-sm-6 mb-3">
+        <div class="card text-white o-hidden h-100" style="background-color:#ff751a">
+            <div class="card-body">
+                <div class="card-body-icon">
+                    <i class="fa fa-check"></i>
+                </div>
+                <div class="mr-5">Meine Schärfe-Teste <strong>diese Woche</strong> @ViewBag.TotalNumberOfTestsThisWeek</div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-xl-3 col-sm-6 mb-3">
+        <div class="card text-white o-hidden h-100" style="background-color:#ffaa00">
+            <div class="card-body">
+                <div class="card-body-icon">
+                    <i class="fa fa-check-circle"></i>
+                </div>
+                <div class="mr-5">Meine Schärfe-Teste <strong>diesen Monat</strong> @ViewBag.TotalNumberOfTestsThisMonth</div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <div class="col-xl-3 col-sm-6 mb-3">
+        <div class="card text-white o-hidden h-100" style="background-color:#ffbb99">
+            <div class="card-body">
+                <div class="card-body-icon">
+                    <i class="fa fa-check-circle-o"></i>
+                </div>
+                <div class="mr-5">Meine Schärfe-Teste <strong>dieses Jahr</strong> @ViewBag.TotalNumberOfTestsThisYear</div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-xl-6 col-sm-6 mb-6">
+        <div class="card text-dark o-hidden h-100">
+
+            <div>
+                <canvas id="commonChart"></canvas>
+            </div>
+            <br />
+            <br />
+            <p style="text-align:center">Aktualisiert am @DateTime.Now</p>
+        </div>
+    </div>
+
+
+
+
+    <div class="col-xl-6 col-sm-6 mb-6">
+        <div class="card text-dark o-hidden h-100">
+            <br />
+            <div class="mr-5"><strong><p style="text-align:center">Alle letzten Schärfe-Teste</p></strong></div>
+            <div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Titel</th>
+                            <th scope="col">Beschreibung</th>
+                            <th scope="col">Zeitpunkt</th>
+                            <th scope="col">Bericht</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{ int i = 1;
+                            foreach (var item in ViewBag.RecentWSIs)
+                            {
+                                <tr>
+                                    <th scope="row">@i</th>
+
+                                    <td>@item.Titel</td>
+                                    <td>@item.Description</td>
+                                    <td>@item.Creation</td>
+                                    <td>
+                                        <i class="fa fa-star"></i>  @Html.ActionLink("Zum Bericht", "WSIToReport", "Dashboard", new { WSIId = item.WSIId }, null)
+                                    </td>
+                                </tr>
+                                i++;
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <button type="button" class="btn btn-primary btn-sm" onclick="location.href='@Url.Action("WSITests", "AdminDashboard")'">
+                <i class="fa fa-star">
+                </i>&nbsp; Alle Schärfe-Teste
+            </button>
+
+        </div>
+    </div>
+
+
+
+    <div class="col-xl-6 col-sm-3 mb-3">
+        <div class="card text-dark  o-hidden h-100">
+            <div class="card-body">
+                <div>
+                    <canvas id="stainChart"></canvas>
+                </div>
+                <br />
+                <br />
+                <p style="text-align:center">Aktualisiert am @DateTime.Now</p>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-xl-6 col-sm-3 mb-3">
+        <div class="card text-dark  o-hidden h-100">
+            <div class="card-body">
+                <div>
+                    <canvas id="organChart"></canvas>
+                </div>
+                <br />
+                <br />
+                <p style="text-align:center">Aktualisiert am @DateTime.Now</p>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="col-xl-6 col-sm-3 mb-3">
+        <div class="card text-dark  o-hidden h-100">
+            <div class="card-body">
+                <div>
+                    <canvas id="tissueChart"></canvas>
+                </div>
+                <br />
+                <br />
+                <p style="text-align:center">Aktualisiert am @DateTime.Now</p>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="col-xl-12 col-sm-3 mb-3">
+        <div class="card text-dark  o-hidden h-100">
+            <div class="card-body">
+                <div>
+                    <canvas id="dynamicChart"></canvas>
+                </div>
+                <br />
+                <br />
+                <p style="text-align:center">Aktualisiert am @DateTime.Now</p>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<script src="~/Assets/vendor/chart.js/Chart.bundle.min.js"></script>
+
+<script>
+
+        var commonChartData =
+            {
+                labels: ["negative Schärfe-Teste", "positive Schärfe-Teste"],
+                datasets: [{
+                    backgroundColor: [
+                        "#e62e00",
+                        "#00b300",
+                    ],
+                    borderWidth: 2,
+                    data: [@ViewBag.TotalNumberNegative , @ViewBag.TotalNumberPositive]
+                }]
+            };
+
+
+
+
+
+        var ctx1 = document.getElementById("commonChart").getContext("2d");
+        new Chart(ctx1,
+            {
+                type: 'pie',
+                data: commonChartData,
+                options:
+                    {
+                        title:
+                        {
+                            display: true,
+                            text: "Statistik von positiven und negativen Schärfe-Testen"
+                        },
+                        responsive: true,
+                        maintainAspectRatio: true
+                    }
+            });
+
+
+        // Stains Bar chart
+
+        var stains = @Html.Raw(Json.Encode(ViewBag.Stains));
+        var stainsValues = @Html.Raw(Json.Encode(ViewBag.StainsValues));
+        var stainsColor = @Html.Raw(Json.Encode(ViewBag.StainsColor));
+
+        new Chart(document.getElementById("stainChart"), {
+            type: 'bar',
+            data: {
+                labels: stains,
+                datasets: [
+                  {
+                      backgroundColor: stainsColor,
+                      data: stainsValues
+                  }
+                ]
+            },
+            options: {
+                legend: { display: false },
+                title: {
+                    display: true,
+                    text: 'Statistik nach Färbungen vom letzten Monat'
+                }
+            }
+        });
+
+        // Organs Bar chart
+
+        var organs = @Html.Raw(Json.Encode(ViewBag.Organs));
+        var organsValues = @Html.Raw(Json.Encode(ViewBag.OrgansValues));
+        var organsColor = @Html.Raw(Json.Encode(ViewBag.OrgansColor));
+
+        new Chart(document.getElementById("organChart"), {
+            type: 'bar',
+            data: {
+                labels: organs,
+                datasets: [
+                  {
+                      backgroundColor: organsColor,
+                      data: organsValues
+                  }
+                ]
+            },
+            options: {
+                legend: { display: false },
+                title: {
+                    display: true,
+                    text: 'Statistik nach Organen vom letzten Monat'
+                }
+            }
+        });
+
+
+        // Tissues Bar chart
+
+        var tissues = @Html.Raw(Json.Encode(ViewBag.Tissues));
+        var tissuesValues = @Html.Raw(Json.Encode(ViewBag.TissuesValues));
+        var tissuesColor = @Html.Raw(Json.Encode(ViewBag.TissuesColor));
+
+        new Chart(document.getElementById("tissueChart"), {
+            type: 'bar',
+            data: {
+                labels: tissues,
+                datasets: [
+                  {
+                      backgroundColor: tissuesColor,
+                      data: tissuesValues
+                  }
+                ]
+            },
+            options: {
+                legend: { display: false },
+                title: {
+                    display: true,
+                    text: 'Statistik nach Gewebearten vom letzten Monat'
+                }
+            }
+        });
+
+
+
+        // Dynamics Bar chart
+
+        var months = @Html.Raw(Json.Encode(ViewBag.Months));
+        var monthsValues = @Html.Raw(Json.Encode(ViewBag.MonthsValues));
+        var monthsColor = @Html.Raw(Json.Encode(ViewBag.MonthsColor));
+
+        new Chart(document.getElementById("dynamicChart"), {
+            type: 'bar',
+            data: {
+                labels: months,
+                datasets: [
+                  {
+                      backgroundColor:  monthsColor,
+                      data: monthsValues
+                  }
+                ]
+            },
+            options: {
+                legend: { display: false },
+                title: {
+                    display: true,
+                    text: 'Dynamik des letzten Jahres'
+                }
+            }
+        });
+
+
+
+
+
+
+
+
+
+
+</script>
