@@ -94,7 +94,7 @@ namespace SharpnessControlWebApp.Controllers
             var fileName = "";
             wsi.WSIId = Guid.NewGuid();
 
-            string outputDir = Path.Combine(Path.GetDirectoryName(root), User.Identity.GetUserId(), "WSI " + wsi.WSIId + @"\");
+            string outputDir = Path.Combine(Path.GetDirectoryName(root), User.Identity.GetUserName(), "WSI " + wsi.WSIId + @"\");
             if (!Directory.Exists(outputDir))
                 Directory.CreateDirectory(outputDir);
             if (file.ContentLength > 0)
