@@ -39,7 +39,7 @@ namespace IdentitySample
             {
                 foreach (var item in loggedInUsers)
                 {
-                    if (item.Value < DateTime.Now.AddMinutes(-20))
+                    if (item.Value < DateTime.Now.AddMinutes(-30))
                     {
                         loggedInUsers.Remove(item.Key);
                     }

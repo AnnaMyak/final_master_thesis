@@ -16,8 +16,9 @@
             <span> Online Users: </span>
             @foreach (var item in loggedOnUsers)
             {
-                <a href="/Users/Panel/UserProfile/@item.Key">@item.Key</a>
-                @:&nbsp;
+                <br />
+                <p>@item.Key</p>
+                
             }
         </div>
     }

@@ -122,6 +122,49 @@
     </div>
 
 
+    <div class="col-xl-6 col-sm-3 mb-3">
+        <div class="card text-white bg-danger o-hidden h-100">
+            <div class="card-body">
+                
+                <div class="card-body-icon">
+                    <i class="fa fa-user-secret" style="font-size:150px"></i>
+                </div>
+                <div class="mr-5"><strong>User Tracking</strong></div>
+                <br />
+                <div class="card" style="width:100%">
+                    <div class="card-body">
+                        @if (HttpRuntime.Cache["LoggedInUsers"] != null)
+                        {
+                          var loggedOnUsers = HttpRuntime.Cache["LoggedInUsers"] as Dictionary<string, DateTime>;
+                          <p class="card-text" style="color:black">In letzten 30 Minuten waren <strong style="color:forestgreen"> @loggedOnUsers.Count Benutzer</strong> Online </p>
+                        }
+                        else
+                        {
+                            <p class="card-text" style="color:black">In letzten 30 Minuten <strong style="color:red">kein Benutzer</strong> hat sich bei der Anwendung angemeldet</p>
+                        }
+
+
+                    </div>
+                </div>
+                <br />
+                <div class="card" style="width:100%">
+                    <div class="card-body">
+                        <p class="card-text" style="color:black">Some quick example text to build </p>
+                    </div>
+                </div>
+                <br />
+                <button type="button" class="btn btn-success btn-lg btn-block" onclick="location.href='@Url.Action("UserActivity", "AdminDashboard")'">
+                    <i class="fa fa-star">
+                    </i>&nbsp; Details
+                </button>
+                <br />
+                <p style="text-align:center">Aktualisiert am @DateTime.Now</p>
+            </div>
+
+        </div>
+    </div>
+
+
 
     <div class="col-xl-6 col-sm-3 mb-3">
         <div class="card text-dark  o-hidden h-100">

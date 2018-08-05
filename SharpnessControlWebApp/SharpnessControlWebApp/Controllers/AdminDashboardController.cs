@@ -122,5 +122,11 @@ namespace SharpnessControlWebApp.Controllers
 
             return View();
         }
+
+        public ActionResult UserActivity()
+        {
+            
+            return View();
+        } 
     }
 }

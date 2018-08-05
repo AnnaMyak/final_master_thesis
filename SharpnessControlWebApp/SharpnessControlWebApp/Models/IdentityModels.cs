@@ -21,7 +21,7 @@ namespace IdentitySample.Models
 
         public ApplicationUser()
         {
-            RegisterDate = DateTime.Now;
+            RegistrationDate = DateTime.Now;
         }
 
         public string Salutation { get; set; }
@@ -33,13 +33,14 @@ namespace IdentitySample.Models
         public string ZipCode { get; set; }
         public string Location { get; set; }
         public string Country { get; set; }
-        public DateTime RegisterDate { get; set; }
+        public DateTime RegistrationDate { get; set; }
+        
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("SharpnessControlApp")
         {
         }
 

@@ -94,4 +94,3 @@ C:\Users\AnnaToshiba2\Documents\GitHub\final_master_thesis\SharpnessControlWebAp
 C:\Users\AnnaToshiba2\Documents\GitHub\final_master_thesis\SharpnessControlWebApp\SharpnessControlWebApp\bin\de\MigraDoc.RtfRendering.resources.dll
 C:\Users\AnnaToshiba2\Documents\GitHub\final_master_thesis\SharpnessControlWebApp\SharpnessControlWebApp\bin\de\PdfSharp.resources.dll
 C:\Users\AnnaToshiba2\Documents\GitHub\final_master_thesis\SharpnessControlWebApp\SharpnessControlWebApp\bin\de\PdfSharp.Charting.resources.dll
-C:\Users\AnnaToshiba2\Documents\GitHub\final_master_thesis\SharpnessControlWebApp\SharpnessControlWebApp\obj\Debug\SharpnessControlWebApp.csprojResolveAssemblyReference.cache

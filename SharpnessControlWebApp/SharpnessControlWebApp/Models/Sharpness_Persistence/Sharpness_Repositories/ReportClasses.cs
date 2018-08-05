@@ -28,4 +28,10 @@ namespace SharpnessControlWebApp.Models.Sharpness_Persistence.Sharpness_Reposito
         public int Month { get; set; }
         public int Number { get; set; }
     }
+
+    public class UserTracking
+    {
+        public string Username { get; set; }
+        public DateTime RegistrationDate { get; set; }
+    }
 }
