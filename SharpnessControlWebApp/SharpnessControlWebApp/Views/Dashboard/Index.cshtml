@@ -324,12 +324,12 @@
         var monthsColor = @Html.Raw(Json.Encode(ViewBag.MonthsColor));
 
         new Chart(document.getElementById("dynamicChart"), {
-            type: 'bar',
+            type: 'line',
             data: {
                 labels: months,
                 datasets: [
                   {
-                      backgroundColor:  monthsColor,
+                      backgroundColor:  "#009999",
                       data: monthsValues
                   }
                 ]

@@ -90,18 +90,18 @@ namespace SharpnessControlWebApp.Controllers
             var dynamics = repoReport.GetDynamicForAYearByUser(User.Identity.GetUserId());
             var months = new List<int>();
             var monthsValues = new List<int>();
-            var monthsColor = new List<string>();
+            //var monthsColor = new List<string>();
 
             foreach (var item in dynamics)
             {
                 months.Add(item.Month);
                 monthsValues.Add(item.Number);
-                monthsColor.Add("#00cc44");
+                //monthsColor.Add("#00cc44");
             }
 
             ViewBag.Months = months;
             ViewBag.MonthsValues = monthsValues;
-            ViewBag.MonthsColor = monthsColor;
+            //ViewBag.MonthsColor = monthsColor;
 
 
 
