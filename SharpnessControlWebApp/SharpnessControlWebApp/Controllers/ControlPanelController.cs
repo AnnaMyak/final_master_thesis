@@ -110,7 +110,7 @@ namespace SharpnessControlWebApp.Controllers
 
             }
 
-            var reportLink = User.Identity.GetUserId() + "/" + "WSI " + wsi.WSIId + "/" + fileName + " ";
+            var reportLink = User.Identity.GetUserName() + "/" + "WSI " + wsi.WSIId + "/" + fileName + " ";
             var evaluationLink = root + reportLink.Replace("/", @"\");
             Process first = new Process();
             first.StartInfo.FileName = @"C:\Users\AnnaToshiba2\Documents\GitHub\sharpness\sharpness console App\SharpnessExplorationCurrent\SharpnessExplorationCurrent\bin\x64\Release\SharpnessExplorationCurrent.exe";
