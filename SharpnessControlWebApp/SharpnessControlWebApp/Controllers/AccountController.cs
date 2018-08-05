@@ -2,6 +2,8 @@
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -74,7 +76,36 @@ namespace IdentitySample.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    {
+                        //if the list exists, add this user to it
+                        if (HttpRuntime.Cache["LoggedInUsers"] != null)
+                        {
+                            //get the list of logged in users from the cache
+                            IDictionary<string, DateTime> loggedInUsers = (Dictionary<string, DateTime>)HttpRuntime.Cache["LoggedInUsers"];
+
+                            if (!loggedInUsers.ContainsKey(model.Email))
+                            {
+                                //add this user to the list
+                                loggedInUsers.Add(model.Email, DateTime.Now);
+                                //add the list back into the cache
+                                HttpRuntime.Cache["LoggedInUsers"] = loggedInUsers;
+                            }
+                        }
+
+                        //the list does not exist so create it
+                        else
+                        {
+                            //create a new list
+                            IDictionary<string,DateTime> loggedInUsers =new  Dictionary<string, DateTime>();
+                            //add this user to the list
+                            loggedInUsers.Add(model.Email, DateTime.Now);
+                            //add the list into the cache
+                            HttpRuntime.Cache["LoggedInUsers"] = loggedInUsers;
+                        }
+
+
+                        return RedirectToLocal(returnUrl);
+                    }
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
