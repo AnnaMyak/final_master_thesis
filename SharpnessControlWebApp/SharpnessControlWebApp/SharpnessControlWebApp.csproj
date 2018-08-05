@@ -479,7 +479,6 @@
     <Content Include="Views\Management\WSIs.cshtml" />
     <Content Include="Views\Management\DeleteWSIAndReport.cshtml" />
     <Content Include="Views\Dashboard\AllMyTests.cshtml" />
-    <Content Include="Views\AdminDashboard\Activity.cshtml" />
     <Content Include="Views\AdminDashboard\UserActivity.cshtml" />
   </ItemGroup>
   <ItemGroup>

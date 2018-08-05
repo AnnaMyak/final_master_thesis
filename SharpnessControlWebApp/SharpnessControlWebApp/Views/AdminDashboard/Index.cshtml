@@ -136,7 +136,7 @@
                         @if (HttpRuntime.Cache["LoggedInUsers"] != null)
                         {
                           var loggedOnUsers = HttpRuntime.Cache["LoggedInUsers"] as Dictionary<string, DateTime>;
-                          <p class="card-text" style="color:black">In letzten 30 Minuten hat\haben <strong style="color:forestgreen"> @loggedOnUsers.Count Benutzer angemeldet</strong> Online </p>
+                          <p class="card-text" style="color:black">Im kurzen hat\haben <strong style="color:forestgreen"> @loggedOnUsers.Count Benutzer angemeldet</strong> </p>
                         }
                         else
                         {
@@ -150,8 +150,8 @@
                 <div class="card" style="width:100%">
                     <div class="card-body">
                         <p class="card-text" style="color:black">Heute registriert <strong style="color:forestgreen">+ @ViewBag.usersToday</strong> </p>
-                        <p class="card-text" style="color:black">In diesem Monat registriert <strong style="color:forestgreen">+ @ViewBag.usersMonth</strong> </p>
-                        <p class="card-text" style="color:black">In diesem Jahr registriert <strong style="color:forestgreen">+ @ViewBag.usersYear</strong> </p>
+                        <p class="card-text" style="color:black">Im laufenden Monat registriert <strong style="color:forestgreen">+ @ViewBag.usersMonth</strong> </p>
+                        <p class="card-text" style="color:black">Im laufenden Jahr registriert <strong style="color:forestgreen">+ @ViewBag.usersYear</strong> </p>
 
                     </div>
                 </div>
@@ -386,7 +386,7 @@
                 legend: { display: false },
                 title: {
                     display: true,
-                    text: 'Dynamik des letzten Jahres'
+                    text: 'Statistik von durchgeführten Testen in laufenden Jahr'
                 }
             }
         });

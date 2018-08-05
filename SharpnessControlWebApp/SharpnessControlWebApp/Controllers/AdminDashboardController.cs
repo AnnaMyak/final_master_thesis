@@ -121,12 +121,6 @@ namespace SharpnessControlWebApp.Controllers
         }
 
         
-        public ActionResult Activity()
-        {
-           
-
-            return View();
-        }
 
         public ActionResult UserActivity()
         {
@@ -135,6 +129,23 @@ namespace SharpnessControlWebApp.Controllers
 
             ViewBag.Month = repoTracking.ListRegisteredUsersThisMonth();
             ViewBag.MonthNumber = repoTracking.RegisteredUsersThisMonth();
+
+
+            //Statistc for a current year
+            var statistics = repoTracking.RegistrationStatistik();
+            var months = new List<int>();
+            var monthsValues = new List<int>();
+            
+            foreach (var item in statistics)
+            {
+                months.Add(item.Month);
+                monthsValues.Add(item.Number);
+                
+            }
+
+            ViewBag.Months = months;
+            ViewBag.MonthsValues = monthsValues;
+
 
             return View();
         } 

@@ -3,10 +3,12 @@
     ViewBag.Title = "Benutzeraktivität";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<script src="~/Assets/vendor/chart.js/Chart.bundle.min.js"></script>
 
 
 <div class="row">
+
+
     <div class="col-xl-4">
             <div class="card-body" style="background-color:green">
                 @if (HttpRuntime.Cache["LoggedInUsers"] != null)
@@ -98,30 +100,54 @@
 
 
                 }
-            
 
+        </div>
+    </div>
 
+    <div class="col-xl-12 col-sm-3 mb-3">
+        <div class="card text-dark  o-hidden h-100">
+            <div class="card-body">
+                <div>
+                    <canvas id="dynamicChart"></canvas>
+                </div>
+                <br />
+                <br />
+                <p style="text-align:center">Aktualisiert am @DateTime.Now</p>
+            </div>
 
         </div>
     </div>
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-     
-   
-
-
-
-
 </div>
+
+<script>
+
+    // Dynamics Bar chart
+
+    var months = @Html.Raw(Json.Encode(ViewBag.Months));
+    var monthsValues = @Html.Raw(Json.Encode(ViewBag.MonthsValues));
+    //var monthsColor = @Html.Raw(Json.Encode(ViewBag.MonthsColor));
+
+    new Chart(document.getElementById("dynamicChart"), {
+        type: 'line',
+        data: {
+            labels: months,
+            datasets: [
+              {
+                  backgroundColor:  "#862d86",
+                  data: monthsValues
+              }
+            ]
+        },
+        options: {
+            legend: { display: false },
+            title: {
+                display: true,
+                text: 'Registrationsstatistik des laufenden Jahres'
+            }
+        }
+    });
+
+</script>

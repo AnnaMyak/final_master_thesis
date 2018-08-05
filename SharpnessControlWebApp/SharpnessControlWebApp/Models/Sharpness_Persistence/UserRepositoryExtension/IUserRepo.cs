@@ -18,5 +18,10 @@ namespace SharpnessControlWebApp.Models.Sharpness_Persistence.UserRepositoryExte
         IEnumerable<UserTracking> ListRegisteredUsersToday();
         
         IEnumerable<UserTracking> ListRegisteredUsersThisMonth();
+
+        IEnumerable<UserTracking> ListRegisteredUsersThisYear();
+
+        //Tracking Report for a Year
+        IEnumerable<DynamicForAYear> RegistrationStatistik();
     }
 }
