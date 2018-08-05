@@ -2,6 +2,7 @@
 using Sharpness.WebApp.Models.Sharpness_Persistence.Sharpness_Repositories.Implementation;
 using Sharpness.WebApp.Models.Sharpness_Persistence.Sharpness_Repositories.Interfaces;
 using SharpnessControlWebApp.Models;
+using SharpnessControlWebApp.Models.Sharpness_Persistence.UserRepositoryExtension;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,7 @@ namespace SharpnessControlWebApp.Controllers
     {
         private IWSIRepo repoWSI = new WSIRepo();
         private IReportRepo repoReport = new ReportRepo();
+        private IUserRepo repoTracking = new UserRepo();
         private SharpnessViewModels model = new SharpnessViewModels();
 
 
@@ -102,8 +104,11 @@ namespace SharpnessControlWebApp.Controllers
 
             ViewBag.Months = months;
             ViewBag.MonthsValues = monthsValues;
-            //ViewBag.MonthsColor = monthsColor;
 
+
+            ViewBag.usersToday = repoTracking.RegisteredUsersToday();
+            ViewBag.usersMonth = repoTracking.RegisteredUsersThisMonth();
+            ViewBag.usersYear = repoTracking.RegisteredUsersThisYear();
 
 
             return View();
@@ -125,7 +130,12 @@ namespace SharpnessControlWebApp.Controllers
 
         public ActionResult UserActivity()
         {
-            
+            ViewBag.Today = repoTracking.ListRegisteredUsersToday();
+            ViewBag.TodayNumber = repoTracking.RegisteredUsersToday();
+
+            ViewBag.Month = repoTracking.ListRegisteredUsersThisMonth();
+            ViewBag.MonthNumber = repoTracking.RegisteredUsersThisMonth();
+
             return View();
         } 
     }

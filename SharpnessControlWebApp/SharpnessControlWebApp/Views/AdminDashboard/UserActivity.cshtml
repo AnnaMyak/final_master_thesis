@@ -6,3 +6,122 @@
 
 
 
+<div class="row">
+    <div class="col-xl-4">
+            <div class="card-body" style="background-color:green">
+                @if (HttpRuntime.Cache["LoggedInUsers"] != null)
+                {
+                    var loggedOnUsers = HttpRuntime.Cache["LoggedInUsers"] as Dictionary<string, DateTime>;
+                <h5 class="card-title" style="color:white">Haben sich grade angemeldet</h5>
+                <table  style="background-color:white;color:black;">
+                    <thead>
+                        <tr>
+                            
+                            <th scope="col">Username</th>
+                            <th scope="col">LogIn</th>                     
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    
+
+                        @foreach (var item in loggedOnUsers)
+                        {
+                            <tr>
+                                
+                                <td>@item.Key</td>
+                                <td>@item.Value</td>
+                            </tr>
+                        }
+
+
+                    </tbody>
+                </table>
+                }
+                else
+                {
+                    <h5 style="color:white">Leider im kurzem hat sich keiner angemeldet</h5>
+                }
+                </div>
+        </div>
+
+
+
+    <div class="col-xl-4">
+        <div class="card-body" style="background-color:#5500ff">
+            
+                <h5 class="card-title" style="color:white">Insgesamt <span class="badge badge-success">+ @ViewBag.TodayNumber</span> 
+                <br />
+                Heute haben sich registriert:</h5>
+
+                
+                        
+                        
+                            @foreach (var item in ViewBag.Today)
+                            {
+
+
+                                <p style="text-align:center;color:white"> @item.Username</p>
+
+
+                             }
+                            
+
+
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <div class="col-xl-4">
+        <div class="card-body" style="background-color:#006699">
+
+            <h5 class="card-title" style="color:white">
+                Insgesamt <span class="badge badge-success">+ @ViewBag.MonthNumber</span>
+                <br />
+                In diesem Monat haben sich registriert:
+            </h5>
+
+
+
+            
+                @foreach (var item in ViewBag.Month)
+                {
+
+
+                    <p style="text-align:center;color:white"> @item.Username</p>
+
+
+                }
+            
+
+
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     
+   
+
+
+
+
+</div>

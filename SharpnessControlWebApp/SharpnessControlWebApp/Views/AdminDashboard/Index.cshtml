@@ -136,7 +136,7 @@
                         @if (HttpRuntime.Cache["LoggedInUsers"] != null)
                         {
                           var loggedOnUsers = HttpRuntime.Cache["LoggedInUsers"] as Dictionary<string, DateTime>;
-                          <p class="card-text" style="color:black">In letzten 30 Minuten waren <strong style="color:forestgreen"> @loggedOnUsers.Count Benutzer</strong> Online </p>
+                          <p class="card-text" style="color:black">In letzten 30 Minuten hat\haben <strong style="color:forestgreen"> @loggedOnUsers.Count Benutzer angemeldet</strong> Online </p>
                         }
                         else
                         {
@@ -149,7 +149,10 @@
                 <br />
                 <div class="card" style="width:100%">
                     <div class="card-body">
-                        <p class="card-text" style="color:black">Some quick example text to build </p>
+                        <p class="card-text" style="color:black">Heute registriert <strong style="color:forestgreen">+ @ViewBag.usersToday</strong> </p>
+                        <p class="card-text" style="color:black">In diesem Monat registriert <strong style="color:forestgreen">+ @ViewBag.usersMonth</strong> </p>
+                        <p class="card-text" style="color:black">In diesem Jahr registriert <strong style="color:forestgreen">+ @ViewBag.usersYear</strong> </p>
+
                     </div>
                 </div>
                 <br />
