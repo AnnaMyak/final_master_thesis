@@ -218,7 +218,7 @@
 
     <div class="col-xl-12 card mb-4">
         <div class="card-header">
-            Sstatistik von ausgeführten Testen im laufenden Jahr
+            Statistik von ausgeführten Testen im laufenden Jahr
         </div>
         <div class="card-body">
             <canvas id="dynamicChart" width="100%" height="30"></canvas>
@@ -367,7 +367,7 @@
 
         var months = @Html.Raw(Json.Encode(ViewBag.Months));
         var monthsValues = @Html.Raw(Json.Encode(ViewBag.MonthsValues));
-        //var monthsColor = @Html.Raw(Json.Encode(ViewBag.MonthsColor));
+       
 
         new Chart(document.getElementById("dynamicChart"), {
             type: 'line',

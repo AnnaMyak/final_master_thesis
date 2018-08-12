@@ -78,19 +78,22 @@ namespace SharpnessControlWebApp.Models.Sharpness_Persistence.UserRepositoryExte
         public IEnumerable<DynamicForAYear> RegistrationStatistik()
         {
             var _context = new ApplicationDbContext();
-            var users = _context.Users.Where(u => u.RegistrationDate.Year == DateTime.Now.Year).ToList();
+            var users = _context.Users.ToList();
             var statistik = new List<DynamicForAYear>();
-            for(int i=1; i<=12; i++)
+
+            
+
+            for (int i=1; i<=12; i++)
             {
-                var record = new DynamicForAYear { Month = i, Number = 0 };
-                foreach(var item in users)
+                var record = new DynamicForAYear {Month=i, Number = 0 };
+                foreach (var item in users)
                 {
-                    if (item.RegistrationDate.Month==i)
+                    if (item.RegistrationDate.Month==i && item.RegistrationDate.Year == DateTime.Now.Year)
                     {
                         record.Number++;
                     }
-                    statistik.Add(record);
                 }
+                statistik.Add(record); 
             }
             return statistik;
         }

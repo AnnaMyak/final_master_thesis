@@ -141,8 +141,9 @@ namespace SharpnessControlWebApp.Controllers
             
             foreach (var item in statistics)
             {
-                months.Add(item.Month);
-                monthsValues.Add(item.Number);
+                
+                    months.Add(item.Month);
+                    monthsValues.Add(item.Number);
                 
             }
 
