@@ -149,6 +149,7 @@ namespace SharpnessControlWebApp.Controllers
 
             ViewBag.Months = months;
             ViewBag.MonthsValues = monthsValues;
+            ViewBag.NewUsers = repoTracking.GetNotConfirmedUsers();
 
 
             return View();
