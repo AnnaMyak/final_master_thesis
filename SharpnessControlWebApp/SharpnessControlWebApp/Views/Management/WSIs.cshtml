@@ -19,7 +19,9 @@
                         <th>Pfad</th>
                         <th>Zeitpunkt</th>
                         <th>Bericht</th>
+                        <th>Löschen WSI</th>
                         <th>Löschen</th>
+
                     </tr>
                 </thead>
                 <tbody>
@@ -36,6 +38,8 @@
                             <td>
                                 <i class="fa fa-star"></i>  @Html.ActionLink("zum Bericht", "WSIToReport", "Dashboard", new { WSIId = item.WSIId }, null)
                             </td>
+                            <td>@Html.ActionLink("Löschen WSI", "DeleteWSI", "Management", new { WSIId = item.WSIId }, new { @class = "btn btn-danger", @style= "background-color:#ff6600" })</td>
+
                             <td>@Html.ActionLink("Löschen", "DeleteWSIAndReport", "Management", new { WSIId = item.WSIId }, new { @class="btn btn-danger"})</td>
 
 

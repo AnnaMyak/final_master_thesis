@@ -455,5 +455,25 @@ namespace SharpnessControlWebApp.Controllers
 
             return View(_context.WSIs.Find(WSIId));
         }
+
+        public ActionResult DeleteWSI(Guid WSIId)
+        {
+            var _context = new ApplicationDbContext();
+            var wsi = _context.WSIs.Find(WSIId);
+
+            System.IO.FileInfo fi = new System.IO.FileInfo(wsi.Path);
+            try
+            {
+                fi.Delete();
+            }
+            catch (System.IO.IOException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            wsi.Path = "removed";
+            _context.SaveChanges();
+
+            return RedirectToAction("WSIs");
+        }
     }
 }
