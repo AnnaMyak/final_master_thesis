@@ -111,6 +111,7 @@ namespace SharpnessControlWebApp.Controllers
             ViewBag.usersYear = repoTracking.RegisteredUsersThisYear();
             var _context = new ApplicationDbContext();
             ViewBag.TotalUsers = _context.Users.ToList().Count;
+            ViewBag.NotConfirmedUsers = repoTracking.GetNotConfirmedUsers().ToList().Count;
 
 
             return View();
