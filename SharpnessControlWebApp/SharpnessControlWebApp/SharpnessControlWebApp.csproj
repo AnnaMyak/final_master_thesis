@@ -281,6 +281,7 @@
     <Content Include="Assets\css\sb-admin.min.css" />
     <Content Include="Assets\css\ScrollbarTable.css" />
     <Content Include="Assets\css\spinner.css" />
+    <Content Include="Assets\img\Ajax-loader.gif" />
     <Content Include="Assets\img\color_target.png" />
     <Content Include="Assets\img\logo.png" />
     <Content Include="Assets\img\Sharpness.gif" />
