@@ -109,6 +109,8 @@ namespace SharpnessControlWebApp.Controllers
             ViewBag.usersToday = repoTracking.RegisteredUsersToday();
             ViewBag.usersMonth = repoTracking.RegisteredUsersThisMonth();
             ViewBag.usersYear = repoTracking.RegisteredUsersThisYear();
+            var _context = new ApplicationDbContext();
+            ViewBag.TotalUsers = _context.Users.ToList().Count;
 
 
             return View();

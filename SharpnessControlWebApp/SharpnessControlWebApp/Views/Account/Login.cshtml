@@ -4,33 +4,35 @@
     ViewBag.Title = "Anmelden";
     Layout = "~/Views/Shared/_LayoutSetUpApp.cshtml";
 }
+<div class="card-header" style="background: #98CA32"><h4 style="color:white" class="text-center">Anmelden</h4></div>
+<div class="card-body">
 
-@using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
-    @Html.AntiForgeryToken()
+    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
 
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-    <div class="form-group">
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1"><i class="fa fa-user-circle-o" style="font-size:24px"></i></span>
-            </div>
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @style = "background:#4E7A8C;color:white;", @placeholder = "Email" })
-            @Html.ValidationMessageFor(m => m.Email, "", new { @style = "color: white; font-weight: bold; margin: 5px 5px 0px 5px;" })
-
-        </div>
-    </div>
-
-                <div class="form-group">
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-lock" style="font-size:24px"></i></span>
-                        </div>
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", @style = "background:#4E7A8C;color:white;", @placeholder = "Passwort" })
-                        @Html.ValidationMessageFor(m => m.Password, "", new { @style = "color: white; font-weight: bold; margin: 5px 5px 0px 5px" })
-                    </div>
+        <div class="form-group">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"><i class="fa fa-user-circle-o" style="font-size:24px"></i></span>
                 </div>
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @style = "background:#4E7A8C;color:white;", @placeholder = "Email" })
+                @Html.ValidationMessageFor(m => m.Email, "", new { @style = "color: white; font-weight: bold; margin: 5px 5px 0px 5px;" })
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"><i class="fa fa-lock" style="font-size:24px"></i></span>
+                </div>
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control", @style = "background:#4E7A8C;color:white;", @placeholder = "Passwort" })
+                @Html.ValidationMessageFor(m => m.Password, "", new { @style = "color: white; font-weight: bold; margin: 5px 5px 0px 5px" })
+            </div>
+        </div>
 
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
@@ -41,11 +43,11 @@
                     </div>
                 </div>
 
-                    <div class="form-group">
+                <div class="form-group">
 
-                        <input type="submit" value="Anmelden" class="btn btn-primary btn-block" style="background:#98CA32" />
+                    <input type="submit" value="Anmelden" class="btn btn-primary btn-block" style="background:#98CA32" />
 
-                    </div>
+                </div>
                     <div class="text-center">
                         @Html.ActionLink("Ein neues Konto registrieren?", "Register", null, new { @class = "d-block small mt-3", @style = "color:#98CA32" })
 
@@ -53,4 +55,5 @@
                     </div>
 
 
-}
+    }
+    </div>

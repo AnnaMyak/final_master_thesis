@@ -1,4 +1,5 @@
-﻿using IdentitySample.Models;
+﻿
+using IdentitySample.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -18,7 +19,7 @@ namespace IdentitySample.Controllers
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -72,11 +73,19 @@ namespace IdentitySample.Controllers
 
             // This doen't count login failures towards lockout only two factor authentication
             // To enable password failures to trigger lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: true);
+
+            var _context = new ApplicationDbContext();
+
+            
+
+
             switch (result)
             {
                 case SignInStatus.Success:
                     {
+                        
+                        
                         //if the list exists, add this user to it
                         if (HttpRuntime.Cache["LoggedInUsers"] != null)
                         {
@@ -96,7 +105,7 @@ namespace IdentitySample.Controllers
                         else
                         {
                             //create a new list
-                            IDictionary<string,DateTime> loggedInUsers =new  Dictionary<string, DateTime>();
+                            IDictionary<string, DateTime> loggedInUsers = new Dictionary<string, DateTime>();
                             //add this user to the list
                             loggedInUsers.Add(model.Email, DateTime.Now);
                             //add the list into the cache
@@ -115,6 +124,11 @@ namespace IdentitySample.Controllers
                     ModelState.AddModelError("", "Invalid login attempt.");
                     return View(model);
             }
+        }
+
+        public ActionResult AdminConfirmationFailed()
+        {
+            return View();
         }
 
         //
@@ -180,7 +194,7 @@ namespace IdentitySample.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, AcademicTitle=model.AcademicTitle, Salutation=model.Salutation, Firstname=model.Firstname, Lastname=model.Lastname, Organisation=model.Organisation, Address=model.Address,Location=model.Location, Country=model.Country };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, AcademicTitle = model.AcademicTitle, Salutation = model.Salutation, Firstname = model.Firstname, Lastname = model.Lastname, Organisation = model.Organisation, Address = model.Address, Location = model.Location, Country = model.Country, LockoutEndDateUtc= new DateTime(DateTime.Now.Year+30, 1, 1) };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

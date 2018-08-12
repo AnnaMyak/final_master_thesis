@@ -9,6 +9,13 @@ namespace SharpnessControlWebApp.Models.Sharpness_Persistence.UserRepositoryExte
 {
     public class UserRepo : IUserRepo
     {
+        public IEnumerable<ApplicationUser> GetNotConfirmedUsers()
+        {
+            var _context = new ApplicationDbContext();
+
+            return _context.Users.Where(u=> u.LockoutEndDateUtc > DateTime.UtcNow && u.LockoutEnabled==true).ToList();
+        }
+
         public IEnumerable<UserTracking> ListRegisteredUsersThisMonth()
         {
             var _context = new ApplicationDbContext();

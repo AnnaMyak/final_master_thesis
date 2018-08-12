@@ -22,6 +22,7 @@ namespace IdentitySample.Models
         public ApplicationUser()
         {
             RegistrationDate = DateTime.Now;
+            AdminConfirmation = false; 
         }
 
         public string Salutation { get; set; }
@@ -33,7 +34,10 @@ namespace IdentitySample.Models
         public string ZipCode { get; set; }
         public string Location { get; set; }
         public string Country { get; set; }
+        public bool AdminConfirmation { get; set; }
         public DateTime RegistrationDate { get; set; }
+
+        
         
     }
 

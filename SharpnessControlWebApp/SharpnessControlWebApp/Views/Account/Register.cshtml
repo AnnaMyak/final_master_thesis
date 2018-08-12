@@ -3,38 +3,40 @@
     ViewBag.Title = "Register";
     Layout = "~/Views/Shared/_LayoutSetUpApp.cshtml";
 }
+<div class="card-header" style="background: #98CA32"><h4 style="color:white" class="text-center">Registeieren ein neues Konto</h4></div>
+<div class="card-body">
 
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
-    @Html.AntiForgeryToken()
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
 
-    @Html.ValidationSummary("", new { @class = "text-danger" })
+        @Html.ValidationSummary("", new { @class = "text-danger" })
 
 
 
-    <div class="form-group">
-        <div class="form-row align-items-center">
-            <div class="col-sm-5">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fa fa-transgender-alt" style="font-size:24px"></i></span>
+        <div class="form-group">
+            <div class="form-row align-items-center">
+                <div class="col-sm-5">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-transgender-alt" style="font-size:24px"></i></span>
+                        </div>
+                        @Html.DropDownListFor(m => m.Salutation, new SelectList(new List<string> { "Frau", "Herr", "Andere" }), new { @class = "form-control account-select", @style = "background-color: #4E7A8C;color:white" })
                     </div>
-                    @Html.DropDownListFor(m => m.Salutation, new SelectList(new List<string> { "Frau", "Herr", "Andere" }), new { @class = "form-control account-select", @style = "background-color: #4E7A8C;color:white" })
                 </div>
-            </div>
 
-            <div class="col-sm-2"></div>
+                <div class="col-sm-2"></div>
 
-            <div class="col-sm-5">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fa fa-university" style="font-size:24px"></i></span>
+                <div class="col-sm-5">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-university" style="font-size:24px"></i></span>
+                        </div>
+                        @Html.DropDownListFor(m => m.AcademicTitle, new SelectList(new List<string> { "", "Dipl. med.", "Dipl. oec.troph.", "Dr.", "Dr. med.", "Prof.", "Prof. Dr.", "Prof. Dr. med." }), new { @class = "form-control account-select", @style = "background-color: #4E7A8C;color:white" })
                     </div>
-                    @Html.DropDownListFor(m => m.AcademicTitle, new SelectList(new List<string> { "", "Dipl. med.", "Dipl. oec.troph.", "Dr.", "Dr. med.", "Prof.", "Prof. Dr.", "Prof. Dr. med." }), new { @class = "form-control account-select", @style = "background-color: #4E7A8C;color:white" })
                 </div>
             </div>
         </div>
-    </div>
 
         <br />
         <div class="input-group mb-3">
@@ -113,9 +115,10 @@
         </div>
 
         <input type="submit" class="btn btn-primary btn-block" style="background:#98CA32" value="Registrieren" />
-            <div class="text-center">
-                @Html.ActionLink("Anmelden", "Login", null, new { @class = "d-block small mt-3", @style = "color:#98CA32" })
+        <div class="text-center">
+            @Html.ActionLink("Anmelden", "Login", null, new { @class = "d-block small mt-3", @style = "color:#98CA32" })
 
-                @Html.ActionLink("Passwort vergessen?", "ForgotPassword", null, new { @class = "d-block small mt-3", @style = "color:#98CA32" })
-            </div>
-}
+            @Html.ActionLink("Passwort vergessen?", "ForgotPassword", null, new { @class = "d-block small mt-3", @style = "color:#98CA32" })
+        </div>
+    }
+    </div>

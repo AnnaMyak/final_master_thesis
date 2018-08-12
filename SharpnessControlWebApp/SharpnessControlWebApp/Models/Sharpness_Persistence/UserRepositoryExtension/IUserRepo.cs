@@ -1,4 +1,5 @@
-﻿using SharpnessControlWebApp.Models.Sharpness_Persistence.Sharpness_Repositories;
+﻿using IdentitySample.Models;
+using SharpnessControlWebApp.Models.Sharpness_Persistence.Sharpness_Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,5 +24,9 @@ namespace SharpnessControlWebApp.Models.Sharpness_Persistence.UserRepositoryExte
 
         //Tracking Report for a Year
         IEnumerable<DynamicForAYear> RegistrationStatistik();
+
+
+        //Admin Console -> Registraton confirmátion
+        IEnumerable<ApplicationUser> GetNotConfirmedUsers();
     }
 }

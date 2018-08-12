@@ -1,0 +1,53 @@
+﻿@model IEnumerable<IdentitySample.Models.ApplicationUser>
+
+@{
+    ViewBag.Title = "Admin-Konsole -> Registrationsfreigabe";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+
+
+        <div class="col-xl-4 col-sm-6 mb-3">
+            <div class="card text-white bg-info o-hidden h-100">
+                <div class="card-body">
+                    <div class="card-body-icon">
+                        <i class="fa fa-fw fa-address-card"></i>
+                    </div>
+                    <div class="mr-5"><strong>Email:</strong> @Html.DisplayFor(modelItem => item.Email)</div>
+                    <div class="mr-5"><strong>Email bestätigt:</strong> @Html.DisplayFor(modelItem => item.EmailConfirmed)</div>
+                    <div class="mr-5"><strong>Freigabedatum:</strong> @Html.DisplayFor(modelItem => item.LockoutEndDateUtc)</div>
+                    <div class="mr-5"><strong>Blockierung möglich:</strong> @Html.DisplayFor(modelItem => item.LockoutEnabled)</div>
+                    <div class="mr-5"><strong>Anrede:</strong> @Html.DisplayFor(modelItem => item.Salutation)</div>
+                    <div class="mr-5"><strong>Akademischer Grad:</strong> @Html.DisplayFor(modelItem => item.AcademicTitle)</div>
+                    <div class="mr-5"><strong>Vorname:</strong> @Html.DisplayFor(modelItem => item.Firstname)</div>
+                    <div class="mr-5"><strong>Nachname:</strong> @Html.DisplayFor(modelItem => item.Lastname)</div>
+                    <div class="mr-5"><strong>Gesundheitseinrichtung:</strong> @Html.DisplayFor(modelItem => item.Organisation)</div>
+                    <div class="mr-5"><strong>Adresse:</strong> @Html.DisplayFor(modelItem => item.Address)</div>
+                    <div class="mr-5"><strong>Postleitzahl: </strong>@Html.DisplayFor(modelItem => item.ZipCode)</div>
+                    <div class="mr-5"><strong>Ort:</strong> @Html.DisplayFor(modelItem => item.Location)</div>
+                    <div class="mr-5"><strong>Land:</strong> @Html.DisplayFor(modelItem => item.Country)</div>
+                    <div class="mr-5"><strong>Registrationsdatum:</strong> @Html.DisplayFor(modelItem => item.RegistrationDate)</div>
+
+
+                </div>
+                <div style="background-color:white">
+
+
+
+                    @Html.ActionLink("Freigeben", "ConfirmedRegistration", new { Id = item.Id }, new { @class = "btn-block btn-success", @style = "text-align:center; height:30px" })
+
+                    @Html.ActionLink("Ablehnen", "DisallowRegistration", new { Id = item.Id }, new { @class = "btn-block btn-danger", @style = "text-align:center; height:30px" })
+
+                </div>        
+                        
+                  
+            </div>
+        </div>
+
+    }
+    
+    </div>
