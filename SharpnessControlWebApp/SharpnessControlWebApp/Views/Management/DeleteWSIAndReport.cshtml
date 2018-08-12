@@ -1,13 +1,13 @@
 ﻿@model Sharpness.WebApp.Models.Sharpness_Persistence.Sharpness_Entities.WSI
 
 @{
-    ViewBag.Title = "DeleteWSIAndReport";
+    ViewBag.Title = "Löschen den Bericht und WSI";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>DeleteWSIAndReport</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Der Bericht zum WSi wirklich löschen?</h3>
 <div>
     <h4>WSI</h4>
     <hr />
@@ -58,7 +58,7 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
             @Html.ActionLink("zurück zu den Berichten", "WSIs")
         </div>
     }

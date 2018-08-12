@@ -411,49 +411,52 @@ namespace SharpnessControlWebApp.Controllers
         public ActionResult DeleteWSIAndReport(Guid WSIId, FormCollection collection)
         {
 
+
+            ViewBag.Error = "";
             var _context = new ApplicationDbContext();
-            
+            var wsi = _context.WSIs.Find(WSIId);
+            var report = _context.Reports.Where(r => r.WSIId == WSIId).First();
+            var directoryName = Path.GetDirectoryName(report.SharpnessMapPath);
+            var directoryReport = Path.GetDirectoryName(directoryName);
+
+
+
+            System.IO.DirectoryInfo di = new DirectoryInfo(directoryName);
+
+            foreach (FileInfo file in di.GetFiles())
+            {
+                file.Delete();
+            }
+
+            System.IO.DirectoryInfo reportDir = new DirectoryInfo(directoryReport);
+
+            foreach (DirectoryInfo dir in reportDir.GetDirectories())
+            {
+                dir.Delete(true);
+            }
+
+
+
+
+
+
+
+
             try
             {
-                
-
-                try
-                {
-                    var globalPath = _context.WSIs.Find(WSIId).Path.Split('\\');
-                    var directoryPath = "";
-
-                    for (int i = 0; i < globalPath.Count() - 1; i++)
-                    {
-                        directoryPath = directoryPath + globalPath[i];
-                    }
-                    //directoryPath= @"C:\Users\AnnaToshiba2\Desktop\Test";
-                     var dir = new DirectoryInfo(@directoryPath);
-                    dir.Attributes = dir.Attributes & ~FileAttributes.ReadOnly;
-                    dir.Delete(true);
-                    
-                }
-                catch (IOException ex)
-                {
-                    //
-                }
-
-
-
-                _context.Reports.Remove(_context.Reports.Where(r=> r.WSIId==WSIId).First());
-                _context.WSIs.Remove(_context.WSIs.Find(WSIId));
+                _context.Reports.Remove(report);
+                _context.WSIs.Remove(wsi);
                 _context.SaveChanges();
-
-
-
                 return RedirectToAction("WSIs");
 
             }
             catch
             {
-                
+                ViewBag.Error = "Der Bericht und WSI sind schon gelöscht worden oder existiert nicht!";
+
             }
 
-            return View(_context.WSIs.Find(WSIId));
+            return View(wsi);
         }
 
         public ActionResult DeleteWSI(Guid WSIId)
@@ -461,10 +464,10 @@ namespace SharpnessControlWebApp.Controllers
             var _context = new ApplicationDbContext();
             var wsi = _context.WSIs.Find(WSIId);
 
-            System.IO.FileInfo fi = new System.IO.FileInfo(wsi.Path);
+            System.IO.FileInfo wsiFile = new System.IO.FileInfo(wsi.Path);
             try
             {
-                fi.Delete();
+                wsiFile.Delete();
             }
             catch (System.IO.IOException e)
             {
