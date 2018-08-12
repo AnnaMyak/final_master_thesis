@@ -18,21 +18,21 @@ namespace SharpnessControlWebApp.Controllers
     [Authorize]
     public class ControlPanelController : Controller
     {
-        private IStainRepo _repoStains = new StainRepo();
-        private IOrganRepo _repoOrgans = new OrganRepo();
-        private IWSIRepo _repoWSIs = new WSIRepo();
-        private IReglamentRepo _repoReglaments = new ReglamentRepo();
+        private IStainRepo repoStains = new StainRepo();
+        private IOrganRepo repoOrgans = new OrganRepo();
+        private IWSIRepo repoWSIs = new WSIRepo();
+        private IReglamentRepo repoReglaments = new ReglamentRepo();
         private ISharpnessManager manager = new SharpnessManager();
-        private ITissueRepo _repoTissues = new TissueRepo();
-        private IReportRepo _repoReports = new ReportRepo();
+        private ITissueRepo repoTissues = new TissueRepo();
+        private IReportRepo repoReports = new ReportRepo();
 
         // GET: ControlPanel
         public ActionResult Index()
         {
             SharpnessViewModels model = new SharpnessViewModels();
-            model.Organs = _repoOrgans.GetOrgans();
-            model.Stains = _repoStains.GetStains();
-            model.Tissues = _repoTissues.GetTissues();
+            model.Organs = repoOrgans.GetOrgans();
+            model.Stains = repoStains.GetStains();
+            model.Tissues = repoTissues.GetTissues();
             ViewBag.Stains = new SelectList(model.Stains, "Name", "Name");
             ViewBag.Organs = new SelectList(model.Organs, "Name", "Name");
             ViewBag.Tissues = new SelectList(model.Tissues, "Name", "Name");
@@ -41,11 +41,11 @@ namespace SharpnessControlWebApp.Controllers
 
         public ActionResult Report(Guid ReportId)
         {
-            var report = _repoReports.GetReportById(ReportId);
+            var report = repoReports.GetReportById(ReportId);
             ViewBag.ViewerLink = "http://localhost:5000/Sharpness_WebApp_Uploads/" + report.ReportLink;
-            ViewBag.Stain = _repoStains.GetStainByName(report.StainName).Name;
-            ViewBag.Tissue = _repoTissues.GetTissueByName(report.TissueName).Name;
-            ViewBag.Organ = _repoOrgans.GetOrganByName(report.OrganName).Name;
+            ViewBag.Stain = repoStains.GetStainByName(report.StainName).Name;
+            ViewBag.Tissue = repoTissues.GetTissueByName(report.TissueName).Name;
+            ViewBag.Organ = repoOrgans.GetOrganByName(report.OrganName).Name;
             ViewBag.Evaluation = report.Evaluation;
             ViewBag.G = report.Semaphore_Green;
             ViewBag.Y = report.Semaphore_Yellow;
@@ -106,7 +106,7 @@ namespace SharpnessControlWebApp.Controllers
 
                 wsi.Path = path;
                 wsi.UserId = User.Identity.GetUserId();
-                _repoWSIs.Insert(wsi);
+                repoWSIs.Insert(wsi);
 
             }
 
@@ -119,7 +119,7 @@ namespace SharpnessControlWebApp.Controllers
             first.WaitForExit();
 
             var report = new Report();
-            report.ReglamentId = _repoReglaments.GetReglamentByTitel("Default").ReglamentId;
+            report.ReglamentId = repoReglaments.GetReglamentByTitel("Default").ReglamentId;
             report.Comment = "some words";
 
             report.OrganName = organ.Name;
@@ -149,7 +149,7 @@ namespace SharpnessControlWebApp.Controllers
             }
             report.ReportLink = reportLink;
             report.UserId = User.Identity.GetUserId();
-            _repoReports.Insert(report);
+            repoReports.Insert(report);
             return RedirectToAction("Report", new { ReportId = report.ReportId });
         }
     }

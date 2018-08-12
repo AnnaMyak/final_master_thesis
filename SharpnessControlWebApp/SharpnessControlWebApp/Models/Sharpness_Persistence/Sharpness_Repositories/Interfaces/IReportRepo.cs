@@ -127,6 +127,23 @@ namespace Sharpness.WebApp.Models.Sharpness_Persistence.Sharpness_Repositories.I
         IEnumerable<DynamicForAYear> GetDynamicForAYear();
         IEnumerable<DynamicForAYear> GetDynamicForAYearByUser(string UserId);
 
+
+
+        //Sharpness research
+        //positive
+        int GetAllPositiveTestsByStainOrganTissueForALastMonth(string stain, string organ, string tissue);
+        int GetAllPositiveTestsByStainOrganTissueForALast6Month(string stain, string organ, string tissue);
+        int GetAllPositiveTestsByStainOrganTissueForALastYear(string stain, string organ, string tissue);
+
+        //negative
+        int GetAllNegativeTestsByStainOrganTissueForALastMonth(string stain, string organ, string tissue);
+        int GetAllNegativeTestsByStainOrganTissueForALast6Month(string stain, string organ, string tissue);
+        int GetAllNegativeTestsByStainOrganTissueForALastYear(string stain, string organ, string tissue);
+
+
+
+
+
         //CRUD
 
         void Insert(Report Report);

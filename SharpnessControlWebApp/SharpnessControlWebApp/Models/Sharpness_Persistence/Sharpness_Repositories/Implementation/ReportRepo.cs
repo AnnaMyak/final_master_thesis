@@ -65,6 +65,33 @@ namespace Sharpness.WebApp.Models.Sharpness_Persistence.Sharpness_Repositories.I
 
         }
 
+        public int GetAllNegativeTestsByStainOrganTissueForALast6Month(string stain, string organ, string tissue)
+        {
+            var _context = new ApplicationDbContext();
+            var reports = GetAllNegativeReports();
+            var reglamentRepo = new ReglamentRepo();
+            return _context.Reports.Where(r => r.StainName == stain && r.OrganName == organ
+            && r.TissueName == tissue && r.Creation < DateTime.Now.AddMonths(-6)).ToList().Count;
+        }
+
+        public int GetAllNegativeTestsByStainOrganTissueForALastMonth(string stain, string organ, string tissue)
+        {
+            var _context = new ApplicationDbContext();
+            var reports = GetAllPositiveReports();
+            
+            return _context.Reports.Where(r => r.StainName == stain && r.OrganName == organ
+            && r.TissueName == tissue && r.Creation < DateTime.Now.AddMonths(-1)).ToList().Count;
+        }
+
+        public int GetAllNegativeTestsByStainOrganTissueForALastYear(string stain, string organ, string tissue)
+        {
+            var _context = new ApplicationDbContext();
+            var reports = GetAllPositiveReports();
+            return _context.Reports.Where(r => r.StainName == stain && r.OrganName == organ
+            && r.TissueName == tissue 
+            && r.Creation < DateTime.Now.AddYears(-1)).ToList().Count;
+        }
+
         public IEnumerable<Report> GetAllPositiveReports()
         {
             var _context = new ApplicationDbContext();
@@ -111,6 +138,31 @@ namespace Sharpness.WebApp.Models.Sharpness_Persistence.Sharpness_Repositories.I
             var _context = new ApplicationDbContext();
             return _context.Reports.Where(r => r.UserId == UserId && r.Evaluation == true && (r.Creation < DateTime.Now && r.Creation > DateTime.Now.AddYears(-1))).ToList();
 
+        }
+
+        public int GetAllPositiveTestsByStainOrganTissueForALast6Month(string stain, string organ, string tissue)
+        {
+            var _context = new ApplicationDbContext();
+            var reports = GetAllPositiveReports();
+            return _context.Reports.Where(r=> r.StainName==stain && r.OrganName==organ 
+            && r.TissueName==tissue && r.Creation< EntityFunctions.AddMonths(DateTime.Now, -6)).ToList().Count;
+        }
+
+        public int GetAllPositiveTestsByStainOrganTissueForALastMonth(string stain, string organ, string tissue)
+        {
+            var _context = new ApplicationDbContext();
+            var reports = GetAllPositiveReports();
+            return _context.Reports.Where(r => r.StainName == stain && r.OrganName == organ
+            && r.TissueName == tissue && r.Creation < EntityFunctions.AddMonths(DateTime.Now, -1)).ToList().Count;
+        }
+
+        public int GetAllPositiveTestsByStainOrganTissueForALastYear(string stain, string organ, string tissue)
+        {
+            var _context = new ApplicationDbContext();
+            var reports = GetAllPositiveReports();
+            return _context.Reports.Where(r => r.StainName == stain && r.OrganName == organ
+            && r.TissueName == tissue 
+            && r.Creation < EntityFunctions.AddYears(DateTime.Now, -1)).ToList().Count;
         }
 
         public IEnumerable<Report> GetAllReportByOrganAndUserId(string Organ, string UserId)

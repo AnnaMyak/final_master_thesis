@@ -239,6 +239,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RolesAdminController.cs" />
+    <Compile Include="Controllers\SharpnessResearchController.cs" />
     <Compile Include="Controllers\UserAdminController.cs" />
     <Compile Include="Extras\SharpnessPdfReport.cs" />
     <Compile Include="Global.asax.cs">
@@ -487,6 +488,8 @@
     <Content Include="Views\AdminDashboard\UserActivity.cshtml" />
     <Content Include="Views\Account\AdminConfirmationFailed.cshtml" />
     <Content Include="Views\AdminConsole\Index.cshtml" />
+    <Content Include="Views\SharpnessResearch\Index.cshtml" />
+    <Content Include="Views\SharpnessResearch\SharpnessResearchResult.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

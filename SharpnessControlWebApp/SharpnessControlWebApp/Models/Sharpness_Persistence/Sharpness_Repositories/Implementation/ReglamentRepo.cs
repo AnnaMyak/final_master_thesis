@@ -11,6 +11,7 @@ namespace Sharpness.WebApp.Models.Sharpness_Persistence.Sharpness_Repositories.I
 {
     public class ReglamentRepo:IReglamentRepo
     {
+
         public void Delete(Reglament r)
         {
             var _context = new ApplicationDbContext();
