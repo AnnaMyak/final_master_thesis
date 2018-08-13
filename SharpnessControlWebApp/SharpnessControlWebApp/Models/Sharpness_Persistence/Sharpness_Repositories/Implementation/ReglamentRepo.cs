@@ -35,7 +35,7 @@ namespace Sharpness.WebApp.Models.Sharpness_Persistence.Sharpness_Repositories.I
         public Reglament GetReglamentByTitel(string Titel)
         {
             var _context = new ApplicationDbContext();
-            return _context.Reglaments.Where(r => r.Titel == Titel).FirstOrDefault();
+            return _context.Reglaments.Where(r => r.Titel == Titel).First();
         }
 
         public void Insert(Reglament r)

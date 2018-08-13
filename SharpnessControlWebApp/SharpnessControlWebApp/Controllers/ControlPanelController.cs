@@ -87,13 +87,16 @@ namespace SharpnessControlWebApp.Controllers
 
             //TODO
             //Today only one value possible
-            //var tissue = _repoTissues.GetTissueByName("Tissue");
             ISharpnessManager manager = new SharpnessManager();
-            //
+            var reglament = manager.GetReglament();
+            //var sharpnessEvaluationParameters = '+' + reglament.TileSize.ToString() + '+' + reglament.SharpnessThresholdValue+ '+' + reglament.Scaling.ToString()+ '+' + reglament.Edges.ToString();
+            
+            //Directory for WSI Uploads
             var root = @"C:\Users\AnnaToshiba2\Desktop\WSI\Sharpness_WebApp_Uploads\";
             var fileName = "";
             wsi.WSIId = Guid.NewGuid();
-
+            
+            //Create a directory for a report and WSI 
             string outputDir = Path.Combine(Path.GetDirectoryName(root), User.Identity.GetUserName(), "WSI " + wsi.WSIId + @"\");
             if (!Directory.Exists(outputDir))
                 Directory.CreateDirectory(outputDir);
@@ -109,19 +112,28 @@ namespace SharpnessControlWebApp.Controllers
                 repoWSIs.Insert(wsi);
 
             }
-
+            
+            //Generate a report link for the Viewer
             var reportLink = User.Identity.GetUserName() + "/" + "WSI " + wsi.WSIId + "/" + fileName + " ";
             var evaluationLink = root + reportLink.Replace("/", @"\");
-            Process first = new Process();
-            first.StartInfo.FileName = @"C:\Users\AnnaToshiba2\Documents\GitHub\sharpness\sharpness console App\SharpnessExplorationCurrent\SharpnessExplorationCurrent\bin\x64\Release\SharpnessExplorationCurrent.exe";
-            first.StartInfo.Arguments = String.Format(@"""{0}""", wsi.Path);
-            first.Start();
-            first.WaitForExit();
+
+            //External sharpness console app 
+            Process sharpnessConsoleApp = new Process();
+            //Path to  the sharpness console app
+            sharpnessConsoleApp.StartInfo.FileName = @"C:\Users\AnnaToshiba2\Documents\GitHub\sharpness\sharpness console App\SharpnessExplorationCurrent\SharpnessExplorationCurrent\bin\x64\Release\SharpnessExplorationCurrent.exe" ;
+            
+            //WSI Path + Reglamnets arguments
+            //structure -> wsi.path +(separator)*tileSize*threshold*scale*edges 
+            sharpnessConsoleApp.StartInfo.Arguments = String.Format(@"""{0}""", wsi.Path+"#"+reglament.TileSize.ToString()+"#"+reglament.Scaling.ToString()+"#"+reglament.SharpnessThresholdValue.ToString()+"#"+reglament.Edges.ToString());
+            sharpnessConsoleApp.Start();
+            sharpnessConsoleApp.WaitForExit();
 
             var report = new Report();
-            report.ReglamentId = repoReglaments.GetReglamentByTitel("Default").ReglamentId;
-            report.Comment = "some words";
+            //TODO
+            //only one reglement is possible
 
+            report.ReglamentId = reglament.ReglamentId;
+            report.Comment = "Kommentar";
             report.OrganName = organ.Name;
             report.TissueName = tissue.Name;
             report.WSIId = wsi.WSIId;

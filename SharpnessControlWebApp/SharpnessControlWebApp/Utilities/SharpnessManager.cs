@@ -46,12 +46,12 @@ namespace SharpnessControlWebApp.Utilities
             return results;
         }
 
-        public Reglament GetReglament(string Stain, string Organ, string Tissue)
+        public Reglament GetReglament()
         {
             var _repoReglaments = new ReglamentRepo();
 
             //TODO
-
+            //Nowadays only one reglement is possible
             return _repoReglaments.GetReglamentByTitel("Default");
         }
 

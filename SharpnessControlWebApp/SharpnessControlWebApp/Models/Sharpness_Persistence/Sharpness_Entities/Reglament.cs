@@ -24,18 +24,18 @@ namespace Sharpness.WebApp.Models.Sharpness_Persistence.Sharpness_Entities
 
         [Range(0, 1)]
         [Required]
-        public double SharpnessThresholdValue { get; set; }
+        public float SharpnessThresholdValue { get; set; }
 
 
         [Range(0, 1)]
         [Required]
-        public double Scaling { get; set; }
+        public float Scaling { get; set; }
 
-        [Range(1, 200)]
+        [Range(1, 10000)]
         [Required]
         public int Edges { get; set; }
 
-        [Range(1, 512)]
+        [Range(1, 1000)]
         [Required]
         public int TileSize { get; set; }
 
