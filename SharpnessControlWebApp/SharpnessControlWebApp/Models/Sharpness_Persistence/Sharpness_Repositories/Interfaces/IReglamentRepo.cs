@@ -9,11 +9,11 @@ namespace Sharpness.WebApp.Models.Sharpness_Persistence.Sharpness_Repositories.I
 {
     public interface IReglamentRepo
     {
-        IEnumerable<Reglament> GetAllReglaments();
-        Reglament GetReglamentById(Guid ReglamentId);
-        Reglament GetReglamentByTitel(string Titel);
-        void Insert(Reglament r);
-        void Delete(Reglament r);
-        void Update(Reglament r);
+        IEnumerable<Reglement> GetAllReglaments();
+        Reglement GetReglamentById(Guid ReglamentId);
+        Reglement GetReglamentByTitel(string Titel);
+        void Insert(Reglement r);
+        void Delete(Reglement r);
+        void Update(Reglement r);
     }
 }

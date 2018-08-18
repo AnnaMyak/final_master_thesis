@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using Sharpness.WebApp.Models.Sharpness_Persistence.Sharpness_Entities;
 using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -36,8 +37,9 @@ namespace IdentitySample.Models
         public string Country { get; set; }
         public DateTime RegistrationDate { get; set; }
 
-        
-        
+        public ICollection<Report> Reports { get; set; }
+        public ICollection<WSI> WSIs { get; set; }
+
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
@@ -48,7 +50,7 @@ namespace IdentitySample.Models
         }
 
         public virtual DbSet<Organ> Organs { get; set; }
-        public virtual DbSet<Reglament> Reglaments { get; set; }
+        public virtual DbSet<Reglement> Reglaments { get; set; }
         public virtual DbSet<Report> Reports { get; set; }
         public virtual DbSet<Stain> Stains { get; set; }
         public virtual DbSet<Tissue> Tissues { get; set; }

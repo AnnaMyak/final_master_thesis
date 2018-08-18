@@ -47,7 +47,7 @@ namespace SharpnessControlWebApp.Controllers
             var message = new IdentityMessage();
             message.Destination = user.Email;
             message.Subject = "USDP Kontofreigabe";
-            message.Body = "Ihre Registration bei USDP wurde um " + DateTime.Now.ToString() + " abgelehnt und gelöscht";
+            message.Body = "Ihre Registration bei USDP wurde am " + DateTime.Now.ToString() + " abgelehnt und gelöscht";
             await service.SendAsync(message);
             _context.Users.Remove(user);
             _context.SaveChanges();

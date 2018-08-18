@@ -46,7 +46,7 @@ namespace SharpnessControlWebApp.Utilities
             return results;
         }
 
-        public Reglament GetReglament()
+        public Reglement GetReglament()
         {
             var _repoReglaments = new ReglamentRepo();
 

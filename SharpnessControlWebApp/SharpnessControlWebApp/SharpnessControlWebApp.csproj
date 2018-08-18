@@ -251,7 +251,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\SharpnessViewModels.cs" />
     <Compile Include="Models\Sharpness_Persistence\Sharpness_Entities\Organ.cs" />
-    <Compile Include="Models\Sharpness_Persistence\Sharpness_Entities\Reglament.cs" />
+    <Compile Include="Models\Sharpness_Persistence\Sharpness_Entities\Reglement.cs" />
     <Compile Include="Models\Sharpness_Persistence\Sharpness_Entities\Report.cs" />
     <Compile Include="Models\Sharpness_Persistence\Sharpness_Entities\Stain.cs" />
     <Compile Include="Models\Sharpness_Persistence\Sharpness_Entities\Tissue.cs" />

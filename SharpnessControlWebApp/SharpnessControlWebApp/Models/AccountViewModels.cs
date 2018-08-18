@@ -86,7 +86,7 @@ namespace IdentitySample.Models
         public string ConfirmEmail { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "Das Passwort muss mindestens 2 Zeichnen lang sein", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "Das Passwort muss mindestens 6 Zeichnen lang sein", MinimumLength = 6)]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
@@ -94,7 +94,7 @@ namespace IdentitySample.Models
         [Compare("Password", ErrorMessage = "Das Passwort stimmt nicht überein")]
         public string ConfirmPassword { get; set; }
 
-        [Required(ErrorMessage = "Der Einrichtungsname ist erforderlich!")]
+        [Required(ErrorMessage = "Der Gesundheitseinrichtung ist erforderlich!")]
         public string Organisation { get; set; }
 
         public string Address { get; set; }

@@ -6,16 +6,16 @@ using System.Web;
 
 namespace Sharpness.WebApp.Models.Sharpness_Persistence.Sharpness_Entities
 {
-    public class Reglament
+    public class Reglement
     {
-        public Reglament()
+        public Reglement()
         {
-            ReglamentId = System.Guid.NewGuid();
+            ReglementId = System.Guid.NewGuid();
             Status = true;
             Creation = DateTime.Now;
         }
         [Key]
-        public Guid ReglamentId { get; set; }
+        public Guid ReglementId { get; set; }
 
         [StringLength(100, MinimumLength = 3)]
         [Required]

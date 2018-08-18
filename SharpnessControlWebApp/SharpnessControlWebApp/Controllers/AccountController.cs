@@ -194,7 +194,7 @@ namespace IdentitySample.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, AcademicTitle = model.AcademicTitle, Salutation = model.Salutation, Firstname = model.Firstname, Lastname = model.Lastname, Organisation = model.Organisation, Address = model.Address, Location = model.Location, Country = model.Country, LockoutEndDateUtc= new DateTime(DateTime.Now.Year+30, 1, 1) };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, AcademicTitle = model.AcademicTitle, Salutation = model.Salutation, Firstname = model.Firstname, Lastname = model.Lastname, Organisation = model.Organisation, Address = model.Address,ZipCode=model.ZipCode, Location = model.Location, Country = model.Country, LockoutEndDateUtc= new DateTime(DateTime.Now.Year+30, 1, 1) };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

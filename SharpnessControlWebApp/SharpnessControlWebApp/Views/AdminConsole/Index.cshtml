@@ -15,10 +15,18 @@
 
     @foreach (var item in Model)
     {
+        if (item.EmailConfirmed == true)
+        {
+            ViewBag.Color = "#005ce6";
+        }
+        else
+        {
+            ViewBag.Color = "#5900b3";
+        }
 
 
         <div class="col-xl-4 col-sm-6 mb-3">
-            <div class="card text-white bg-info o-hidden h-100">
+            <div class="card text-white" style="background-color:@ViewBag.Color" o-hidden h-100">
                 <div class="card-body">
                     <div class="card-body-icon">
                         <i class="fa fa-fw fa-address-card"></i>
@@ -26,7 +34,6 @@
                     <div class="mr-5"><strong>Email:</strong> @Html.DisplayFor(modelItem => item.Email)</div>
                     <div class="mr-5"><strong>Email bestätigt:</strong> @Html.DisplayFor(modelItem => item.EmailConfirmed)</div>
                     <div class="mr-5"><strong>Freigabedatum:</strong> @Html.DisplayFor(modelItem => item.LockoutEndDateUtc)</div>
-                    <div class="mr-5"><strong>Blockierung möglich:</strong> @Html.DisplayFor(modelItem => item.LockoutEnabled)</div>
                     <div class="mr-5"><strong>Anrede:</strong> @Html.DisplayFor(modelItem => item.Salutation)</div>
                     <div class="mr-5"><strong>Akademischer Grad:</strong> @Html.DisplayFor(modelItem => item.AcademicTitle)</div>
                     <div class="mr-5"><strong>Vorname:</strong> @Html.DisplayFor(modelItem => item.Firstname)</div>
@@ -54,6 +61,7 @@
             </div>
         </div>
 
+        
     }
-    
+
     </div>

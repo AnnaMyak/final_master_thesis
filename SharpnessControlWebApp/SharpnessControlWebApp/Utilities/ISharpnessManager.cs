@@ -9,7 +9,7 @@ namespace SharpnessControlWebApp.Utilities
 {
     public interface ISharpnessManager
     {
-        Reglament GetReglament();
+        Reglement GetReglament();
 
         double[] GetSemaphoreValues(string path);
         double[] GetChannelsValues(string path);

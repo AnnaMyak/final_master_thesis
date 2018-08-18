@@ -132,7 +132,7 @@ namespace SharpnessControlWebApp.Controllers
             //TODO
             //only one reglement is possible
 
-            report.ReglamentId = reglament.ReglamentId;
+            report.ReglementId = reglament.ReglementId;
             report.Comment = "Kommentar";
             report.OrganName = organ.Name;
             report.TissueName = tissue.Name;

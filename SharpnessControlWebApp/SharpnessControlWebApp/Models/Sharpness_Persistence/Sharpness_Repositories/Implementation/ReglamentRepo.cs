@@ -12,40 +12,40 @@ namespace Sharpness.WebApp.Models.Sharpness_Persistence.Sharpness_Repositories.I
     public class ReglamentRepo:IReglamentRepo
     {
 
-        public void Delete(Reglament r)
+        public void Delete(Reglement r)
         {
             var _context = new ApplicationDbContext();
             _context.Reglaments.Remove(r);
             _context.SaveChanges();
         }
 
-        public IEnumerable<Reglament> GetAllReglaments()
+        public IEnumerable<Reglement> GetAllReglaments()
         {
             var _context = new ApplicationDbContext();
             return _context.Reglaments.ToList();
 
         }
 
-        public Reglament GetReglamentById(Guid ReglamentId)
+        public Reglement GetReglamentById(Guid ReglamentId)
         {
             var _context = new ApplicationDbContext();
             return _context.Reglaments.Find(ReglamentId);
         }
 
-        public Reglament GetReglamentByTitel(string Titel)
+        public Reglement GetReglamentByTitel(string Titel)
         {
             var _context = new ApplicationDbContext();
             return _context.Reglaments.Where(r => r.Titel == Titel).First();
         }
 
-        public void Insert(Reglament r)
+        public void Insert(Reglement r)
         {
             var _context = new ApplicationDbContext();
             _context.Reglaments.Add(r);
             _context.SaveChanges();
         }
 
-        public void Update(Reglament r)
+        public void Update(Reglement r)
         {
             var _context = new ApplicationDbContext();
             _context.Entry(r).State = EntityState.Modified;

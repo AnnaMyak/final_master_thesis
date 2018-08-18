@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IdentitySample.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -22,7 +23,7 @@ namespace Sharpness.WebApp.Models.Sharpness_Persistence.Sharpness_Entities
 
 
         public Guid WSIId { get; set; }
-        public Guid ReglamentId { get; set; }
+        public Guid ReglementId { get; set; }
 
         public string StainName { get; set; }
         public string OrganName { get; set; }
@@ -59,17 +60,22 @@ namespace Sharpness.WebApp.Models.Sharpness_Persistence.Sharpness_Entities
         public DateTime Creation { get; set; }
 
 
+        [ForeignKey("UserId")]
+        public ApplicationUser ApplicationUser { get; set; }
+
         [ForeignKey("WSIId")]
         public WSI WSI { get; set; }
 
-        [ForeignKey("ReglamentId")]
-        public Reglament Reglament { get; set; }
+        [ForeignKey("ReglementId")]
+        public Reglement Reglament { get; set; }
         [ForeignKey("StainName")]
         public Stain Stain { get; set; }
         [ForeignKey("OrganName")]
         public Organ Organ { get; set; }
         [ForeignKey("TissueName")]
         public Tissue Tissue { get; set; }
+
+        
 
     }
 }

@@ -270,12 +270,12 @@ namespace SharpnessControlWebApp.Controllers
 
         public ActionResult CreateNewReglament()
         {
-            return View(new Reglament());
+            return View(new Reglement());
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateNewReglament(Reglament reglament)
+        public ActionResult CreateNewReglament(Reglement reglament)
         {
             ViewBag.Error = "";
 
@@ -285,7 +285,7 @@ namespace SharpnessControlWebApp.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    repoReglament.Insert(new Reglament
+                    repoReglament.Insert(new Reglement
                     {
                         Titel = reglament.Titel,
                         SharpnessThresholdValue = reglament.SharpnessThresholdValue,
@@ -314,7 +314,7 @@ namespace SharpnessControlWebApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditReglament(Reglament reglament)
+        public ActionResult EditReglament(Reglement reglament)
         {
                 if (ModelState.IsValid)
                 {

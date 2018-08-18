@@ -57,23 +57,28 @@
                 Heute haben sich registriert:
             </h5>
 
+            <div class="table-wrapper-scroll-y">
+
+                <table class="table table-bordered table-striped">
 
 
+                    @foreach (var item in ViewBag.Today)
+                     {
 
-            @foreach (var item in ViewBag.Today)
-            {
+                        <tr>
+                            <p style="text-align:center;color:white"> @item.Username</p>
+
+                        </tr>
+                        
+
+                    }
+
+                    </table>
+                </div>
 
 
-                <p style="text-align:center;color:white"> @item.Username</p>
-
-
-            }
-
-
-
-
+            </div>
         </div>
-    </div>
 
 
     <div class="col-xl-4">
@@ -86,19 +91,25 @@
             </h5>
 
 
+            <div class="table-wrapper-scroll-y">
+
+                <table class="table table-bordered table-striped">
+
+                    @foreach (var item in ViewBag.Month)
+                     {
+
+                        <tr>
+                            <p style="text-align:center;color:white"> @item.Username</p>
+                        </tr>
+                        
 
 
-            @foreach (var item in ViewBag.Month)
-            {
+                    }
+                    </table>
+                </div>
 
-
-                <p style="text-align:center;color:white"> @item.Username</p>
-
-
-            }
-
+            </div>
         </div>
-    </div>
 
 
     <div class="col-xl-12 card mb-4">
@@ -135,16 +146,17 @@
                             }
                     </tbody>
                 </table>
-                <button type="button" class="btn btn-success btn-sm" onclick="location.href='@Url.Action("Index", "AdminConsole")'">
-                    <i class="fa fa-check">
-                    </i>&nbsp; Zur Freigabe
-                </button>
+                
 
             </div>
             
         
         
         </div>
+        <button type="button" class="btn btn-success btn-sm" onclick="location.href='@Url.Action("Index", "AdminConsole")'">
+            <i class="fa fa-check">
+            </i>&nbsp; Zur Freigabe
+        </button>
         </div>
 
 

@@ -1,6 +1,8 @@
-﻿using System;
+﻿using IdentitySample.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -28,7 +30,8 @@ namespace Sharpness.WebApp.Models.Sharpness_Persistence.Sharpness_Entities
         public DateTime Creation { get; set; }
 
 
-
+        [ForeignKey("UserId")]
+        public ApplicationUser ApplicationUser { get; set; }
 
         public ICollection<Report> Reports { get; set; }
     }
