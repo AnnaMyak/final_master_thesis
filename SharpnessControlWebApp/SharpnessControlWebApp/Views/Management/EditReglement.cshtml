@@ -1,16 +1,15 @@
-﻿@model Sharpness.WebApp.Models.Sharpness_Persistence.Sharpness_Entities.Reglament
+﻿@model Sharpness.WebApp.Models.Sharpness_Persistence.Sharpness_Entities.Reglement
 
 @{
-    ViewBag.Title = "Ein neues Kriterim hinzufügen";
+    ViewBag.Title = "Ändern die Regelung";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 
 
 @using (Html.BeginForm())
 {
     <div class="form-horizontal">
-         @Html.ActionLink("Zurück zu den Kriterien", "ReglamentsManagement", null, new { @class = "btn btn-warning", @style = "color:white" }) | @Html.ActionLink("Zurück zu den Entitäten", "Index", null, new { @class = "btn btn-danger", @style = "background-color:#884dff" })
+        @Html.ActionLink("Zurück zu den Kriterien", "ReglementsManagement", null, new { @class = "btn btn-warning", @style = "color:white" }) | @Html.ActionLink("Zurück zu den Entitäten", "Index", null, new { @class = "btn btn-danger", @style = "background-color:#884dff" })
     </div>
     <br />
     @Html.AntiForgeryToken()
@@ -86,9 +85,6 @@
                 </div>
             </div>
         </div>
-        <input type="submit" value="Ein neues Schärfe-Kriterium anlegen" class="btn btn-primary" />
+        <input type="submit" value="Ändern das Kriterium" class="btn btn-warning" />
     </div>
 }
-
-
-

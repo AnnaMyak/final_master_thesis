@@ -69,7 +69,7 @@ namespace Sharpness.WebApp.Models.Sharpness_Persistence.Sharpness_Repositories.I
         {
             var _context = new ApplicationDbContext();
             var reports = GetAllNegativeReports();
-            var reglamentRepo = new ReglamentRepo();
+            var reglamentRepo = new ReglementRepo();
             return _context.Reports.Where(r => r.StainName == stain && r.OrganName == organ
             && r.TissueName == tissue && r.Creation < DateTime.Now.AddMonths(-6)).ToList().Count;
         }

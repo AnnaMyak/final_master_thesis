@@ -21,7 +21,7 @@ namespace SharpnessControlWebApp.Controllers
         private IStainRepo repoStain = new StainRepo();
         private IOrganRepo repoOrgan = new OrganRepo();
         private ITissueRepo repoTissue = new TissueRepo();
-        private IReglamentRepo repoReglament = new ReglamentRepo();
+        private IReglementRepo repoReglement = new ReglementRepo();
         private IReportRepo repoReport = new ReportRepo();
         private IWSIRepo repoWSI = new WSIRepo();
 
@@ -262,20 +262,20 @@ namespace SharpnessControlWebApp.Controllers
         }
 
         //Sharpness Reglament Management 
-        public ActionResult ReglamentsManagement()
+        public ActionResult ReglementsManagement()
         {
 
-            return View(repoReglament.GetAllReglaments());
+            return View(repoReglement.GetAllReglements());
         }
 
-        public ActionResult CreateNewReglament()
+        public ActionResult CreateNewReglement() 
         {
             return View(new Reglement());
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateNewReglament(Reglement reglament)
+        public ActionResult CreateNewReglement(Reglement reglament) 
         {
             ViewBag.Error = "";
 
@@ -285,7 +285,7 @@ namespace SharpnessControlWebApp.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    repoReglament.Insert(new Reglement
+                    repoReglement.Insert(new Reglement
                     {
                         Titel = reglament.Titel,
                         SharpnessThresholdValue = reglament.SharpnessThresholdValue,
@@ -296,7 +296,7 @@ namespace SharpnessControlWebApp.Controllers
                         Status = reglament.Status
                     });
 
-                    return RedirectToAction("ReglamentsManagement");
+                    return RedirectToAction("ReglementsManagement");
                 }
             }
             catch
@@ -307,44 +307,44 @@ namespace SharpnessControlWebApp.Controllers
         }
 
 
-        public ActionResult EditReglament(Guid ReglamentId)
+        public ActionResult EditReglement(Guid ReglementId)
         {
-            return View(repoReglament.GetReglamentById(ReglamentId));
+            return View(repoReglement.GetReglementById(ReglementId));
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditReglament(Reglement reglament)
+        public ActionResult EditReglement(Reglement reglement)
         {
                 if (ModelState.IsValid)
                 {
-                    repoReglament.Update(reglament);
-                    return RedirectToAction("ReglamentsManagement");
+                    repoReglement.Update(reglement);
+                    return RedirectToAction("ReglementsManagement");
                 }
 
 
-                return View(reglament);
+                return View(reglement);
             }
 
         [HttpGet]
-        public ActionResult DeleteReglament(Guid ReglamentId)
+        public ActionResult DeleteReglement(Guid ReglementId)
         {
-            if ( ReglamentId== null)
+            if ( ReglementId== null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var reglament  = repoReglament.GetReglamentById(ReglamentId);
+            var reglament  = repoReglement.GetReglementById(ReglementId);
             if (reglament == null)
             {
                 return HttpNotFound();
             }
 
-            return View(repoReglament.GetReglamentById(ReglamentId));
+            return View(repoReglement.GetReglementById(ReglementId));
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteReglament(Guid ReglamentId, FormCollection collection)
+        public ActionResult DeleteReglement(Guid ReglementId, FormCollection collection)
         {
             ViewBag.Error = "";
             var _context = new ApplicationDbContext();
@@ -352,9 +352,9 @@ namespace SharpnessControlWebApp.Controllers
             {
 
 
-                _context.Reglaments.Remove(_context.Reglaments.Find(ReglamentId));
+                _context.Reglements.Remove(_context.Reglements.Find(ReglementId));
                 _context.SaveChanges();
-                return RedirectToAction("ReglamentsManagement");
+                return RedirectToAction("ReglementsManagement");
 
             }
             catch
@@ -362,7 +362,7 @@ namespace SharpnessControlWebApp.Controllers
                 ViewBag.Error = "Das Kriterium ist schon gelöscht worden oder existiert nicht!";
 
             }
-            return View(_context.Reglaments.Find(ReglamentId));
+            return View(_context.Reglements.Find(ReglementId));
         }
         
         

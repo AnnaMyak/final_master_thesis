@@ -9,39 +9,39 @@ using System.Web;
 
 namespace Sharpness.WebApp.Models.Sharpness_Persistence.Sharpness_Repositories.Implementation
 {
-    public class ReglamentRepo:IReglamentRepo
+    public class ReglementRepo:IReglementRepo
     {
 
         public void Delete(Reglement r)
         {
             var _context = new ApplicationDbContext();
-            _context.Reglaments.Remove(r);
+            _context.Reglements.Remove(r);
             _context.SaveChanges();
         }
 
-        public IEnumerable<Reglement> GetAllReglaments()
+        public IEnumerable<Reglement> GetAllReglements()
         {
             var _context = new ApplicationDbContext();
-            return _context.Reglaments.ToList();
+            return _context.Reglements.ToList();
 
         }
 
-        public Reglement GetReglamentById(Guid ReglamentId)
+        public Reglement GetReglementById(Guid ReglamentId)
         {
             var _context = new ApplicationDbContext();
-            return _context.Reglaments.Find(ReglamentId);
+            return _context.Reglements.Find(ReglamentId);
         }
 
-        public Reglement GetReglamentByTitel(string Titel)
+        public Reglement GetReglementByTitel(string Titel)
         {
             var _context = new ApplicationDbContext();
-            return _context.Reglaments.Where(r => r.Titel == Titel).First();
+            return _context.Reglements.Where(r => r.Titel == Titel).First();
         }
 
         public void Insert(Reglement r)
         {
             var _context = new ApplicationDbContext();
-            _context.Reglaments.Add(r);
+            _context.Reglements.Add(r);
             _context.SaveChanges();
         }
 

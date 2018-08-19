@@ -46,13 +46,13 @@ namespace SharpnessControlWebApp.Utilities
             return results;
         }
 
-        public Reglement GetReglament()
+        public Reglement GetReglement()
         {
-            var _repoReglaments = new ReglamentRepo();
+            var _repoReglaments = new ReglementRepo();
 
             //TODO
             //Nowadays only one reglement is possible
-            return _repoReglaments.GetReglamentByTitel("Default");
+            return _repoReglaments.GetReglementByTitel("Default");
         }
 
         /// <summary>

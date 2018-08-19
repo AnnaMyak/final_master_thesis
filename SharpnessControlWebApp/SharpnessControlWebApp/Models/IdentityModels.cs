@@ -50,7 +50,7 @@ namespace IdentitySample.Models
         }
 
         public virtual DbSet<Organ> Organs { get; set; }
-        public virtual DbSet<Reglement> Reglaments { get; set; }
+        public virtual DbSet<Reglement> Reglements { get; set; }
         public virtual DbSet<Report> Reports { get; set; }
         public virtual DbSet<Stain> Stains { get; set; }
         public virtual DbSet<Tissue> Tissues { get; set; }

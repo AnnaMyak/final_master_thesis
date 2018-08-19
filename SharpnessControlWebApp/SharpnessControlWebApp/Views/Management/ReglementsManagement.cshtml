@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Sharpness.WebApp.Models.Sharpness_Persistence.Sharpness_Entities.Reglament>
+﻿@model IEnumerable<Sharpness.WebApp.Models.Sharpness_Persistence.Sharpness_Entities.Reglement>
 
 @{
     ViewBag.Title = "Schärfe-Kriterien";
@@ -7,7 +7,7 @@
 
 
 <p>
-    @Html.ActionLink("Ein neues Schärfekriterium hinzufügen + ", "CreateNewReglament", null, new { @class = "btn btn-success" }) | @Html.ActionLink("Zurück zu den Entitäten", "Index", null, new { @class = "btn btn-danger", @style = "background-color:#884dff" })
+    @Html.ActionLink("Ein neues Schärfekriterium hinzufügen + ", "CreateNewReglement", null, new { @class = "btn btn-success" }) | @Html.ActionLink("Zurück zu den Entitäten", "Index", null, new { @class = "btn btn-danger", @style = "background-color:#884dff" })
 
 </p><table class="table table-bordered">
     <tr>
@@ -62,9 +62,9 @@
             </td>
             
             <td>
-                @Html.ActionLink("Ändern", "EditReglament", new { ReglamentId = item.ReglamentId }, new { @class= "btn btn-warning", @style="color:white" }) |
+                @Html.ActionLink("Ändern", "EditReglement", new { ReglementId = item.ReglementId }, new { @class= "btn btn-warning", @style="color:white" }) |
                 
-                @Html.ActionLink("Löschen", "DeleteReglament", new { ReglamentId = item.ReglamentId },new { @class= "btn btn-danger" })
+                @Html.ActionLink("Löschen", "DeleteReglement", new { ReglementId = item.ReglementId },new { @class= "btn btn-danger" })
             </td>
         </tr>
     }

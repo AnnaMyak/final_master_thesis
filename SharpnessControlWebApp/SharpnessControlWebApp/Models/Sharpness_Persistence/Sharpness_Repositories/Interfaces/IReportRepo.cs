@@ -15,8 +15,6 @@ namespace Sharpness.WebApp.Models.Sharpness_Persistence.Sharpness_Repositories.I
         IEnumerable<Report> GetAllReportsLastWeek();
         IEnumerable<Report> GetAllReportsLastMonth();
         IEnumerable<Report> GetAllReportsLastYear();
-
-
         IEnumerable<Report> GetAllReportsByUserId(string UserId);
         IEnumerable<Report> GetAllReportsByUserIdLastWeek(string UserId);
         IEnumerable<Report> GetAllReportsByUserLastMonth(string UserId);
@@ -26,7 +24,6 @@ namespace Sharpness.WebApp.Models.Sharpness_Persistence.Sharpness_Repositories.I
 
 
         IEnumerable<Report> GetAllReportByOrganAndUserId(string Organ, string UserId);
-
         IEnumerable<Report> GetAllPositiveReports();
         IEnumerable<Report> GetAllNegativeReports();
 
