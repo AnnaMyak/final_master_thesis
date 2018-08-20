@@ -492,7 +492,6 @@
     <Content Include="Views\Account\AdminConfirmationFailed.cshtml" />
     <Content Include="Views\AdminConsole\Index.cshtml" />
     <Content Include="Views\SharpnessResearch\Index.cshtml" />
-    <Content Include="Views\SharpnessResearch\SharpnessResearchResult.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

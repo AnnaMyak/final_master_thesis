@@ -18,7 +18,9 @@ namespace SharpnessControlWebApp.Models.Sharpness_Persistence.Sharpness_Research
         IEnumerable<Research> AllNegativeTestsSortedByOrgan();
         IEnumerable<Research> AllNegativeTestsSortedByTissue();
 
-        //Special report
+        //Special common  report
+
+        IEnumerable<Research> CommonReportPositive();
 
     }
 }

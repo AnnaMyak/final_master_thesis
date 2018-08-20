@@ -25,15 +25,7 @@ namespace SharpnessControlWebApp.Controllers
         // GET: SharpnessResearch
         public ActionResult Index()
         {
-            SharpnessViewModels model = new SharpnessViewModels();
-            model.Organs = repoOrgans.GetOrgans();
-            model.Stains = repoStains.GetStains();
-            model.Tissues = repoTissues.GetTissues();
-           
-
-            ViewBag.Stains = new SelectList(model.Stains, "Name", "Name");
-            ViewBag.Organs = new SelectList(model.Organs, "Name", "Name");
-            ViewBag.Tissues = new SelectList(model.Tissues, "Name", "Name");
+            
 
 
             //Stain
@@ -133,22 +125,27 @@ namespace SharpnessControlWebApp.Controllers
 
 
 
-            return View(model);
-        }
-        [HttpPost]
-        public ActionResult Index(Stain stain, Organ organ, Tissue tissue)
-        {
-        
+            //Common positive
+            //Sorted, positive, Dataset 1
+           /* var researchesCommonPositive = researchRepo.CommonReportPositive();
+            var commonPositive = new List<string>();
+            var commonValuesPositive = new List<int>();
+            var commonColorPositive = new List<string>();
+            foreach (var item in researchesCommonPositive)
+            {
+                commonPositive.Add(item.Item.Replace("#"," "));
+                commonValuesPositive.Add(item.Number);
+                commonColorPositive.Add("#00802b");
+            }
+            ViewBag.CommonPositive = commonPositive;
+            ViewBag.CommonValuesPositive = commonValuesPositive;
+            ViewBag.CommonColorPositive = commonColorPositive;
 
+            */
 
-
-            return RedirectToAction("SharpnessResearchResult", new { stain = stain.Name, organ=organ.Name, tissue=tissue.Name });
-        }
-
-        public ActionResult SharpnessResearchResult(string stain, string organ, string tissue)
-        {
 
             return View();
         }
+        
     }
 }

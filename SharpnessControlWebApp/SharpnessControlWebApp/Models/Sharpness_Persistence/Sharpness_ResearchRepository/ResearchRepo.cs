@@ -1,4 +1,5 @@
 ﻿using Sharpness.WebApp.Models.Sharpness_Persistence.Sharpness_Repositories.Implementation;
+using Sharpness.WebApp.Models.Sharpness_Persistence.Sharpness_Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,10 +9,14 @@ namespace SharpnessControlWebApp.Models.Sharpness_Persistence.Sharpness_Research
 {
     public class ResearchRepo : IResearchRepo
     {
+        private IOrganRepo organRepo = new OrganRepo();
+        private IStainRepo stainRepo = new StainRepo();
+        private ITissueRepo tissueRepo = new TissueRepo();
+        private IReportRepo reportRepo = new ReportRepo();
+
         public IEnumerable<Research> AllNegativeTestsSortedByOrgan()
         {
-            var organRepo = new OrganRepo();
-            var reportRepo = new ReportRepo();
+            
             var organs = organRepo.GetOrgans();
             var reports = reportRepo.GetAllNegativeReports();
 
@@ -35,8 +40,7 @@ namespace SharpnessControlWebApp.Models.Sharpness_Persistence.Sharpness_Research
 
         public IEnumerable<Research> AllNegativeTestsSortedByStain()
         {
-            var stainRepo = new StainRepo();
-            var reportRepo = new ReportRepo();
+            
             var stains = stainRepo.GetStains();
             var reports = reportRepo.GetAllNegativeReports();
 
@@ -60,8 +64,6 @@ namespace SharpnessControlWebApp.Models.Sharpness_Persistence.Sharpness_Research
 
         public IEnumerable<Research> AllNegativeTestsSortedByTissue()
         {
-            var tissueRepo = new TissueRepo();
-            var reportRepo = new ReportRepo();
             var tissues = tissueRepo.GetTissues();
             var reports = reportRepo.GetAllNegativeReports();
 
@@ -85,8 +87,6 @@ namespace SharpnessControlWebApp.Models.Sharpness_Persistence.Sharpness_Research
 
         public IEnumerable<Research> AllPositiveTestsSortedByOrgan()
         {
-            var organRepo = new OrganRepo();
-            var reportRepo = new ReportRepo();
             var organs = organRepo.GetOrgans();
             var reports = reportRepo.GetAllPositiveReports();
 
@@ -110,8 +110,6 @@ namespace SharpnessControlWebApp.Models.Sharpness_Persistence.Sharpness_Research
 
         public IEnumerable<Research> AllPositiveTestsSortedByStain()
         {
-            var stainRepo = new StainRepo();
-            var reportRepo = new ReportRepo();
             var stains = stainRepo.GetStains();
             var reports = reportRepo.GetAllPositiveReports();
 
@@ -135,8 +133,6 @@ namespace SharpnessControlWebApp.Models.Sharpness_Persistence.Sharpness_Research
 
         public IEnumerable<Research> AllPositiveTestsSortedByTissue()
         {
-            var tissueRepo = new TissueRepo();
-            var reportRepo = new ReportRepo();
             var tissues = tissueRepo.GetTissues();
             var reports = reportRepo.GetAllPositiveReports();
 
@@ -156,6 +152,39 @@ namespace SharpnessControlWebApp.Models.Sharpness_Persistence.Sharpness_Research
             }
 
             return sortedByTissue;
+        }
+
+        public IEnumerable<Research> CommonReportPositive()
+        {
+            var stains = stainRepo.GetStains();
+            var organs = organRepo.GetOrgans();
+            var tissues = organRepo.GetOrgans();
+            var reports = reportRepo.GetAllPositiveReports();
+            var sorted = new List<Research>();
+
+            foreach (var s in stains)
+            {
+                foreach (var o in organs)
+                {
+                    foreach (var t in tissues)
+                    {
+                        var item = new Research { Item = s.Name+"#"+ o.Name + "#"+ t.Name, Number = 0 };
+                        foreach (var r in reports)
+                        {
+                            var parameters = item.Item.Split('#');
+                            if (r.StainName==parameters[0]&&r.OrganName== parameters[1] && r.TissueName == parameters[2])
+                            {
+                                item.Number++;
+                            }
+
+                        }
+                        sorted.Add(item);
+                    }
+                    
+                }
+                
+            }
+            return null;
         }
     }
 }
