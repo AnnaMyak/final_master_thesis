@@ -1,5 +1,4 @@
-﻿@model SharpnessControlWebApp.Models.SharpnessViewModels
-@{
+﻿@{
     ViewBag.Title = "AllMyTests";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -22,7 +21,7 @@
                 </thead>
                 <tbody>
                     @{ int i = 1;
-                        foreach (var item in Model.WSIs)
+                        foreach (var item in ViewBag.WSIs)
                         {
                             <tr>
                                 <th scope="row">@i</th>

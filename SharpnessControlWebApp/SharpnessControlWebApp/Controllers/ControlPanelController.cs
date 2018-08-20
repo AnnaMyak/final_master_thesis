@@ -46,11 +46,10 @@ namespace SharpnessControlWebApp.Controllers
 
             //TODO
             //Today only one value possible
-            ISharpnessManager manager = new SharpnessManager();
             var reglement = manager.GetReglement();
             //var sharpnessEvaluationParameters = '+' + reglament.TileSize.ToString() + '+' + reglament.SharpnessThresholdValue+ '+' + reglament.Scaling.ToString()+ '+' + reglament.Edges.ToString();
 
-            //Directory for WSI Uploads
+            //Directory for WSI Uploads on the Server
             var root = @"C:\Users\AnnaToshiba2\Desktop\WSI\Sharpness_WebApp_Uploads\";
             var fileName = "";
             wsi.WSIId = Guid.NewGuid();
@@ -64,8 +63,6 @@ namespace SharpnessControlWebApp.Controllers
                 fileName = Path.GetFileName(file.FileName);
                 var path = Path.Combine(outputDir, fileName);
                 file.SaveAs(path);
-
-
                 wsi.Path = path;
                 wsi.UserId = User.Identity.GetUserId();
                 repoWSIs.Insert(wsi);
@@ -104,11 +101,10 @@ namespace SharpnessControlWebApp.Controllers
             report.Semaphore_Red = semaphoreValues[0];
             report.Semaphore_Green = semaphoreValues[1];
             report.Semaphore_Yellow = semaphoreValues[2];
-
             report.Red_Channel = channelsValues[0];
             report.Blue_Channel = channelsValues[1];
 
-            if (semaphoreValues[1] > 70)
+            if (semaphoreValues[1] > reglement.AcceptanceValue)
             {
                 report.Evaluation = true;
             }
@@ -126,7 +122,7 @@ namespace SharpnessControlWebApp.Controllers
         public ActionResult Report(Guid ReportId)
         {
             var report = repoReports.GetReportById(ReportId);
-            ViewBag.ViewerLink = "http://localhost:5000/Sharpness_WebApp_Uploads/" + report.ReportLink;
+            ViewBag.ViewerLink = "http://localhost:5000/" + report.ReportLink;
             ViewBag.Stain = repoStains.GetStainByName(report.StainName).Name;
             ViewBag.Tissue = repoTissues.GetTissueByName(report.TissueName).Name;
             ViewBag.Organ = repoOrgans.GetOrganByName(report.OrganName).Name;

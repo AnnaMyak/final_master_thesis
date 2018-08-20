@@ -400,10 +400,16 @@ namespace SharpnessControlWebApp.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var wsi = repoWSI.GetById(WSIId);
+
+
             if (wsi == null)
             {
                 return HttpNotFound();
             }
+            
+            //TODO WSI-Repository
+            var _contetx = new ApplicationDbContext();
+            ViewBag.User = _contetx.Users.Find(wsi.UserId).UserName; 
             return View(wsi);
         }
 

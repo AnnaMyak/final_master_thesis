@@ -16,13 +16,13 @@ namespace SharpnessControlWebApp.Controllers
     {
         private IWSIRepo  repoWSI = new WSIRepo();
         private IReportRepo  repoReport = new ReportRepo();
-        private SharpnessViewModels  model = new SharpnessViewModels();
-
+        
         // GET: Dashboard
         public ActionResult Index()
         {
-            
+
             //Total Tests
+            //TODO ReportRepo
             ViewBag.TotalNumberOfTests = repoReport.GetAllReportsByUserId(User.Identity.GetUserId()).Count();
             ViewBag.TotalNumberOfTestsThisWeek = repoReport.GetAllReportsByUserIdLastWeek(User.Identity.GetUserId()).Count();
             ViewBag.TotalNumberOfTestsThisMonth = repoReport.GetAllReportsByUserLastMonth(User.Identity.GetUserId()).Count();
@@ -116,9 +116,9 @@ namespace SharpnessControlWebApp.Controllers
 
         public ActionResult AllMyTests()
         {
-            
-            model.WSIs = repoWSI.GetAllWSIByUserId(User.Identity.GetUserId());
-            return View(model);
+
+            ViewBag.WSIs = repoWSI.GetAllWSIByUserId(User.Identity.GetUserId());
+            return View();
         }
     }
 }
