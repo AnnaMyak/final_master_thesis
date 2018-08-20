@@ -4,10 +4,41 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h3>Einstellungen für den Bericht</h3>
+
+
+
+
+
+<div class="card mb-3">
+
+    <div class="card-body">
+        <canvas id="stainChart" width="100%" height="30"></canvas>
+    </div>
+    <div class="card-footer small text-muted">Aktualisiert am @DateTime.Now</div>
+</div>
+
+<div class="card mb-3">
+
+    <div class="card-body">
+        <canvas id="organChart" width="100%" height="30"></canvas>
+    </div>
+    <div class="card-footer small text-muted">Aktualisiert am @DateTime.Now</div>
+</div>
+
+<div class="card mb-3">
+
+    <div class="card-body">
+        <canvas id="tissueChart" width="100%" height="30"></canvas>
+    </div>
+    <div class="card-footer small text-muted">Aktualisiert am @DateTime.Now</div>
+</div>
+
 
 <div class="row">
 
+    
+    @*
+    <br />
     <form action="" method="post" enctype="multipart/form-data">
 
         <div class="row form-group">
@@ -37,4 +68,126 @@
             </div>
         </div>
       </form>
+    *@
 </div>
+
+
+<script src="~/Assets/vendor/chart.js/Chart.bundle.min.js"></script>
+<script>
+    var stainsPos = @Html.Raw(Json.Encode(ViewBag.StainsPositive));
+    var stainsValuesPos = @Html.Raw(Json.Encode(ViewBag.StainsValuesPositive));
+    var stainsColorPos = @Html.Raw(Json.Encode(ViewBag.StainsColorPositive));
+    var stainsNeg = @Html.Raw(Json.Encode(ViewBag.StainsNegative));
+    var stainsValuesNeg = @Html.Raw(Json.Encode(ViewBag.StainsValuesNegative));
+    var stainsColorNeg = @Html.Raw(Json.Encode(ViewBag.StainsColorNegative));
+
+    new Chart(document.getElementById("stainChart"), {
+        type: 'bar',
+        data:
+            {
+                labels: stainsPos,stainsNeg,
+            datasets: [
+              {
+                  backgroundColor: stainsColorPos,
+                  data: stainsValuesPos,
+              },
+              {
+                  backgroundColor: stainsColorNeg,
+                  data: stainsValuesNeg,
+              },
+                      ]
+            },
+
+
+
+        options: {
+            legend: { display: false },
+            title: {
+                display: true,
+                text: 'Statistik nach Färbungen'
+            }
+        }
+    });
+
+
+    var organsPos = @Html.Raw(Json.Encode(ViewBag.OrgansPositive));
+    var organsValuesPos = @Html.Raw(Json.Encode(ViewBag.OrgansValuesPositive));
+    var organsColorPos = @Html.Raw(Json.Encode(ViewBag.OrgansColorPositive));
+    var organsNeg = @Html.Raw(Json.Encode(ViewBag.OrgansNegative));
+    var organsValuesNeg = @Html.Raw(Json.Encode(ViewBag.OrgansValuesNegative));
+    var organsColorNeg = @Html.Raw(Json.Encode(ViewBag.OrgansColorNegative));
+
+    new Chart(document.getElementById("organChart"), {
+        type: 'bar',
+        data:
+            {
+                labels: organsPos,organsNeg,
+                datasets: [
+                  {
+                      backgroundColor: organsColorPos,
+                      data: organsValuesPos,
+                  },
+                  {
+                      backgroundColor: organsColorNeg,
+                      data: organsValuesNeg,
+                  },
+                ]
+            },
+
+
+
+        options: {
+            legend: { display: false },
+            title: {
+                display: true,
+                text: 'Statistik nach Organen'
+            }
+        }
+    });
+
+
+
+
+
+
+
+
+
+    var tissuesPos = @Html.Raw(Json.Encode(ViewBag.TissuesPositive));
+    var tissuesValuesPos = @Html.Raw(Json.Encode(ViewBag.TissuesValuesPositive));
+    var tissuesColorPos = @Html.Raw(Json.Encode(ViewBag.TissuesColorPositive));
+    var tissuesNeg = @Html.Raw(Json.Encode(ViewBag.TissuesNegative));
+    var tissuesValuesNeg = @Html.Raw(Json.Encode(ViewBag.TissuesValuesNegative));
+    var tissuesColorNeg = @Html.Raw(Json.Encode(ViewBag.TissuesColorNegative));
+
+    new Chart(document.getElementById("tissueChart"), {
+        type: 'bar',
+        data:
+            {
+                labels: tissuesPos,tissuesNeg,
+                datasets: [
+                  {
+                      backgroundColor: tissuesColorPos,
+                      data: tissuesValuesPos,
+                  },
+                  {
+                      backgroundColor: tissuesColorNeg,
+                      data: tissuesValuesNeg,
+                  },
+                ]
+            },
+
+
+
+        options: {
+            legend: { display: false },
+            title: {
+                display: true,
+                text: 'Statistik nach Geweben'
+            }
+        }
+    });
+
+
+
+</script>

@@ -269,6 +269,9 @@
     <Compile Include="Models\Sharpness_Persistence\Sharpness_Repositories\Interfaces\ITissueRepo.cs" />
     <Compile Include="Models\Sharpness_Persistence\Sharpness_Repositories\Interfaces\IWSIRepo.cs" />
     <Compile Include="Models\Sharpness_Persistence\Sharpness_Repositories\ReportClasses.cs" />
+    <Compile Include="Models\Sharpness_Persistence\Sharpness_ResearchRepository\IResearchRepo.cs" />
+    <Compile Include="Models\Sharpness_Persistence\Sharpness_ResearchRepository\Research.cs" />
+    <Compile Include="Models\Sharpness_Persistence\Sharpness_ResearchRepository\ResearchRepo.cs" />
     <Compile Include="Models\Sharpness_Persistence\UserRepositoryExtension\IUserRepo.cs" />
     <Compile Include="Models\Sharpness_Persistence\UserRepositoryExtension\UserRepo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
