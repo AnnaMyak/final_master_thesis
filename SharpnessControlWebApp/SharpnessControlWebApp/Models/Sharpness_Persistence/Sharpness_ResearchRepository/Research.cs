@@ -10,4 +10,12 @@ namespace SharpnessControlWebApp.Models.Sharpness_Persistence.Sharpness_Research
         public string Item { get; set; }
         public int Number { get; set; }
     }
+
+    public class CommonResearch
+    {
+        public string Stain { get; set; }
+        public string Organ { get; set; }
+        public string Tissue { get; set; }
+        public int Number { get; set; }
+    }
 }

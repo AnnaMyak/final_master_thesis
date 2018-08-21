@@ -32,7 +32,10 @@ namespace SharpnessControlWebApp.Models.Sharpness_Persistence.Sharpness_Research
                         item.Number++;
                     }
                 }
-                sortedByOrgan.Add(item);
+                if (item.Number != 0)
+                {
+                    sortedByOrgan.Add(item);
+                }
             }
 
             return sortedByOrgan;
@@ -56,7 +59,10 @@ namespace SharpnessControlWebApp.Models.Sharpness_Persistence.Sharpness_Research
                         item.Number++;
                     }
                 }
-                sortedByStain.Add(item);
+                if (item.Number != 0)
+                {
+                    sortedByStain.Add(item);
+                }
             }
 
             return sortedByStain;
@@ -79,7 +85,10 @@ namespace SharpnessControlWebApp.Models.Sharpness_Persistence.Sharpness_Research
                         item.Number++;
                     }
                 }
-                sortedByTissue.Add(item);
+                if (item.Number != 0)
+                {
+                    sortedByTissue.Add(item);
+                }
             }
 
             return sortedByTissue;
@@ -102,7 +111,10 @@ namespace SharpnessControlWebApp.Models.Sharpness_Persistence.Sharpness_Research
                         item.Number++;
                     }
                 }
-                sortedByOrgan.Add(item);
+                if (item.Number != 0)
+                {
+                    sortedByOrgan.Add(item);
+                }
             }
 
             return sortedByOrgan;
@@ -125,7 +137,10 @@ namespace SharpnessControlWebApp.Models.Sharpness_Persistence.Sharpness_Research
                         item.Number++;
                     }
                 }
-                sortedByStain.Add(item);
+                if (item.Number != 0)
+                {
+                    sortedByStain.Add(item);
+                }
             }
 
             return sortedByStain;
@@ -148,19 +163,22 @@ namespace SharpnessControlWebApp.Models.Sharpness_Persistence.Sharpness_Research
                         item.Number++;
                     }
                 }
-                sortedByTissue.Add(item);
+                if (item.Number!=0)
+                {
+                    sortedByTissue.Add(item);
+                }
             }
 
             return sortedByTissue;
         }
 
-        public IEnumerable<Research> CommonReportPositive()
+        public IEnumerable<CommonResearch> CommonReportPositive()
         {
             var stains = stainRepo.GetStains();
             var organs = organRepo.GetOrgans();
-            var tissues = organRepo.GetOrgans();
+            var tissues = tissueRepo.GetTissues();
             var reports = reportRepo.GetAllPositiveReports();
-            var sorted = new List<Research>();
+            var sorted = new List<CommonResearch>();
 
             foreach (var s in stains)
             {
@@ -168,23 +186,276 @@ namespace SharpnessControlWebApp.Models.Sharpness_Persistence.Sharpness_Research
                 {
                     foreach (var t in tissues)
                     {
-                        var item = new Research { Item = s.Name+"#"+ o.Name + "#"+ t.Name, Number = 0 };
+                        var item = new CommonResearch { Stain = s.Name, Organ=o.Name, Tissue= t.Name, Number = 0 };
                         foreach (var r in reports)
                         {
-                            var parameters = item.Item.Split('#');
-                            if (r.StainName==parameters[0]&&r.OrganName== parameters[1] && r.TissueName == parameters[2])
+                            
+                            if (r.StainName==item.Stain&& r.OrganName== item.Organ && r.TissueName == item.Tissue)
                             {
                                 item.Number++;
                             }
 
                         }
-                        sorted.Add(item);
+                        if (item.Number != 0)
+                        {
+                            sorted.Add(item);
+                        }
                     }
                     
                 }
                 
             }
-            return null;
+            return sorted;
+        }
+
+        public IEnumerable<CommonResearch> CommonReportNegative()
+        {
+            var stains = stainRepo.GetStains();
+            var organs = organRepo.GetOrgans();
+            var tissues = tissueRepo.GetTissues();
+            var reports = reportRepo.GetAllNegativeReports();
+            var sorted = new List<CommonResearch>();
+
+            foreach (var s in stains)
+            {
+                foreach (var o in organs)
+                {
+                    foreach (var t in tissues)
+                    {
+                        var item = new CommonResearch { Stain = s.Name, Organ = o.Name, Tissue = t.Name, Number = 0 };
+                        foreach (var r in reports)
+                        {
+
+                            if (r.StainName == item.Stain && r.OrganName == item.Organ && r.TissueName == item.Tissue)
+                            {
+                                item.Number++;
+                            }
+
+                        }
+                        if (item.Number != 0)
+                        {
+                            sorted.Add(item);
+                        }
+                        
+                    }
+
+                }
+
+            }
+            return sorted;
+        }
+
+        public IEnumerable<CommonResearch> AllPositiveSortedByStainAndOrgan()
+        {
+            var stains = stainRepo.GetStains();
+            var organs = organRepo.GetOrgans();
+            var reports = reportRepo.GetAllPositiveReports();
+            var sorted = new List<CommonResearch>();
+
+            foreach (var s in stains)
+            {
+                foreach (var o in organs)
+                {
+
+                    var item = new CommonResearch { Stain = s.Name, Organ = o.Name, Number = 0 };
+                    foreach (var r in reports)
+                    {
+
+                        if (r.StainName == item.Stain && r.OrganName == item.Organ)
+                        {
+                            item.Number++;
+                        }
+
+                    }
+                    if (item.Number != 0)
+                    {
+                        sorted.Add(item);
+                    }
+
+
+
+                }
+
+            }
+            return sorted;
+        }
+
+        public IEnumerable<CommonResearch> AllNegativeSortedByStainAndOrgan()
+        {
+            var stains = stainRepo.GetStains();
+            var organs = organRepo.GetOrgans();
+            var reports = reportRepo.GetAllNegativeReports();
+            var sorted = new List<CommonResearch>();
+
+            foreach (var s in stains)
+            {
+                foreach (var o in organs)
+                {
+                    
+                        var item = new CommonResearch { Stain = s.Name, Organ = o.Name,  Number = 0 };
+                        foreach (var r in reports)
+                        {
+
+                            if (r.StainName == item.Stain && r.OrganName == item.Organ )
+                            {
+                                item.Number++;
+                            }
+
+                        }
+                        if (item.Number != 0)
+                        {
+                            sorted.Add(item);
+                        }
+
+                    
+
+                }
+
+            }
+            return sorted;
+        }
+
+        public IEnumerable<CommonResearch> AllPositiveSortedByStainAndTissue()
+        {
+            var stains = stainRepo.GetStains();
+
+            var tissues = tissueRepo.GetTissues();
+            var reports = reportRepo.GetAllPositiveReports();
+            var sorted = new List<CommonResearch>();
+
+            foreach (var s in stains)
+            {
+
+                foreach (var t in tissues)
+                {
+                    var item = new CommonResearch { Stain = s.Name, Tissue = t.Name, Number = 0 };
+                    foreach (var r in reports)
+                    {
+
+                        if (r.StainName == item.Stain && r.OrganName == item.Organ && r.TissueName == item.Tissue)
+                        {
+                            item.Number++;
+                        }
+
+                    }
+                    if (item.Number != 0)
+                    {
+                        sorted.Add(item);
+                    }
+
+                }
+
+
+
+            }
+            return sorted;
+        }
+
+        public IEnumerable<CommonResearch> AllNegativeSortedByStainAndTissue()
+        {
+            var stains = stainRepo.GetStains();
+            
+            var tissues = tissueRepo.GetTissues();
+            var reports = reportRepo.GetAllNegativeReports();
+            var sorted = new List<CommonResearch>();
+
+            foreach (var s in stains)
+            {
+                
+                    foreach (var t in tissues)
+                    {
+                        var item = new CommonResearch { Stain = s.Name, Tissue = t.Name, Number = 0 };
+                        foreach (var r in reports)
+                        {
+
+                            if (r.StainName == item.Stain && r.OrganName == item.Organ && r.TissueName == item.Tissue)
+                            {
+                                item.Number++;
+                            }
+
+                        }
+                        if (item.Number != 0)
+                        {
+                            sorted.Add(item);
+                        }
+
+                    }
+
+                
+
+            }
+            return sorted;
+        }
+
+        public IEnumerable<CommonResearch> AllPositiveSortedByOrganAndTissue()
+        {
+            var organs = organRepo.GetOrgans();
+            var tissues = tissueRepo.GetTissues();
+            var reports = reportRepo.GetAllNegativeReports();
+            var sorted = new List<CommonResearch>();
+
+
+            foreach (var o in organs)
+            {
+                foreach (var t in tissues)
+                {
+                    var item = new CommonResearch { Organ = o.Name, Tissue = t.Name, Number = 0 };
+                    foreach (var r in reports)
+                    {
+
+                        if (r.StainName == item.Stain && r.OrganName == item.Organ && r.TissueName == item.Tissue)
+                        {
+                            item.Number++;
+                        }
+
+                    }
+                    if (item.Number != 0)
+                    {
+                        sorted.Add(item);
+                    }
+
+                }
+
+            }
+
+
+            return sorted;
+        }
+
+        public IEnumerable<CommonResearch> AllNegativeSortedByOrganAndTissue()
+        {
+            
+            var organs = organRepo.GetOrgans();
+            var tissues = tissueRepo.GetTissues();
+            var reports = reportRepo.GetAllNegativeReports();
+            var sorted = new List<CommonResearch>();
+
+            
+                foreach (var o in organs)
+                {
+                    foreach (var t in tissues)
+                    {
+                        var item = new CommonResearch {  Organ = o.Name, Tissue = t.Name, Number = 0 };
+                        foreach (var r in reports)
+                        {
+
+                            if (r.StainName == item.Stain && r.OrganName == item.Organ && r.TissueName == item.Tissue)
+                            {
+                                item.Number++;
+                            }
+
+                        }
+                        if (item.Number != 0)
+                        {
+                            sorted.Add(item);
+                        }
+
+                    }
+
+                }
+
+            
+            return sorted;
         }
     }
 }

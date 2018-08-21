@@ -36,51 +36,40 @@
 <div class="card mb-3">
 
     <div class="card-body">
+        <canvas id="stain_organChart" width="100%" height="30"></canvas>
+    </div>
+    <div class="card-footer small text-muted">Aktualisiert am @DateTime.Now</div>
+</div>
+
+
+
+
+
+
+
+
+<div class="card mb-3">
+
+    <div class="card-body">
         <canvas id="commonChart" width="100%" height="30"></canvas>
     </div>
     <div class="card-footer small text-muted">Aktualisiert am @DateTime.Now</div>
 </div>
 
-<div class="row">
-
-    
-    @*
-    <br />
-    <form action="" method="post" enctype="multipart/form-data">
-
-        <div class="row form-group">
-
-            <div class="col-5 col-md-12">
-                @Html.DropDownListFor(model => model.Stain.Name, (IEnumerable<SelectListItem>)ViewBag.Stains, "Färbung", new { @class = "form-control" })
-            </div>
-        </div>
-
-        <div class="row form-group">
-            <div class="col-5 col-md-12">
-                @Html.DropDownListFor(model => model.Organ.Name, (IEnumerable<SelectListItem>)ViewBag.Organs, "Organ", new { @class = "form-control" })
-            </div>
-        </div>
 
 
-        <div class="row form-group">
-            <div class="col-5 col-md-12">
-                @Html.DropDownListFor(model => model.Tissue.Name, (IEnumerable<SelectListItem>)ViewBag.Tissues, "Gewebeart", new { @class = "form-control" })
-            </div>
-        </div>
 
-        <div class="row form-group">
-            <div class="col-4 col-md-12">
-                <input type="submit" value="Erstellen" class="btn btn-primary btn-sm" id="btnSubmit">
-
-            </div>
-        </div>
-      </form>
-    *@
-</div>
 
 
 <script src="~/Assets/vendor/chart.js/Chart.bundle.min.js"></script>
 <script>
+   
+
+
+
+
+
+
     var stainsPos = @Html.Raw(Json.Encode(ViewBag.StainsPositive));
     var stainsValuesPos = @Html.Raw(Json.Encode(ViewBag.StainsValuesPositive));
     var stainsColorPos = @Html.Raw(Json.Encode(ViewBag.StainsColorPositive));
@@ -191,6 +180,45 @@
             title: {
                 display: true,
                 text: 'Statistik nach Geweben'
+            }
+        }
+    });
+
+
+
+    //common
+    var commonPos = @Html.Raw(Json.Encode(ViewBag.CommonPositive));
+    var commonValuesPos = @Html.Raw(Json.Encode(ViewBag.CommonValuesPositive));
+    var commonColorPos = @Html.Raw(Json.Encode(ViewBag.CommonColorPositive));
+    var commonNeg = @Html.Raw(Json.Encode(ViewBag.CommonNegative));
+    var commonValuesNeg = @Html.Raw(Json.Encode(ViewBag.CommonValuesNegative));
+    var commonColorNeg = @Html.Raw(Json.Encode(ViewBag.CommonColorNegative));
+
+
+    new Chart(document.getElementById("commonChart"), {
+        type: 'bar',
+        data:
+            {
+                labels: commonPos,commonNeg,
+                datasets: [
+                  {
+                      backgroundColor: commonColorPos,
+                      data: commonValuesPos,
+                  },
+                  {
+                      backgroundColor: commonColorNeg,
+                      data: commonValuesNeg,
+                  },
+                ]
+            },
+
+
+
+        options: {
+            legend: { display: false },
+            title: {
+                display: true,
+                text: 'allegemeine Statistik'
             }
         }
     });

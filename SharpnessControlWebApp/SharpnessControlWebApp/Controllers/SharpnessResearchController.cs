@@ -12,6 +12,7 @@ using System.Web.Mvc;
 
 namespace SharpnessControlWebApp.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class SharpnessResearchController : Controller
     {
         private IStainRepo  repoStains = new StainRepo();
@@ -127,13 +128,13 @@ namespace SharpnessControlWebApp.Controllers
 
             //Common positive
             //Sorted, positive, Dataset 1
-           /* var researchesCommonPositive = researchRepo.CommonReportPositive();
+            var researchesCommonPositive = researchRepo.CommonReportPositive();
             var commonPositive = new List<string>();
             var commonValuesPositive = new List<int>();
             var commonColorPositive = new List<string>();
             foreach (var item in researchesCommonPositive)
             {
-                commonPositive.Add(item.Item.Replace("#"," "));
+                commonPositive.Add(item.Stain+" "+item.Organ+" "+item.Tissue);
                 commonValuesPositive.Add(item.Number);
                 commonColorPositive.Add("#00802b");
             }
@@ -141,7 +142,127 @@ namespace SharpnessControlWebApp.Controllers
             ViewBag.CommonValuesPositive = commonValuesPositive;
             ViewBag.CommonColorPositive = commonColorPositive;
 
-            */
+            //Common negative
+            //Sorted, positive, Dataset 2
+            var researchesCommonNegative = researchRepo.CommonReportNegative();
+            var commonNegative = new List<string>();
+            var commonValuesNegative = new List<int>();
+            var commonColorNegative = new List<string>();
+            foreach (var item in researchesCommonNegative)
+            {
+                commonNegative.Add(item.Stain + " " + item.Organ + " " + item.Tissue);
+                commonValuesNegative.Add(item.Number);
+                commonColorNegative.Add("#e6004c");
+            }
+            ViewBag.CommonNegative = commonNegative;
+            ViewBag.CommonValuesNegative = commonValuesNegative;
+            ViewBag.CommonColorNegative = commonColorNegative;
+
+
+
+            //sorted by stain & organ
+            //positive
+            var research_stains_organPositive = researchRepo.AllPositiveSortedByStainAndOrgan();
+            var stains_organPositive = new List<string>();
+            var stains_organValuesPositive = new List<int>();
+            var stains_organColorPositive = new List<string>();
+            foreach (var item in research_stains_organPositive)
+            {
+                stains_organPositive.Add(item.Stain + " " + item.Organ);
+                stains_organValuesPositive.Add(item.Number);
+                stains_organPositive.Add("#e6004c");
+            }
+            ViewBag.stains_organPositive = stains_organPositive;
+            ViewBag.stains_organValuesPositive = stains_organValuesPositive;
+            ViewBag.stains_organColorPositive = stains_organColorPositive;
+
+            //sorted by stain & organ
+            //negative
+            var research_stains_organNegative = researchRepo.AllNegativeSortedByStainAndOrgan();
+            var stains_organNegative = new List<string>();
+            var stains_organValuesNegative = new List<int>();
+            var stains_organColorNegative = new List<string>();
+            foreach (var item in research_stains_organNegative)
+            {
+                stains_organNegative.Add(item.Stain + " " + item.Organ);
+                stains_organValuesNegative.Add(item.Number);
+                stains_organColorNegative.Add("#e6004c");
+            }
+            ViewBag.stains_organNegative = stains_organNegative;
+            ViewBag.stains_organValuesNegative = stains_organValuesNegative;
+            ViewBag.stains_organColorNegative = stains_organColorNegative;
+
+
+
+            //sorted by stain & tissue
+            //positive
+            var research_stains_tissuePositive = researchRepo.AllPositiveSortedByStainAndTissue();
+            var stains_tissuePositive = new List<string>();
+            var stains_tissueValuesPositive = new List<int>();
+            var stains_tissueColorPositive = new List<string>();
+            foreach (var item in research_stains_tissuePositive)
+            {
+                stains_tissuePositive.Add(item.Stain + " " + item.Tissue);
+                stains_tissueValuesPositive.Add(item.Number);
+                stains_tissuePositive.Add("#e6004c");
+            }
+            ViewBag.stains_tissuePositive = stains_tissuePositive;
+            ViewBag.stains_tissueValuesPositive = stains_tissueValuesPositive;
+            ViewBag.stains_tissueColorPositive = stains_tissueColorPositive;
+
+            //sorted by stain & tissue
+            //negative
+            var research_stains_tissueNegative = researchRepo.AllPositiveSortedByStainAndOrgan();
+            var stains_tissueNegative = new List<string>();
+            var stains_tissueValuesNegative = new List<int>();
+            var stains_tissueColorNegative = new List<string>();
+            foreach (var item in research_stains_tissueNegative)
+            {
+                stains_tissueNegative.Add(item.Stain + " " + item.Tissue);
+                stains_tissueValuesNegative.Add(item.Number);
+                stains_tissueNegative.Add("#e6004c");
+            }
+            ViewBag.stains_tissueNegative = stains_organNegative;
+            ViewBag.stains_tissueValuesNegative = stains_organValuesNegative;
+            ViewBag.stains_tissueColorNegative = stains_organColorNegative;
+
+
+
+            //
+            //sorted by organ & tissue
+            //positive
+            var research_organ_tissuePositive = researchRepo.AllPositiveSortedByOrganAndTissue();
+            var organ_tissuePositive = new List<string>();
+            var organ_tissueValuesPositive = new List<int>();
+            var organ_tissueColorPositive = new List<string>();
+            foreach (var item in research_organ_tissuePositive)
+            {
+                organ_tissuePositive.Add(item.Organ + " " + item.Tissue);
+                organ_tissueValuesPositive.Add(item.Number);
+                organ_tissuePositive.Add("#e6004c");
+            }
+            ViewBag.organ_tissuePositive = organ_tissuePositive;
+            ViewBag.organ_tissueValuesPositive = organ_tissueValuesPositive;
+            ViewBag.organ_tissueColorPositive = organ_tissueColorPositive;
+
+            //sorted by stain & tissue
+            //negative
+            var research_organ_tissueNegative = researchRepo.AllNegativeSortedByStainAndOrgan();
+            var organ_tissueNegative = new List<string>();
+            var organ_tissueValuesNegative = new List<int>();
+            var organ_tissueColorNegative = new List<string>();
+            foreach (var item in research_organ_tissueNegative)
+            {
+                organ_tissueNegative.Add(item.Organ + " " + item.Tissue);
+                organ_tissueValuesNegative.Add(item.Number);
+                organ_tissueNegative.Add("#e6004c");
+            }
+            ViewBag.organ_tissueNegative = organ_tissueNegative;
+            ViewBag.organ_tissueValuesNegative = organ_tissueValuesNegative;
+            ViewBag.organ_tissueColorNegative = organ_tissueColorNegative;
+
+
+
 
 
             return View();
