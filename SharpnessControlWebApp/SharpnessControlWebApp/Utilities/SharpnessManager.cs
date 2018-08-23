@@ -1,5 +1,6 @@
 ﻿using Sharpness.WebApp.Models.Sharpness_Persistence.Sharpness_Entities;
 using Sharpness.WebApp.Models.Sharpness_Persistence.Sharpness_Repositories.Implementation;
+using Sharpness.WebApp.Models.Sharpness_Persistence.Sharpness_Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -10,6 +11,7 @@ namespace SharpnessControlWebApp.Utilities
 {
     public class SharpnessManager :ISharpnessManager
     {
+        private  IReglementRepo repo = new ReglementRepo();
         public double[] GetChannelsValues(string path)
         {
 
@@ -46,13 +48,19 @@ namespace SharpnessControlWebApp.Utilities
             return results;
         }
 
-        public Reglement GetReglement()
+        public Reglement GetReglement(string stain, string organ)
         {
-            var _repoReglaments = new ReglementRepo();
+            var reglements =repo.GetAllReglements();
+            foreach(var item in reglements)
+            {
+                if (item.StainName==stain && item.OrganName == organ)
+                {
+                    return item;
+                }
+                
+            }
 
-            //TODO
-            //Nowadays only one reglement is possible
-            return _repoReglaments.GetReglementByTitel("Default");
+            return repo.GetReglementByTitel("Default") ;
         }
 
         /// <summary>

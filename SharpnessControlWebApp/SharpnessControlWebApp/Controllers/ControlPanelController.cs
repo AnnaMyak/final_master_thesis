@@ -46,7 +46,7 @@ namespace SharpnessControlWebApp.Controllers
 
             //TODO
             //Today only one value possible
-            var reglement = manager.GetReglement();
+            var reglement = manager.GetReglement(stain.Name, organ.Name);
             //var sharpnessEvaluationParameters = '+' + reglament.TileSize.ToString() + '+' + reglament.SharpnessThresholdValue+ '+' + reglament.Scaling.ToString()+ '+' + reglament.Edges.ToString();
 
             //Directory for WSI Uploads on the Server
@@ -91,7 +91,15 @@ namespace SharpnessControlWebApp.Controllers
             report.ReglementId = reglement.ReglementId;
             report.Comment = "Kommentar";
             report.OrganName = organ.Name;
-            report.TissueName = tissue.Name;
+            if (tissue != null)
+            {
+                report.TissueName = tissue.Name;
+            }
+            if (tissue == null)
+            {
+                report.TissueName = null;
+            }
+
             report.WSIId = wsi.WSIId;
             report.StainName = stain.Name;
             report.SharpnessMapPath = outputDir + Path.GetFileNameWithoutExtension(fileName) + ".png";
@@ -124,7 +132,13 @@ namespace SharpnessControlWebApp.Controllers
             var report = repoReports.GetReportById(ReportId);
             ViewBag.ViewerLink = "http://localhost:5000/" + report.ReportLink;
             ViewBag.Stain = repoStains.GetStainByName(report.StainName).Name;
-            ViewBag.Tissue = repoTissues.GetTissueByName(report.TissueName).Name;
+
+            if (report.TissueName != null)
+            {
+                ViewBag.Tissue = repoTissues.GetTissueByName(report.TissueName).Name;
+
+            }
+
             ViewBag.Organ = repoOrgans.GetOrganByName(report.OrganName).Name;
             ViewBag.Evaluation = report.Evaluation;
             ViewBag.G = report.Semaphore_Green;

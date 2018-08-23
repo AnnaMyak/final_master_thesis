@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -21,6 +22,17 @@ namespace Sharpness.WebApp.Models.Sharpness_Persistence.Sharpness_Entities
         [Required]
         public string Titel { get; set; }
 
+        public string StainName { get; set; }
+        public string OrganName { get; set; }
+
+
+        [ForeignKey("StainName")]
+        public Stain Stain { get; set; }
+        [ForeignKey("OrganName")]
+        public Organ Organ { get; set; }
+
+
+
 
         [Range(0, 1)]
         [Required]
@@ -31,7 +43,7 @@ namespace Sharpness.WebApp.Models.Sharpness_Persistence.Sharpness_Entities
         [Required]
         public float Scaling { get; set; }
 
-        [Range(1, 10000)]
+        [Range(1, 1000000)]
         [Required]
         public int Edges { get; set; }
 

@@ -32,7 +32,12 @@
         <th>
             @Html.DisplayNameFor(model => model.Status)
         </th>
-        
+        <th>
+            @Html.DisplayNameFor(model => model.StainName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrganName)
+        </th>
         <th></th>
     </tr>
 
@@ -60,7 +65,12 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Status)
             </td>
-            
+            <td>
+                @Html.DisplayFor(modelItem => item.StainName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrganName)
+            </td>
             <td>
                 @Html.ActionLink("Ändern", "EditReglement", new { ReglementId = item.ReglementId }, new { @class= "btn btn-warning", @style="color:white" }) |
                 

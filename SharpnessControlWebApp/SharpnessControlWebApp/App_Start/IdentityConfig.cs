@@ -163,6 +163,10 @@ namespace IdentitySample.Models
             if (!rolesForUser.Contains(role.Name)) {
                 var result = userManager.AddToRole(user.Id, role.Name);
             }
+
+
+
+
         }
     }
 

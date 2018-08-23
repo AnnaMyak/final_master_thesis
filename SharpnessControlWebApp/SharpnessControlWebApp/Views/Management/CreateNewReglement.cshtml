@@ -86,9 +86,27 @@
                 </div>
             </div>
         </div>
-        <input type="submit" value="Ein neues Schärfe-Kriterium anlegen" class="btn btn-primary" />
-    </div>
-}
+
+
+        <div class="form-group">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Färbung</span>
+                </div>
+                @Html.DropDownListFor(model => model.StainName, (IEnumerable<SelectListItem>)ViewBag.Stains, "Färbung", new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Organ</span>
+                </div>
+                @Html.DropDownListFor(model => model.OrganName, (IEnumerable<SelectListItem>)ViewBag.Organs, "Organ", new { @class = "form-control" })
+            </div>
+        </div>
+            <input type="submit" value="Ein neues Schärfe-Kriterium anlegen" class="btn btn-primary" />
+        </div>
+        }
 
 
 

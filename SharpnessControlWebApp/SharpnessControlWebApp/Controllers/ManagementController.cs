@@ -268,8 +268,24 @@ namespace SharpnessControlWebApp.Controllers
             return View(repoReglement.GetAllReglements());
         }
 
-        public ActionResult CreateNewReglement() 
+        public ActionResult CreateNewReglement()
+             
         {
+            var organsObj = repoOrgan.GetOrgans();
+            var stainsObj = repoStain.GetStains();
+            var stains = new List<string>();
+            var organs = new List<string>();
+            foreach(var item in organsObj)
+            {
+                organs.Add(item.Name);
+            }
+            foreach(var item in stainsObj)
+            {
+                stains.Add(item.Name);
+            }
+
+            ViewBag.Stains = new SelectList(stains);
+            ViewBag.Organs = new SelectList(organs);
             return View(new Reglement());
         }
 
@@ -293,7 +309,9 @@ namespace SharpnessControlWebApp.Controllers
                         Edges = reglament.Edges,
                         TileSize = reglament.TileSize,
                         AcceptanceValue = reglament.AcceptanceValue,
-                        Status = reglament.Status
+                        Status = reglament.Status,
+                        StainName = reglament.StainName,
+                        OrganName=reglament.OrganName
                     });
 
                     return RedirectToAction("ReglementsManagement");
@@ -309,6 +327,20 @@ namespace SharpnessControlWebApp.Controllers
 
         public ActionResult EditReglement(Guid ReglementId)
         {
+            var organsObj = repoOrgan.GetOrgans();
+            var stainsObj = repoStain.GetStains();
+            var stains = new List<string>();
+            var organs = new List<string>();
+            foreach (var item in organsObj)
+            {
+                organs.Add(item.Name);
+            }
+            foreach (var item in stainsObj)
+            {
+                stains.Add(item.Name);
+            }
+            ViewBag.Stains = new SelectList(stains);
+            ViewBag.Organs = new SelectList(organs);
             return View(repoReglement.GetReglementById(ReglementId));
         }
 
@@ -316,6 +348,7 @@ namespace SharpnessControlWebApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult EditReglement(Reglement reglement)
         {
+
                 if (ModelState.IsValid)
                 {
                     repoReglement.Update(reglement);

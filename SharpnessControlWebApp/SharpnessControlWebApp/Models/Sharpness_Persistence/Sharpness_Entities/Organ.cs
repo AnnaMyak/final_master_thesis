@@ -23,6 +23,7 @@ namespace Sharpness.WebApp.Models.Sharpness_Persistence.Sharpness_Entities
 
 
         public ICollection<Report> Reports { get; set; }
+        public ICollection<Reglement> Reglements { get; set; }
 
 
 
