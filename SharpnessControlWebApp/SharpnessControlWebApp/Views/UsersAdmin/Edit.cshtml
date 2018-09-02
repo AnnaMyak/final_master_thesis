@@ -1,7 +1,7 @@
 ﻿@model IdentitySample.Models.EditUserViewModel
 
 @{
-    ViewBag.Title = "Die Role vergeben / Email ändern";
+    ViewBag.Title = "Die Rolle vergeben / Email ändern";
 }
 
 
@@ -9,7 +9,7 @@
     @Html.ActionLink("Zurück zu den Benutzern", "Index", null, new { @class = "btn btn-warning", @style = "color:white" }) | @Html.ActionLink("Zurück zu den Entitäten", "Index", "Management", null, new { @class = "btn btn-danger", @style = "background-color:#884dff" })
 </div>
 <br />
-<h4>Die Role vergeben / Email ändern</h4>
+<h4>Die Rollen vergeben / Email ändern</h4>
 <br />
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
@@ -25,7 +25,7 @@
             </div>
         </div>
         <div class="form-group">
-           <strong>@Html.Label("Roles", new { @class = "control-label col-md-2" })</strong>
+           <strong>@Html.Label("Rollen", new { @class = "control-label col-md-2" })</strong>
             <span class=" col-md-10">
                 @foreach (var item in Model.RolesList)
                 {

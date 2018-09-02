@@ -12,7 +12,7 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        @Html.ActionLink("Zurück zu den Benutzer-Roles", "Index", null, new { @class = "btn btn-warning", @style = "color:white" }) | @Html.ActionLink("Zurück zu den Entitäten", "Index", "Management", null, new { @class = "btn btn-danger", @style = "background-color:#884dff" })
+        @Html.ActionLink("Zurück zu den Rollen", "Index", null, new { @class = "btn btn-warning", @style = "color:white" }) | @Html.ActionLink("Zurück zu den Entitäten", "Index", "Management", null, new { @class = "btn btn-danger", @style = "background-color:#884dff" })
     </div>
     <br />
     <h4>Die Role ändern</h4>
@@ -22,7 +22,7 @@
 
         <div class="form-group">
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Name, new { @class = "form-control",@placeholder="Role" })
+                @Html.TextBoxFor(model => model.Name, new { @class = "form-control",@placeholder="Rolle" })
                 @Html.ValidationMessageFor(model => model.Name)
             </div>
         </div>

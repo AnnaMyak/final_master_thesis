@@ -5,7 +5,7 @@
 }
 
 <p>
-    @Html.ActionLink("Eine neue Role einführen + ", "Create", null, new { @class = "btn btn-success" }) | @Html.ActionLink("Zurück zu den Entitäten", "Index", "Management", null, new { @class = "btn btn-danger", @style = "background-color:#884dff" })
+    @Html.ActionLink("Eine neue Rolle einführen + ", "Erstellen", null, new { @class = "btn btn-success" }) | @Html.ActionLink("Zurück zu den Entitäten", "Index", "Management", null, new { @class = "btn btn-danger", @style = "background-color:#884dff" })
 </p>
 <br />
 <h4>Benutzer-Roles</h4>
@@ -28,8 +28,8 @@
             </td>
             <td>
                 @Html.ActionLink("Ändern", "Edit", new { id = item.Id }, new {@class="btn btn-warning",@style="color:white" }) |
-                @Html.ActionLink("Benutzer mit der Role", "Details", new { id = item.Id }, new { @class = "btn btn-primary" }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+                @Html.ActionLink("Benutzer mit der Rolle", "Details", new { id = item.Id }, new { @class = "btn btn-primary" }) |
+                @Html.ActionLink("Löschen", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
             </td>
         </tr>
     }
