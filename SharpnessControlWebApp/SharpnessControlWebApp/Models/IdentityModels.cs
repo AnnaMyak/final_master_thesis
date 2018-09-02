@@ -48,7 +48,7 @@ namespace IdentitySample.Models
 public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("ControlApp")
+            : base("ControlDB")
         {
            
         }

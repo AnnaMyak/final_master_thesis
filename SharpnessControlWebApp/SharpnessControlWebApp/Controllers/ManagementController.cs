@@ -455,29 +455,8 @@ namespace SharpnessControlWebApp.Controllers
             var _context = new ApplicationDbContext();
             var wsi = _context.WSIs.Find(WSIId);
             var report = _context.Reports.Where(r => r.WSIId == WSIId).First();
-            var directoryName = Path.GetDirectoryName(report.SharpnessMapPath);
-            var directoryReport = Path.GetDirectoryName(directoryName);
-
-
-
-            System.IO.DirectoryInfo di = new DirectoryInfo(directoryName);
-
-            foreach (FileInfo file in di.GetFiles())
-            {
-                file.Delete();
-            }
-
-            System.IO.DirectoryInfo reportDir = new DirectoryInfo(directoryReport);
-
-            foreach (DirectoryInfo dir in reportDir.GetDirectories())
-            {
-                dir.Delete(true);
-            }
-
-
-
-
-
+            var dir = Path.GetDirectoryName(@report.SharpnessMapPath);
+            Directory.Delete(dir, true);
 
 
 
