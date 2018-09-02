@@ -8,12 +8,26 @@
 @Html.ActionLink("Zurück zu den Benutzern", "Index", null, new { @class = "btn btn-warning", @style = "color:white" }) | @Html.ActionLink("Zurück zu den Entitäten", "Index", "Management", null, new { @class = "btn btn-danger", @style = "background-color:#884dff" }) 
 <br />
 <br />
-@using (Html.BeginForm("Erzeugen", "UsersAdmin", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@using (Html.BeginForm("Create", "UsersAdmin", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
     <h4>Einen neuen Benutzer hinzufügen </h4>
     <hr />
     @Html.ValidationSummary("", new { @class = "text-error" })
+
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Email" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.ConfirmEmail, new { @class = "form-control", @placeholder = "Email bestätigen" })
+        </div>
+    </div>
+
+
+
     <div class="form-group">
         <div class="col-md-10">
             @Html.TextBoxFor(m => m.Salutation, new { @class = "form-control", @placeholder = "Anrede" })
@@ -40,11 +54,7 @@
             @Html.TextBoxFor(m => m.Organisation, new { @class = "form-control", @placeholder = "Gesundheitseinrichtung" })
         </div>
     </div>
-    <div class="form-group">
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Location, new { @class = "form-control", @placeholder = "Ort" })
-        </div>
-    </div>
+
     <div class="form-group">
         <div class="col-md-10">
             @Html.TextBoxFor(m => m.ZipCode, new { @class = "form-control", @placeholder = "Postleitzahl" })

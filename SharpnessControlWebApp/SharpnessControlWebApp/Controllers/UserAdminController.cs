@@ -90,7 +90,7 @@ namespace IdentitySample.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = userViewModel.Email, Email = userViewModel.Email };
+                var user = new ApplicationUser { UserName = userViewModel.Email, Email = userViewModel.Email, Salutation=userViewModel.Salutation, AcademicTitle=userViewModel.AcademicTitle, Firstname=userViewModel.Firstname, Lastname=userViewModel.Lastname,Organisation=userViewModel.Organisation, Address=userViewModel.Address, ZipCode=userViewModel.ZipCode, Location=userViewModel.Location,Country=userViewModel.Country, PasswordHash=userViewModel.Password };
                 var adminresult = await UserManager.CreateAsync(user, userViewModel.Password);
 
                 //Add User to the selected Roles 
