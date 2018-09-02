@@ -63,7 +63,7 @@
 
 <script src="~/Assets/vendor/chart.js/Chart.bundle.min.js"></script>
 <script>
-   
+
 
 
 
@@ -224,8 +224,41 @@
     });
 
 
+    var stain_organPos= @Html.Raw(Json.Encode(ViewBag.stain_organPositive));
+    var stain_organValuesPos = @Html.Raw(Json.Encode(ViewBag.stain_organValuesPositive));
+    var stain_organColorPos = @Html.Raw(Json.Encode(ViewBag.stain_organColorPositive));
+    var stain_organNeg = @Html.Raw(Json.Encode(ViewBag.stain_organNegative));
+    var stain_organValuesNeg = @Html.Raw(Json.Encode(ViewBag.stain_organValuesNegative));
+    var stain_organColorNeg = @Html.Raw(Json.Encode(ViewBag.stain_organColorNegative));
 
 
+    new Chart(document.getElementById("stain_organChart"), {
+        type: 'bar',
+        data:
+            {
+                labels: stain_organPos,stain_organNeg,
+                datasets: [
+                  {
+                      backgroundColor: stain_organColorPos,
+                      data: stain_organValuesPos,
+                  },
+                  {
+                      backgroundColor: stain_organColorNeg,
+                      data: stain_organValuesNeg,
+                  },
+                ]
+            },
+
+
+
+        options: {
+            legend: { display: false },
+            title: {
+                display: true,
+                text: 'Statistik: Organ & Färbung'
+            }
+        }
+    });
 
 
 

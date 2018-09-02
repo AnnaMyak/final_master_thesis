@@ -24,13 +24,7 @@ namespace SharpnessControlWebApp.Models.Sharpness_Persistence.Sharpness_Research
         IEnumerable<CommonResearch> AllPositiveSortedByStainAndOrgan();
         IEnumerable<CommonResearch> AllNegativeSortedByStainAndOrgan();
 
-        //By Stain & Tissue
-        IEnumerable<CommonResearch> AllPositiveSortedByStainAndTissue();
-        IEnumerable<CommonResearch> AllNegativeSortedByStainAndTissue();
 
-        //By Organ & Tissue
-        IEnumerable<CommonResearch> AllPositiveSortedByOrganAndTissue();
-        IEnumerable<CommonResearch> AllNegativeSortedByOrganAndTissue();
 
 
 
