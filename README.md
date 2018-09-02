@@ -30,4 +30,24 @@ ControlPanelController.cs
 			
 *** Path to the executable sharpness console app
 *** must be changed
+
+
+###################
+*****SETTINGS******
+###################
+
+	+++ADMIN+++
+//Create an admin automatically	
+App_Start->IdentityConfig.cs
+       
+        public static void InitializeIdentityForEF(ApplicationDbContext db) {...}	
+
+###################
+*****important*****
+###################
+		
+*** For a sharpness test
++++ Create a stain
++++ Create an organ
++++ Create a reglement with the title "Default"
  
