@@ -1,16 +1,17 @@
 ﻿@model IdentitySample.Models.IndexViewModel
 @{
-    ViewBag.Title = "Manage your account";
+    ViewBag.Title = "Konto verwalten";
 }
 
-<h2>@ViewBag.Title.</h2>
+<h2>@ViewBag.Title</h2>
 <p class="text-success">@ViewBag.StatusMessage</p>
 <div class="row">
     <div class="col-md-8">
         <p>
-            @(Model.HasPassword ? Html.ActionLink("Change your password", "ChangePassword") 
+            @(Model.HasPassword ? Html.ActionLink("Paswort ändern", "ChangePassword") 
                 : Html.ActionLink("Pick a password", "SetPassword"))
         </p>
+       
         <p>
             Phone Number: @(Model.PhoneNumber ?? "None") [
             @if (Model.PhoneNumber != null)

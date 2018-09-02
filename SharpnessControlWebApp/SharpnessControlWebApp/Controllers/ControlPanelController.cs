@@ -44,86 +44,93 @@ namespace SharpnessControlWebApp.Controllers
         public ActionResult Index(HttpPostedFileBase file, WSI wsi, Stain stain, Organ organ, Tissue tissue)
         {
 
-            //TODO
-            //Today only one value possible
-            var reglement = manager.GetReglement(stain.Name, organ.Name);
-            //var sharpnessEvaluationParameters = '+' + reglament.TileSize.ToString() + '+' + reglament.SharpnessThresholdValue+ '+' + reglament.Scaling.ToString()+ '+' + reglament.Edges.ToString();
 
-            //Directory for WSI Uploads on the Server
-            var root = @"C:\Users\AnnaToshiba2\Desktop\WSI\Sharpness_WebApp_Uploads\";
-            var fileName = "";
-            wsi.WSIId = Guid.NewGuid();
 
-            //Create a directory for a report and WSI 
-            string outputDir = Path.Combine(Path.GetDirectoryName(root), User.Identity.GetUserName(), "WSI " + wsi.WSIId + @"\");
-            if (!Directory.Exists(outputDir))
-                Directory.CreateDirectory(outputDir);
-            if (file.ContentLength > 0)
-            {
-                fileName = Path.GetFileName(file.FileName);
-                var path = Path.Combine(outputDir, fileName);
-                file.SaveAs(path);
-                wsi.Path = path;
-                wsi.UserId = User.Identity.GetUserId();
-                repoWSIs.Insert(wsi);
+            
 
-            }
 
-            //Generate a report link for the Viewer
-            var reportLink = User.Identity.GetUserName() + "/" + "WSI " + wsi.WSIId + "/" + fileName + " ";
-            var evaluationLink = root + reportLink.Replace("/", @"\");
 
-            //External sharpness console app 
-            Process sharpnessConsoleApp = new Process();
-            //Path to  the sharpness console app
-            sharpnessConsoleApp.StartInfo.FileName = @"C:\Users\AnnaToshiba2\Documents\GitHub\sharpness\sharpness console App\SharpnessExplorationCurrent\SharpnessExplorationCurrent\bin\x64\Release\SharpnessExplorationCurrent.exe";
+                //TODO
 
-            //WSI Path + Reglemnets arguments
-            //structure -> wsi.path#(separator)#tileSize#threshold#scale#edges 
-            sharpnessConsoleApp.StartInfo.Arguments = String.Format(@"""{0}""", wsi.Path + "#" + reglement.TileSize.ToString() + "#" + reglement.Scaling.ToString() + "#" + reglement.SharpnessThresholdValue.ToString() + "#" + reglement.Edges.ToString());
-            sharpnessConsoleApp.Start();
-            sharpnessConsoleApp.WaitForExit();
+                var reglement = manager.GetReglement(stain.Name, organ.Name);
+                //var sharpnessEvaluationParameters = '+' + reglament.TileSize.ToString() + '+' + reglament.SharpnessThresholdValue+ '+' + reglament.Scaling.ToString()+ '+' + reglament.Edges.ToString();
 
-            var report = new Report();
-            //TODO
-            //only one reglement is possible
+                //Directory for WSI Uploads on the Server
+                var root = @"C:\Users\AnnaToshiba2\Desktop\WSI\Sharpness_WebApp_Uploads\";
+                var fileName = "";
+                wsi.WSIId = Guid.NewGuid();
 
-            report.ReglementId = reglement.ReglementId;
-            report.Comment = "Kommentar";
-            report.OrganName = organ.Name;
-            if (tissue != null)
-            {
-                report.TissueName = tissue.Name;
-            }
-            if (tissue == null)
-            {
-                report.TissueName = null;
-            }
+                //Create a directory for a report and WSI 
+                string outputDir = Path.Combine(Path.GetDirectoryName(root), User.Identity.GetUserName(), "WSI " + wsi.WSIId + @"\");
+                if (!Directory.Exists(outputDir))
+                    Directory.CreateDirectory(outputDir);
+                if (file.ContentLength > 0)
+                {
+                    fileName = Path.GetFileName(file.FileName);
+                    var path = Path.Combine(outputDir, fileName);
+                    file.SaveAs(path);
+                    wsi.Path = path;
+                    wsi.UserId = User.Identity.GetUserId();
+                    repoWSIs.Insert(wsi);
 
-            report.WSIId = wsi.WSIId;
-            report.StainName = stain.Name;
-            report.SharpnessMapPath = outputDir + Path.GetFileNameWithoutExtension(fileName) + ".png";
-            report.SharpnessMapPathDebug = outputDir + Path.GetFileNameWithoutExtension(fileName) + "Debug.png";
-            var semaphoreValues = manager.GetSemaphoreValues(report.SharpnessMapPath);
-            var channelsValues = manager.GetChannelsValues(report.SharpnessMapPathDebug);
-            report.Semaphore_Red = semaphoreValues[0];
-            report.Semaphore_Green = semaphoreValues[1];
-            report.Semaphore_Yellow = semaphoreValues[2];
-            report.Red_Channel = channelsValues[0];
-            report.Blue_Channel = channelsValues[1];
+                }
 
-            if (semaphoreValues[1] > reglement.AcceptanceValue)
-            {
-                report.Evaluation = true;
-            }
-            else
-            {
-                report.Evaluation = false;
-            }
-            report.ReportLink = reportLink;
-            report.UserId = User.Identity.GetUserId();
-            repoReports.Insert(report);
-            return RedirectToAction("Report", new { ReportId = report.ReportId });
+                //Generate a report link for the Viewer
+                var reportLink = User.Identity.GetUserName() + "/" + "WSI " + wsi.WSIId + "/" + fileName + " ";
+                var evaluationLink = root + reportLink.Replace("/", @"\");
+
+                //External sharpness console app 
+                Process sharpnessConsoleApp = new Process();
+                //Path to  the sharpness console app
+                sharpnessConsoleApp.StartInfo.FileName = @"C:\Users\AnnaToshiba2\Documents\GitHub\sharpness\sharpness console App\SharpnessExplorationCurrent\SharpnessExplorationCurrent\bin\x64\Release\SharpnessExplorationCurrent.exe";
+
+                //WSI Path + Reglemnets arguments
+                //structure -> wsi.path#(separator)#tileSize#threshold#scale#edges 
+                sharpnessConsoleApp.StartInfo.Arguments = String.Format(@"""{0}""", wsi.Path + "#" + reglement.TileSize.ToString() + "#" + reglement.Scaling.ToString() + "#" + reglement.SharpnessThresholdValue.ToString() + "#" + reglement.Edges.ToString());
+                sharpnessConsoleApp.Start();
+                sharpnessConsoleApp.WaitForExit();
+
+                var report = new Report();
+                //TODO
+                //only one reglement is possible
+
+                report.ReglementId = reglement.ReglementId;
+                report.Comment = "Kommentar";
+                report.OrganName = organ.Name;
+                if (tissue != null)
+                {
+                    report.TissueName = tissue.Name;
+                }
+                if (tissue == null)
+                {
+                    report.TissueName = null;
+                }
+
+                report.WSIId = wsi.WSIId;
+                report.StainName = stain.Name;
+                report.SharpnessMapPath = outputDir + Path.GetFileNameWithoutExtension(fileName) + ".png";
+                report.SharpnessMapPathDebug = outputDir + Path.GetFileNameWithoutExtension(fileName) + "Debug.png";
+                var semaphoreValues = manager.GetSemaphoreValues(report.SharpnessMapPath);
+                var channelsValues = manager.GetChannelsValues(report.SharpnessMapPathDebug);
+                report.Semaphore_Red = semaphoreValues[0];
+                report.Semaphore_Green = semaphoreValues[1];
+                report.Semaphore_Yellow = semaphoreValues[2];
+                report.Red_Channel = channelsValues[0];
+                report.Blue_Channel = channelsValues[1];
+
+                if (semaphoreValues[1] > reglement.AcceptanceValue)
+                {
+                    report.Evaluation = true;
+                }
+                else
+                {
+                    report.Evaluation = false;
+                }
+                report.ReportLink = reportLink;
+                report.UserId = User.Identity.GetUserId();
+                repoReports.Insert(report);
+                return RedirectToAction("Report", new { ReportId = report.ReportId });
+            
         }
 
 

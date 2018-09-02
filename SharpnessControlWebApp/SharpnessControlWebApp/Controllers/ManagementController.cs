@@ -357,7 +357,7 @@ namespace SharpnessControlWebApp.Controllers
 
 
                 return View(reglement);
-            }
+        }
 
         [HttpGet]
         public ActionResult DeleteReglement(Guid ReglementId)
