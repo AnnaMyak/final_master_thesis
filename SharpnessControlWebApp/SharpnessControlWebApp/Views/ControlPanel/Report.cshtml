@@ -43,12 +43,18 @@
 
         </div>
     </div>
+    @if (ViewBag.WSI== "exists") {
     <div class="col-xl-8 col-sm-3 mb-3">
         <div class="card-body">
             <br />
             <br />
             <br />
             <iframe style="width:100%;" height="600px"  src="@ViewBag.ViewerLink"></iframe>
-</div>
-</div>
+        </div>
+    </div>
+    }
+    @if (ViewBag.WSI == "removed")
+    {
+        <h3 style="color:red">Der virtuelle Schnitt wurde gelöscht</h3>
+    }
 </div>

@@ -179,6 +179,13 @@ namespace SharpnessControlWebApp.Controllers
             ViewBag.Debug = String.Format("data:image/png;base64,{0}", base64Debug);
             ViewBag.DebugRed = report.Red_Channel;
             ViewBag.DebugBlue = report.Blue_Channel;
+
+            //check if the wsi exists
+            ViewBag.WSI = "exists";
+            if (repoWSIs.GetById(report.WSIId).Path=="removed")
+            {
+                ViewBag.WSI = "removed";
+            }
             return View();
         }
         
