@@ -4,57 +4,57 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="row">
-
-<div class="col-xl-4 col-sm-3 mb-3">
-    <div class="card-body">
-        <h5 class="card-title"><strong>Schärfebericht</strong></h5>
-        <p class="card-text"><strong>Färbung: </strong> @ViewBag.Stain</p>
-        <p class="card-text"><strong>Organ: </strong> @ViewBag.Organ</p>
-        <p class="card-text"><strong>Gewebe: </strong> @ViewBag.Tissue</p>
-        <p class="card-text">
-            <strong>Auswertung: </strong> @if (@ViewBag.Evaluation == true)
+    <div class="col-xl-4 col-sm-3 mb-3">
+        <div class="card-body">
+            <h5 class="card-title"><strong>Schärfebericht</strong></h5>
+            <p class="card-text"><strong>Färbung: </strong> @ViewBag.Stain</p>
+            <p class="card-text"><strong>Organ: </strong> @ViewBag.Organ</p>
+            <p class="card-text"><strong>Gewebe: </strong> @ViewBag.Tissue</p>
+            <p class="card-text">
+                <strong>Auswertung: </strong> @if (@ViewBag.Evaluation == true)
             {
-    <p>positiv</p>}
+                <p>positiv</p>}
             else
             {<p>negativ</p> }
-            </p>
-            <h5 class="card-title"><strong>Schärfekarte</strong></h5>
+                </p>
+                <h5 class="card-title"><strong>Schärfekarte</strong></h5>
 
 
 
 
 
 
-            <p class="card-text"><strong>Grün: </strong><span class="badge badge-success">@ViewBag.G %</span></p>
-            <p class="card-text"><strong>Gelb: </strong><span class="badge badge-warning">@ViewBag.Y %</span></p>
-            <p class="card-text"><strong>Rot: </strong> <span class="badge badge-danger">@ViewBag.R %</span></p>
-            <img class="card-img-bottom" src="@ViewBag.Img" />
-            <br />
-            <button type="button" class="btn btn-danger btn-lg btn-block">PDF</button>
-            <br />
-            @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                <p class="card-text"><strong>Grün: </strong><span class="badge badge-success">@ViewBag.G %</span></p>
+                <p class="card-text"><strong>Gelb: </strong><span class="badge badge-warning">@ViewBag.Y %</span></p>
+                <p class="card-text"><strong>Rot: </strong> <span class="badge badge-danger">@ViewBag.R %</span></p>
+                <img class="card-img-bottom" src="@ViewBag.Img" />
+                <br />
+                <button type="button" class="btn btn-danger btn-lg btn-block">PDF</button>
+                <br />
+                @if (Request.IsAuthenticated && User.IsInRole("Admin"))
             {
-                <h5 class="card-title"><strong>Debug Schärfekarte</strong></h5>
-                <p class="card-text"><strong>Rot: </strong> @ViewBag.DebugRed; %</p>
-                <p class="card-text"><strong>Blau: </strong> @ViewBag.DebugBlue; %</p>
+                    <h5 class="card-title"><strong>Debug Schärfekarte</strong></h5>
+                    <p class="card-text"><strong>Rot: </strong> @ViewBag.DebugRed; %</p>
+                    <p class="card-text"><strong>Blau: </strong> @ViewBag.DebugBlue; %</p>
 
-                <img class="card-img-bottom" src="@ViewBag.Debug" />
-            }
+                    <img class="card-img-bottom" src="@ViewBag.Debug" />
+                }
 
+            </div>
         </div>
+        @if (ViewBag.WSI == "exists")
+        {
+            <div class="col-xl-8 col-sm-3 mb-3">
+                <div class="card-body">
+                    <br />
+                    <br />
+                    <br />
+                    <iframe style="width:100%;" height="600px" src="@ViewBag.ViewerLink"></iframe>
+                </div>
+            </div>
+        }
+        @if (ViewBag.WSI == "removed")
+        {
+            <h3 style="color:red">Der virtuelle Schnitt wurde gelöscht</h3>
+        }
     </div>
-    @if (ViewBag.WSI== "exists") {
-    <div class="col-xl-8 col-sm-3 mb-3">
-        <div class="card-body">
-            <br />
-            <br />
-            <br />
-            <iframe style="width:100%;" height="600px"  src="@ViewBag.ViewerLink"></iframe>
-        </div>
-    </div>
-    }
-    @if (ViewBag.WSI == "removed")
-    {
-        <h3 style="color:red">Der virtuelle Schnitt wurde gelöscht</h3>
-    }
-</div>
